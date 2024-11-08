@@ -2,20 +2,23 @@
 
 ## Filter Wheels and Throughputs 
 
+### NIRCam
 ![nircam_wheels](nircam_wheels.jpeg)
 ![nircam](nircam.jpeg)
+
+### MIRI
 ![miri_wheels](miri_wheels.jpeg)
 ![miri](miri.jpeg)
 
 ## PSF Empirical FWHM
 
-### HST (from Guo+ 2013)
+### HST (from [Guo+ 2013](https://ui.adsabs.harvard.edu/abs/2013ApJS..207...24G))
 
 |     Band      | F435W | F606W | F775W | F814W | F850LP | F098M | F105W | F125W | F160W |
 |:-------------:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|
 | FWHM (arcsec) | 0.08  | 0.08  | 0.08  | 0.09  |  0.09  | 0.13  | 0.15  | 0.16  | 0.17  |
 
-### JWST
+### JWST (from [JWST Documents](https://jwst-docs.stsci.edu/jwst-near-infrared-camera/nircam-performance/nircam-point-spread-functions#gsc.tab=0))
 
 |     Band      | F070W | F090W  | F115W  | F140M | F150W  | F162M | F164N | F187N | F182M | F200W  | F210M | F212N  | F250M  | F277W | F300M | F323N | F335M | F356W  | F360M | F405N | F410M  | F430M | F444W  | F460M | F466N  | F470N  | F480M |
 |:-------------:|:-----:|:------:|:------:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:------:|:------:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:------:|:-----:|:------:|:-----:|:------:|:------:|:-----:|
@@ -29,9 +32,19 @@
 
 ### HST (from HLF)
 
-|    Band    | F275W | F336W | F435W | F606W | F775W | F814W | F850LP | F105W | F125W | F140W | F160W |
-|:----------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|
-| zero point | 24.13 | 24.67 | 25.68 | 26.51 | 25.69 | 25.94 | 24.87  | 26.27 | 26.23 | 26.45 | 25.94 |
+|  Band  | zero point |
+|:------:|:----------:|
+| F275W  |   24.13    |
+| F336W  |   24.67    |
+| F435W  |   25.68    |
+| F606W  |   26.51    |
+| F775W  |   25.69    |
+| F814W  |   25.94    |
+| F850LP |   24.87    |
+| F105W  |   26.27    |
+| F125W  |   26.23    |
+| F140W  |   26.45    |
+| F160W  |   25.94    |
 
 ### NIRCAM
 
