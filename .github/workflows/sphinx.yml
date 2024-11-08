@@ -32,6 +32,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3 # 使用 GitHub Actions 部署
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的 token
-          publish_dir: docs/_build/html # 设置 Sphinx 生成的 HTML 文档所在目录
-          publish_branch: gh-pages # 设置 GitHub Pages 分支
+          github_token: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 默认的 token
+          publish_dir: docs/_build/html # 生成的 HTML 文件所在目录
+          publish_branch: gh-pages # 发布到 gh-pages 分支
