@@ -29,8 +29,9 @@ jobs:
         run: |
           sphinx-build -b html docs docs/_build/html # 构建 HTML 文档
       
-      - name: Upload documentation artifact
-        uses: actions/upload-artifact@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3 # 使用 GitHub Actions 部署
         with:
-          name: sphinx-html
-          path: docs/_build/html
+          github_token: ${{ secrets.GITHUB_TOKEN }} # 使用 GitHub 提供的 token
+          publish_dir: docs/_build/html # 设置 Sphinx 生成的 HTML 文档所在目录
+          publish_branch: gh-pages # 设置 GitHub Pages 分支
