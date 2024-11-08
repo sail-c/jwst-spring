@@ -251,47 +251,59 @@
 <h1>CATALOG<a class="headerlink" href="#catalog" title="Link to this heading">¶</a></h1>
 <section id="construction">
 <h2>Construction<a class="headerlink" href="#construction" title="Link to this heading">¶</a></h2>
-<p>为了得到CANDELS的多波段星表，我构建了专门的pipeline，使用了gnuastro和photutils等工具，具体处理步骤如下：</p>
+<p>To obtain the multi-band catalog for JWST-SPRING, we built a dedicated pipeline using tools such as
+<a class="reference external" href="https://www.gnu.org/software/gnuastro/">Gnuastro</a> and
+<a class="reference external" href="https://photutils.readthedocs.io/en/stable/index.html">Photutils</a>. The specific processing steps are as follows:</p>
 <ol class="arabic simple">
-<li><p>构建F277W、F356W、F444W叠加图像；构建过曝恒星和persistence区域mask。</p></li>
-<li><p>对F444W图像和叠加图像分别使用gnuastro的noisechisel进行探测。</p></li>
-<li><p>以叠加图像的segmentation作为参考，去除F444W图像segmentation探测中的outlier。</p></li>
-<li><p>对F444W图像和叠加图像分别使用gnuastro的astsegment进行deblending。</p></li>
-<li><p>利用Gaia.query_object_async找到各个天区中的恒星，对于F444W图像相应区域的deblending，改用叠加图像的deblending结果，减轻恒星的over-deblending。</p></li>
-<li><p>利用过曝恒星和persistence区域的mask图像，mask在F444W图像segmentation中的探测。</p></li>
-<li><p>人工对F444W图像的segmentation进行最终检查，主要检查边界区域的异常探测。</p></li>
-<li><p>使用photutils结合最终的F444W波段segmentation图像构建最终的photometry星表（在最终的输出星表中，若F444W波段的ISO测光或KRON测光流量小于0，将会被丢弃）。</p></li>
+<li><p>Construct the stacked images for F277W, F356W, and F444W, and build masks for overexposed stars and persistence
+regions.</p></li>
+<li><p>Use Gnuastro’s noisechisel for detection on both the F444W image and the stacked images.</p></li>
+<li><p>Use the segmentation of the stacked image as a reference image to remove outliers from the F444W image segmentation
+detection.</p></li>
+<li><p>Use Gnuastro’s astsegment for deblending on both the F444W image and the stacked image.</p></li>
+<li><p>Query stars in each region using Gaia.query_object_async. For the F444W image in the corresponding regions, apply the
+deblending results from the stacked image to minimize over-deblending of stars.</p></li>
+<li><p>Mask the detected regions in the F444W image segmentation using the overexposed star and persistence region mask
+images.</p></li>
+<li><p>Manually inspect the F444W image segmentation, focusing mainly on checking for anomalies in the boundary regions.</p></li>
+<li><p>Use Photutils to generate the final photometric catalog from the final F444W band segmentation image. (In the final
+output catalog, any objects with ISO or KRON photometry fluxes less than 0 in the F444W band will be discarded).</p></li>
 </ol>
 </section>
 <section id="columns-name">
 <h2>Columns Name<a class="headerlink" href="#columns-name" title="Link to this heading">¶</a></h2>
-<p>以下所有流量的星等零点都为23.9</p>
-<p><code class="docutils literal notranslate"><span class="pre">id</span></code>：源的id号（由于在生成星表过程中的诸多处理——丢弃了一些源，id号是不连续的）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">xcentroid</span></code>：每个源的x中心坐标（基于segmentation，不推荐使用，可以用下面的xcentroid_win）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">ycentroid</span></code>：每个源的y中心坐标（基于segmentation，不推荐使用，可以用下面的ycentroid_win）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">ra</span></code>：xcentroid对应的ra。</p>
-<p><code class="docutils literal notranslate"><span class="pre">dec</span></code>：ycentroid对应的dec。</p>
-<p><code class="docutils literal notranslate"><span class="pre">xcentroid_win</span></code>：同SExtractor的XWIN_IMAGE。</p>
-<p><code class="docutils literal notranslate"><span class="pre">ycentroid_win</span></code>：同SExtractor的YWIN_IMAGE。</p>
-<p><code class="docutils literal notranslate"><span class="pre">ra_win</span></code>：xcentroid_win对应的ra。</p>
-<p><code class="docutils literal notranslate"><span class="pre">dec_win</span></code>：ycentroid_win对应的dec。</p>
-<p><code class="docutils literal notranslate"><span class="pre">segment_flux</span></code>：探测图像（F444W）的ISO流量。</p>
-<p><code class="docutils literal notranslate"><span class="pre">segment_fluxerr</span></code>：探测图像（F444W）的ISO流量误差（基于RMS图像）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">segment_mag</span></code>：探测图像（F444W）的ISO星等。</p>
-<p><code class="docutils literal notranslate"><span class="pre">segment_magerr</span></code>：探测图像（F444W）的ISO星等误差。</p>
-<p><code class="docutils literal notranslate"><span class="pre">f_FxxxW</span></code>：各个波段的总流量（F444W波段基于KRON流量，其他波段基于ISO流量乘以改正因子）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">e_FxxxW</span></code>：各个波段的总流量误差（基于RMS图像）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">background_sum</span></code>：源对应segmentation的背景值和（目前没有在测光中额外进行背景扣除，所以没有值）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">bbox_xmin，bbox_xmax，bbox_ymin，bbox_ymax</span></code>：源对应segmentation区域的box范围。</p>
-<p><code class="docutils literal notranslate"><span class="pre">cxx，cyy，cxy</span></code>：同SExtractor的椭圆参数。</p>
-<p><code class="docutils literal notranslate"><span class="pre">a_image</span></code>：同SExractor的A_IMAGE。</p>
-<p><code class="docutils literal notranslate"><span class="pre">b_image</span></code>：同SExtractor的B_IMAGE。</p>
-<p><code class="docutils literal notranslate"><span class="pre">theta_image</span></code>：同SExtractor的THETA_IMAGE。</p>
-<p><code class="docutils literal notranslate"><span class="pre">kron_radius</span></code>：同SExtractor的KRON_RADIUS。</p>
-<p><code class="docutils literal notranslate"><span class="pre">fwhm</span></code>：半高全宽。</p>
-<p><code class="docutils literal notranslate"><span class="pre">elongation</span></code>：半主轴与半短轴之比。</p>
+<p>The zero point for the following is 23.9.</p>
+<p><code class="docutils literal notranslate"><span class="pre">id</span></code>：The source ID (due to various processing steps in the star catalog generation — some sources were discarded, so
+the IDs are not continuous).</p>
+<p><code class="docutils literal notranslate"><span class="pre">xcentroid</span></code>：The x-coordinate of the centroid for each source (based on segmentation; not recommended for use, you can
+use xcentroid_win below).</p>
+<p><code class="docutils literal notranslate"><span class="pre">ycentroid</span></code>：The y-coordinate of the centroid for each source (based on segmentation; not recommended for use, you can
+use ycentroid_win below).</p>
+<p><code class="docutils literal notranslate"><span class="pre">ra</span></code>：The RA corresponding to xcentroid.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dec</span></code>：The Dec corresponding to ycentroid.</p>
+<p><code class="docutils literal notranslate"><span class="pre">xcentroid_win</span></code>：Equivalent to SExtractor's XWIN_IMAGE.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ycentroid_win</span></code>：Equivalent to SExtractor's YWIN_IMAGE.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ra_win</span></code>：The RA corresponding to xcentroid_win.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dec_win</span></code>：The Dec corresponding to ycentroid_win.</p>
+<p><code class="docutils literal notranslate"><span class="pre">segment_flux</span></code>：The ISO flux of the detection image (F444W).</p>
+<p><code class="docutils literal notranslate"><span class="pre">segment_fluxerr</span></code>：The ISO flux error of the detection image (F444W) based on the RMS image.</p>
+<p><code class="docutils literal notranslate"><span class="pre">segment_mag</span></code>：The ISO magnitude of the detection image (F444W).</p>
+<p><code class="docutils literal notranslate"><span class="pre">segment_magerr</span></code>：The ISO magnitude error of the detection image (F444W).</p>
+<p><code class="docutils literal notranslate"><span class="pre">f_FxxxW</span></code>：The total flux for each band (F444W band uses KRON flux, while other bands use ISO flux multiplied by a
+correction factor).</p>
+<p><code class="docutils literal notranslate"><span class="pre">e_FxxxW</span></code>：The total flux error for each band (based on the RMS image).</p>
+<p><code class="docutils literal notranslate"><span class="pre">background_sum</span></code>：The background sum for the source's corresponding segmentation (currently no additional background
+subtraction has been performed during photometry, so this value is not available).</p>
+<p><code class="docutils literal notranslate"><span class="pre">bbox_xmin，bbox_xmax，bbox_ymin，bbox_ymax</span></code>：The bounding box limits for the segmentation region of the source.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cxx，cyy，cxy</span></code>：The elliptical parameters, equivalent to those in SExtractor.</p>
+<p><code class="docutils literal notranslate"><span class="pre">a_image</span></code>： Equivalent to SExtractor's A_IMAGE.</p>
+<p><code class="docutils literal notranslate"><span class="pre">b_image</span></code>：Equivalent to SExtractor's B_IMAGE.</p>
+<p><code class="docutils literal notranslate"><span class="pre">theta_image</span></code>：Equivalent to SExtractor's THETA_IMAGE.</p>
+<p><code class="docutils literal notranslate"><span class="pre">kron_radius</span></code>：Equivalent to SExtractor's KRON_RADIUS.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fwhm</span></code>：The full width at half maximum.</p>
+<p><code class="docutils literal notranslate"><span class="pre">elongation</span></code>：The ratio of the semi-major axis to the semi-minor axis.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ellipticity</span></code>：1-elongation。</p>
-<p><code class="docutils literal notranslate"><span class="pre">apcorr</span></code>：流量改正因子，由F444W波段的KRON流量除以ISO流量得到。</p>
+<p><code class="docutils literal notranslate"><span class="pre">apcorr</span></code>：The flux correction factor, obtained by dividing the KRON flux in the F444W band by the ISO flux.</p>
 </section>
 </section>
 
