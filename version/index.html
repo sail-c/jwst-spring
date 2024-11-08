@@ -251,14 +251,20 @@
 <h1>Version Information<a class="headerlink" href="#version-information" title="Link to this heading">¶</a></h1>
 <section id="nircam">
 <h2>NIRCAM<a class="headerlink" href="#nircam" title="Link to this heading">¶</a></h2>
-<p><strong>v1.0</strong>：与CEERS流水线类似，改善wcs定标和背景扣除算法。</p>
-<p><strong>v1.1</strong>：更改流水线扣除wisp和1/f处理过程位置，放在stage2阶段，为确保加入mask persistence过程。</p>
-<p><strong>v1.2</strong>：优化1/f算法，使得每行列mask超过0.85时该行striping的值为0，在官方去除outlier的过程中加入新的outlier扣除算法。</p>
-<p><strong>v1.3</strong>：使用F814W+F160W构建参考星表，得到总的F150W数据图像。之后，利用F150+F160W构建参考星表，用于处理NIRCAM其他波段数据。</p>
-<p><strong>v1.4</strong>：优化outlier剔除算法；uds利用ukidss构建第一版参考星表，之后定标处理方法与v1.3相同。</p>
-<p><strong>v1.4.1</strong>：修复COSMOS在F090W，F115W，F200W出现的wcs问题。</p>
-<p><strong>v1.5</strong>：新的wisp扣除算法（仅在wisp特别明显且wisp模板效果不佳时使用）；优化用于1/f removing的mask构建；优化用于背景处理的mask构建；优化
-outlier clip 算法；修复构建read noise时的bug；修复用于最终drizzle前文件的背景问题。</p>
+<p><strong>v1.0</strong>：Similar to the CEERS pipeline, improve WCS calibration and background subtraction algorithms.</p>
+<p><strong>v1.1</strong>：Modify Modify the pipeline to move the WISP and 1/f processing steps to Stage 2, in order to insert the
+persistence masking process.</p>
+<p><strong>v1.2</strong>：Optimize the 1/f algorithm by setting the striping value to 0 when the mask exceeds 85% for any row or column.
+Also, optimize the outlier clipping algorithm.</p>
+<p><strong>v1.3</strong>：Construct a reference catalog using F814W and F160W, then create the F150W image. Next, use F150W and F160W to
+construct a reference catalog for processing NIRCAM data in other bands.</p>
+<p><strong>v1.4</strong>：Optimize the outlier clipping algorithm; build the first version of the reference catalog for UDS using
+UKIDSS, F814W, and F160W, with subsequent calibration processing methods identical to v1.3.</p>
+<p><strong>v1.4.1</strong>：Fix the WCS issue in COSMOS and UDS for F090W, F115W, and F200W.</p>
+<p><strong>v1.5</strong>：Introduce a <a class="reference external" href="https://dx.doi.org/10.1088/1538-3873/acea42">new WISP subtraction algorithm</a>
+(currently not used for data), update the <a class="reference external" href="https://stsci.app.box.com/s/1bymvf1lkrqbdn9rnkluzqk30e8o2bne">WISP template</a>,
+optimize mask construction for 1/f removal and background processing, improve the outlier clipping algorithm, fix a bug
+in the read noise construction, and resolve background issues in the files before the final drizzle.</p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.0：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.1：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.2：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1183</span></code></p>
@@ -268,12 +274,14 @@ outlier clip 算法；修复构建read noise时的bug；修复用于最终drizzl
 </section>
 <section id="miri">
 <h2>MIRI<a class="headerlink" href="#miri" title="Link to this heading">¶</a></h2>
-<p><strong>v1.0</strong>：基于CEERS MIRI和我们的NIRCAM v1.1流水线构建。</p>
-<p><strong>v1.1</strong>：修复wcs定标后datamodel中model.meta.wcs，model.meta.wcsinfo和model.meta.cal_step.tweakreg未修改的bug。</p>
-<p><strong>v1.2</strong>：同NIRCAM v1.4，将重新构建F444W+F160W的参考星表用于定标。</p>
-<p><strong>v1.3</strong>：修复pipeline中关于wcs定标存在的问题。利用F444W+F160W作为参考星表。</p>
-<p><strong>v1.3.1</strong>：修复UDS在F770W中出现的wcs问题。</p>
-<p><strong>v1.4</strong>：改进制作平场算法（探测、dq和err）与策略（每6个月数据制作一幅平场数据），增加outlier mask步骤。</p>
+<p><strong>v1.0</strong>：Built based on the CEERS MIRI and our NIRCAM v1.1 pipeline.</p>
+<p><strong>v1.1</strong>：Fix bug where model.meta.wcs, model.meta.wcsinfo, and model.meta.cal_step.tweakreg were not updated after WCS
+calibration in the data model.</p>
+<p><strong>v1.2</strong>：Similar to NIRCAM v1.4, build the reference catalog using F444W and F160W for MIRI WCS calibration.</p>
+<p><strong>v1.3</strong>：Fix WCS calibration issues in the pipeline.</p>
+<p><strong>v1.3.1</strong>：Fix the WCS issue in COSMOS and UDS for F770W.</p>
+<p><strong>v1.4</strong>：Improve the flat image construction algorithm (for detection, dq, and error), and update the strategy to
+create a flat image every 6 months; add an outlier masking step.</p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.0：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1177</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.1：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.2：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1185</span></code></p>
