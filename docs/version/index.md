@@ -1,20 +1,26 @@
 # Version Information
 
 ## NIRCAM
-**v1.0**：与CEERS流水线类似，改善wcs定标和背景扣除算法。
+**v1.0**：Similar to the CEERS pipeline, improve WCS calibration and background subtraction algorithms.
 
-**v1.1**：更改流水线扣除wisp和1/f处理过程位置，放在stage2阶段，为确保加入mask persistence过程。
+**v1.1**：Modify Modify the pipeline to move the WISP and 1/f processing steps to Stage 2, in order to insert the 
+persistence masking process.
 
-**v1.2**：优化1/f算法，使得每行列mask超过0.85时该行striping的值为0，在官方去除outlier的过程中加入新的outlier扣除算法。
+**v1.2**：Optimize the 1/f algorithm by setting the striping value to 0 when the mask exceeds 85% for any row or column. 
+Also, optimize the outlier clipping algorithm.
 
-**v1.3**：使用F814W+F160W构建参考星表，得到总的F150W数据图像。之后，利用F150+F160W构建参考星表，用于处理NIRCAM其他波段数据。
+**v1.3**：Construct a reference catalog using F814W and F160W, then create the F150W image. Next, use F150W and F160W to 
+construct a reference catalog for processing NIRCAM data in other bands.
 
-**v1.4**：优化outlier剔除算法；uds利用ukidss构建第一版参考星表，之后定标处理方法与v1.3相同。
+**v1.4**：Optimize the outlier clipping algorithm; build the first version of the reference catalog for UDS using 
+UKIDSS, F814W, and F160W, with subsequent calibration processing methods identical to v1.3.
 
-**v1.4.1**：修复COSMOS在F090W，F115W，F200W出现的wcs问题。
+**v1.4.1**：Fix the WCS issue in COSMOS and UDS for F090W, F115W, and F200W.
 
-**v1.5**：新的wisp扣除算法（仅在wisp特别明显且wisp模板效果不佳时使用）；优化用于1/f removing的mask构建；优化用于背景处理的mask构建；优化
-outlier clip 算法；修复构建read noise时的bug；修复用于最终drizzle前文件的背景问题。
+**v1.5**：Introduce a [new WISP subtraction algorithm](https://dx.doi.org/10.1088/1538-3873/acea42) 
+(currently not used for data), update the [WISP template](https://stsci.app.box.com/s/1bymvf1lkrqbdn9rnkluzqk30e8o2bne), 
+optimize mask construction for 1/f removal and background processing, improve the outlier clipping algorithm, fix a bug 
+in the read noise construction, and resolve background issues in the files before the final drizzle.
 
 `v1.0：JWST Calibration pipeline v1.12.5； CRDS pmap 1179`
 
@@ -30,17 +36,19 @@ outlier clip 算法；修复构建read noise时的bug；修复用于最终drizzl
 
 
 ## MIRI
-**v1.0**：基于CEERS MIRI和我们的NIRCAM v1.1流水线构建。
+**v1.0**：Built based on the CEERS MIRI and our NIRCAM v1.1 pipeline.
 
-**v1.1**：修复wcs定标后datamodel中model.meta.wcs，model.meta.wcsinfo和model.meta.cal_step.tweakreg未修改的bug。
+**v1.1**：Fix bug where model.meta.wcs, model.meta.wcsinfo, and model.meta.cal_step.tweakreg were not updated after WCS 
+calibration in the data model.
 
-**v1.2**：同NIRCAM v1.4，将重新构建F444W+F160W的参考星表用于定标。
+**v1.2**：Similar to NIRCAM v1.4, build the reference catalog using F444W and F160W for MIRI WCS calibration.
 
-**v1.3**：修复pipeline中关于wcs定标存在的问题。利用F444W+F160W作为参考星表。
+**v1.3**：Fix WCS calibration issues in the pipeline.
 
-**v1.3.1**：修复UDS在F770W中出现的wcs问题。
+**v1.3.1**：Fix the WCS issue in COSMOS and UDS for F770W.
 
-**v1.4**：改进制作平场算法（探测、dq和err）与策略（每6个月数据制作一幅平场数据），增加outlier mask步骤。
+**v1.4**：Improve the flat image construction algorithm (for detection, dq, and error), and update the strategy to 
+create a flat image every 6 months; add an outlier masking step.
 
 `v1.0：JWST Calibration pipeline v1.12.5； CRDS pmap 1177`
 

@@ -1,17 +1,17 @@
 # Data Information
 
-- *drz.fits Science image
+- __*drz.fits__ Science image
 
-- *wht.fits Weight image
+- __*wht.fits__ Weight image
 
-- *exp.fits Exposure image
+- __*exp.fits__ Exposure image
 
-- star_region_*.fits Mask image containing overexposed stars and persistence
+- __star\_region\_*.fits__ Mask image containing overexposed stars and persistence
 
-- *segmentation.fits Segmentation image obtained from detecting multi-band stacked images
+- __*segmentation.fits__ Segmentation image obtained from detecting multi-band stacked images
 
-- *final_segmentation.fits The final segmentation image obtained after a series of processing steps (including deblending, star and persistence masking, artifact removal, etc.), corresponding to the photometric star catalog
+- __*final_segmentation.fits__ The final segmentation image obtained after a series of processing steps (including deblending, star and persistence masking, artifact removal, etc.), corresponding to the photometric star catalog
 
-- *photometry.txt Multi-band photometric catalog
+- __*photometry.txt__ Multi-band photometric catalog
 
 NIRCAM provides images with a scale of 0.03''/pixel, while MIRI provides images with scales of 0.03''/pixel and 0.09''/pixel (indicated in the file names as 30mas and 90mas, respectively).
