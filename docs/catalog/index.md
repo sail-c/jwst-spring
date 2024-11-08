@@ -1,69 +1,81 @@
 # CATALOG
 
 ## Construction
-为了得到CANDELS的多波段星表，我构建了专门的pipeline，使用了gnuastro和photutils等工具，具体处理步骤如下：
+To obtain the multi-band catalog for JWST-SPRING, we built a dedicated pipeline using tools such as 
+[Gnuastro](https://www.gnu.org/software/gnuastro/) and 
+[Photutils](https://photutils.readthedocs.io/en/stable/index.html). The specific processing steps are as follows:
 
-1. 构建F277W、F356W、F444W叠加图像；构建过曝恒星和persistence区域mask。
-2. 对F444W图像和叠加图像分别使用gnuastro的noisechisel进行探测。 
-3. 以叠加图像的segmentation作为参考，去除F444W图像segmentation探测中的outlier。
-4. 对F444W图像和叠加图像分别使用gnuastro的astsegment进行deblending。
-5. 利用Gaia.query_object_async找到各个天区中的恒星，对于F444W图像相应区域的deblending，改用叠加图像的deblending结果，减轻恒星的over-deblending。
-6. 利用过曝恒星和persistence区域的mask图像，mask在F444W图像segmentation中的探测。
-7. 人工对F444W图像的segmentation进行最终检查，主要检查边界区域的异常探测。
-8. 使用photutils结合最终的F444W波段segmentation图像构建最终的photometry星表（在最终的输出星表中，若F444W波段的ISO测光或KRON测光流量小于0，将会被丢弃）。
+1. Construct the stacked images for F277W, F356W, and F444W, and build masks for overexposed stars and persistence 
+regions.
+2. Use Gnuastro’s noisechisel for detection on both the F444W image and the stacked images.
+3. Use the segmentation of the stacked image as a reference image to remove outliers from the F444W image segmentation 
+detection.
+4. Use Gnuastro’s astsegment for deblending on both the F444W image and the stacked image.
+5. Query stars in each region using Gaia.query_object_async. For the F444W image in the corresponding regions, apply the 
+deblending results from the stacked image to minimize over-deblending of stars.
+6. Mask the detected regions in the F444W image segmentation using the overexposed star and persistence region mask 
+images.
+7. Manually inspect the F444W image segmentation, focusing mainly on checking for anomalies in the boundary regions.
+8. Use Photutils to generate the final photometric catalog from the final F444W band segmentation image. (In the final 
+output catalog, any objects with ISO or KRON photometry fluxes less than 0 in the F444W band will be discarded).
 
 ## Columns Name
 
-以下所有流量的星等零点都为23.9
+The zero point for the following is 23.9.
 
-`id`：源的id号（由于在生成星表过程中的诸多处理——丢弃了一些源，id号是不连续的）。
+`id`：The source ID (due to various processing steps in the star catalog generation — some sources were discarded, so 
+the IDs are not continuous).
 
-`xcentroid`：每个源的x中心坐标（基于segmentation，不推荐使用，可以用下面的xcentroid_win）。
+`xcentroid`：The x-coordinate of the centroid for each source (based on segmentation; not recommended for use, you can 
+use xcentroid_win below).
 
-`ycentroid`：每个源的y中心坐标（基于segmentation，不推荐使用，可以用下面的ycentroid_win）。
+`ycentroid`：The y-coordinate of the centroid for each source (based on segmentation; not recommended for use, you can 
+use ycentroid_win below).
 
-`ra`：xcentroid对应的ra。
+`ra`：The RA corresponding to xcentroid.
 
-`dec`：ycentroid对应的dec。
+`dec`：The Dec corresponding to ycentroid.
 
-`xcentroid_win`：同SExtractor的XWIN_IMAGE。
+`xcentroid_win`：Equivalent to SExtractor's XWIN_IMAGE.
 
-`ycentroid_win`：同SExtractor的YWIN_IMAGE。
+`ycentroid_win`：Equivalent to SExtractor's YWIN_IMAGE.
 
-`ra_win`：xcentroid_win对应的ra。
+`ra_win`：The RA corresponding to xcentroid_win.
 
-`dec_win`：ycentroid_win对应的dec。
+`dec_win`：The Dec corresponding to ycentroid_win.
 
-`segment_flux`：探测图像（F444W）的ISO流量。
+`segment_flux`：The ISO flux of the detection image (F444W).
 
-`segment_fluxerr`：探测图像（F444W）的ISO流量误差（基于RMS图像）。
+`segment_fluxerr`：The ISO flux error of the detection image (F444W) based on the RMS image.
 
-`segment_mag`：探测图像（F444W）的ISO星等。
+`segment_mag`：The ISO magnitude of the detection image (F444W).
 
-`segment_magerr`：探测图像（F444W）的ISO星等误差。
+`segment_magerr`：The ISO magnitude error of the detection image (F444W).
 
-`f_FxxxW`：各个波段的总流量（F444W波段基于KRON流量，其他波段基于ISO流量乘以改正因子）。
+`f_FxxxW`：The total flux for each band (F444W band uses KRON flux, while other bands use ISO flux multiplied by a 
+correction factor).
 
-`e_FxxxW`：各个波段的总流量误差（基于RMS图像）。
+`e_FxxxW`：The total flux error for each band (based on the RMS image).
 
-`background_sum`：源对应segmentation的背景值和（目前没有在测光中额外进行背景扣除，所以没有值）。
+`background_sum`：The background sum for the source's corresponding segmentation (currently no additional background 
+subtraction has been performed during photometry, so this value is not available).
 
-`bbox_xmin，bbox_xmax，bbox_ymin，bbox_ymax`：源对应segmentation区域的box范围。
+`bbox_xmin，bbox_xmax，bbox_ymin，bbox_ymax`：The bounding box limits for the segmentation region of the source.
 
-`cxx，cyy，cxy`：同SExtractor的椭圆参数。
+`cxx，cyy，cxy`：The elliptical parameters, equivalent to those in SExtractor.
 
-`a_image`：同SExractor的A_IMAGE。
+`a_image`： Equivalent to SExtractor's A_IMAGE.
 
-`b_image`：同SExtractor的B_IMAGE。
+`b_image`：Equivalent to SExtractor's B_IMAGE.
 
-`theta_image`：同SExtractor的THETA_IMAGE。
+`theta_image`：Equivalent to SExtractor's THETA_IMAGE.
 
-`kron_radius`：同SExtractor的KRON_RADIUS。
+`kron_radius`：Equivalent to SExtractor's KRON_RADIUS.
 
-`fwhm`：半高全宽。
+`fwhm`：The full width at half maximum.
 
-`elongation`：半主轴与半短轴之比。
+`elongation`：The ratio of the semi-major axis to the semi-minor axis.
 
 `ellipticity`：1-elongation。
 
-`apcorr`：流量改正因子，由F444W波段的KRON流量除以ISO流量得到。
+`apcorr`：The flux correction factor, obtained by dividing the KRON flux in the F444W band by the ISO flux.

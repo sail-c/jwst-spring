@@ -1,7 +1,7 @@
 # Version Information
 
 ## NIRCAM
-**v1.0**：Similar to the CEERS pipeline, improve WCS calibration and background subtraction algorithms.
+**v1.0**：Similar to the [CEERS NIRCam pipeline](https://github.com/ceers/ceers-nircam), improve WCS calibration and background subtraction algorithms.
 
 **v1.1**：Modify Modify the pipeline to move the WISP and 1/f processing steps to Stage 2, in order to insert the 
 persistence masking process.
@@ -36,7 +36,7 @@ in the read noise construction, and resolve background issues in the files befor
 
 
 ## MIRI
-**v1.0**：Built based on the CEERS MIRI and our NIRCAM v1.1 pipeline.
+**v1.0**：Built based on the [CEERS MIRI](https://github.com/ceers/ceers-nircam) and our NIRCAM v1.1 pipeline.
 
 **v1.1**：Fix bug where model.meta.wcs, model.meta.wcsinfo, and model.meta.cal_step.tweakreg were not updated after WCS 
 calibration in the data model.

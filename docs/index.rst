@@ -18,4 +18,4 @@ JWST-SPRING Data Release Document
    data_quality/index
    catalog/index
 
-Updata time: 2024-11-07
+Updata time: 2024-11-08
