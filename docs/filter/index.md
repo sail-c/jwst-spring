@@ -10,7 +10,7 @@
 ![miri_wheels](miri_wheels.jpeg)
 ![miri](miri.jpeg)
 
-## Filter Effective Wavelength
+## Filter Wavelength
 
 | Filter ID          | &lambda;_ref | &lambda;_eff | &lambda;_min | &lambda;_max |
 |:-------------------|:------------:|:------------:|:------------:|:------------:|
