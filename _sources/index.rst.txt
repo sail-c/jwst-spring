@@ -10,9 +10,9 @@ JWST-SPRING Data Release Documentation
    :maxdepth: 2
    :caption: Contents:
 
-   coverage/index
    detector_performance/index
    filter/index
+   coverage/index
    data_info/index
    version/index
    data_obs/index
