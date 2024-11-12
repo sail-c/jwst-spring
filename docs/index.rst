@@ -11,6 +11,7 @@ JWST-SPRING Data Release Documentation
    :caption: Contents:
 
    coverage/index
+   detector_performance/index
    filter/index
    data_info/index
    version/index
@@ -18,4 +19,4 @@ JWST-SPRING Data Release Documentation
    data_quality/index
    catalog/index
 
-Updata time: 2024-11-08
+Updata time: 2024-11-12
