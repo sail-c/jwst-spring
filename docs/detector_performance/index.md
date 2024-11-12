@@ -4,7 +4,7 @@
 
 ![view](model.jpeg)
 
-## [Average NIRCam detector properties](https://jwst-docs.stsci.edu/jwst-near-infrared-camera/nircam-instrumentation/nircam-detector-overview/nircam-detector-performance#gsc.tab=0)
+## Average NIRCam detector properties(from [JWST Documents](https://jwst-docs.stsci.edu/jwst-near-infrared-camera/nircam-instrumentation/nircam-detector-overview/nircam-detector-performance#gsc.tab=0))
 
 | Parameter                                                                   |  Short wavelength channel<br/>(0.6-2.3 &mu;m)  | Long wavelength channel<br/>(2.4-5.0 &mu;m) |
 |:----------------------------------------------------------------------------|:----------------------------------------------:|:-------------------------------------------:|
