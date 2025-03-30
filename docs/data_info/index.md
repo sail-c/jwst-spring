@@ -15,3 +15,5 @@
 - `*photometry.txt` Multi-band photometric catalog
 
 NIRCAM provides images with a scale of 0.03''/pixel, while MIRI provides images with scales of 0.03''/pixel and 0.09''/pixel (indicated in the file names as 30mas and 90mas, respectively).
+
+`PIXAR_SR=2.11539874851881E-14` and `PIXAR_A2=0.0009`
