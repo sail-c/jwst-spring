@@ -20,7 +20,9 @@ UKIDSS, F814W, and F160W, with subsequent calibration processing methods identic
 **v1.5**：Introduce a [new WISP subtraction algorithm](https://dx.doi.org/10.1088/1538-3873/acea42) 
 (currently not used for data), update the [WISP template](https://stsci.app.box.com/s/1bymvf1lkrqbdn9rnkluzqk30e8o2bne), 
 optimize mask construction for 1/f removal and background processing, improve the outlier clipping algorithm, fix a bug 
-in the read noise construction, and resolve background issues in the files before the final drizzle.
+in the readout noise construction, and resolve background issues in the files before the final drizzle.
+
+**v1.6**：Improve issues related to readout noise and add some outlier region mask.
 
 `v1.0：JWST Calibration pipeline v1.12.5； CRDS pmap 1179`
 
@@ -33,6 +35,8 @@ in the read noise construction, and resolve background issues in the files befor
 `v1.4：JWST Calibration pipeline v1.12.5； CRDS pmap 1185`
 
 `v1.5：JWST Calibration pipeline v1.13.4； CRDS pmap 1236`
+
+`v1.6：JWST Calibration pipeline v1.16.1； CRDS pmap 1321`
 
 
 ## MIRI
@@ -50,6 +54,8 @@ calibration in the data model.
 **v1.4**：Improve the flat image construction algorithm (for detection, dq, and error), and update the strategy to 
 create a flat image every 6 months; add an outlier masking step.
 
+**v1.5**：Constructing a super background replaces the scheme of constructiong a flat file.
+
 `v1.0：JWST Calibration pipeline v1.12.5； CRDS pmap 1177`
 
 `v1.1：JWST Calibration pipeline v1.12.5； CRDS pmap 1179`
@@ -59,3 +65,5 @@ create a flat image every 6 months; add an outlier masking step.
 `v1.3：JWST Calibration pipeline v1.12.5； CRDS pmap 1185`
 
 `v1.4：JWST Calibration pipeline v1.13.4； CRDS pmap 1216`
+
+`v1.5：JWST Calibration pipeline v1.16.1； CRDS pmap 1321`

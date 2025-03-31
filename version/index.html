@@ -265,13 +265,15 @@ UKIDSS, F814W, and F160W, with subsequent calibration processing methods identic
 <p><strong>v1.5</strong>：Introduce a <a class="reference external" href="https://dx.doi.org/10.1088/1538-3873/acea42">new WISP subtraction algorithm</a>
 (currently not used for data), update the <a class="reference external" href="https://stsci.app.box.com/s/1bymvf1lkrqbdn9rnkluzqk30e8o2bne">WISP template</a>,
 optimize mask construction for 1/f removal and background processing, improve the outlier clipping algorithm, fix a bug
-in the read noise construction, and resolve background issues in the files before the final drizzle.</p>
+in the readout noise construction, and resolve background issues in the files before the final drizzle.</p>
+<p><strong>v1.6</strong>：Improve issues related to readout noise and add some outlier region mask.</p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.0：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.1：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.2：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1183</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.3：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1185</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.4：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1185</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.5：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.13.4；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1236</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">v1.6：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.16.1；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1321</span></code></p>
 </section>
 <section id="miri">
 <h2>MIRI<a class="headerlink" href="#miri" title="Link to this heading">¶</a></h2>
@@ -283,11 +285,13 @@ calibration in the data model.</p>
 <p><strong>v1.3.1</strong>：Fix the WCS issue in COSMOS and UDS for F770W.</p>
 <p><strong>v1.4</strong>：Improve the flat image construction algorithm (for detection, dq, and error), and update the strategy to
 create a flat image every 6 months; add an outlier masking step.</p>
+<p><strong>v1.5</strong>：Constructing a super background replaces the scheme of constructiong a flat file.</p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.0：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1177</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.1：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.2：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1185</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.3：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1185</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.4：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.13.4；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1216</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">v1.5：JWST</span> <span class="pre">Calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.16.1；</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1321</span></code></p>
 </section>
 </section>
 
