@@ -43,17 +43,22 @@
 
 ## PSF Empirical FWHM
 
-### HST (from [Guo+ 2013](https://ui.adsabs.harvard.edu/abs/2013ApJS..207...24G))
+### HST ([Link](https://ui.adsabs.harvard.edu/abs/2013ApJS..207...24G))
 
 |     Band      | F435W | F606W | F775W | F814W | F850LP | F098M | F105W | F125W | F160W |
 |:-------------:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|
 | FWHM (arcsec) | 0.08  | 0.08  | 0.08  | 0.09  |  0.09  | 0.13  | 0.15  | 0.16  | 0.17  |
 
-### JWST
+### JWST ([Link](https://jwst-docs.stsci.edu/jwst-near-infrared-camera/nircam-performance/nircam-point-spread-functions#gsc.tab=0))
 
-#### Stacked PSF
+|     Band      | F560W | F770W  | F1000W  | F1130W | F1280W  | F1500W | F1800W | F2100W | F2550W |
+|:-------------:|:-----:|:------:|:-------:|:------:|:-------:|:------:|:------:|:------:|:------:|
+| FWHM (arcsec) | 0.207 | 0.269  |  0.328  | 0.375  |  0.420  | 0.488  | 0.591  | 0.674  | 0.803  |
 
-##### COSMOS
+
+### Stacked PSF
+
+#### COSMOS
 
 ![psf_cos](check_psf_cos_psfr.png)
 ![psf_cos](check_psf_cos_psfr_miri.png)
@@ -66,7 +71,7 @@
 |:-------------:|:-----:|:------:|
 | FWHM (arcsec) | 0.276 | 0.632  |
 
-##### EGS
+#### EGS
 
 ![psf_egs](check_psf_egs_psfr.png)
 ![psf_egs](check_psf_egs_psfr_miri.png)
@@ -79,7 +84,7 @@
 |:-------------:|:-----:|:------:|:------:|:------:|
 | FWHM (arcsec) | 0.276 | 0.358  | 0.506  | 0.665  |
 
-##### GOODSN
+#### GOODSN
 
 ![psf_goodsn](check_psf_goodsn_psfr.png)
 
@@ -87,7 +92,7 @@
 |:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | FWHM (arcsec) | 0.067 | 0.067 | 0.069 | 0.080 | 0.127 | 0.142 | 0.154 | 0.162 |
 
-##### GOODSS
+#### GOODSS
 
 ![psf_goodss](check_psf_goodss_psfr.png)
 
@@ -95,19 +100,13 @@
 |:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | FWHM (arcsec) | 0.067 | 0.068 | 0.075 | 0.082 | 0.127 | 0.143 | 0.154 | 0.163 |
 
-##### UDS
+#### UDS
 
 ![psf_uds](check_psf_uds_psfr.png)
 
 |     Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W |
 |:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | FWHM (arcsec) | 0.068 | 0.070 | 0.073 | 0.083 | 0.129 | 0.143 | 0.156 | 0.164 |
-
-#### From [JWST Documents](https://jwst-docs.stsci.edu/jwst-near-infrared-camera/nircam-performance/nircam-point-spread-functions#gsc.tab=0)
-
-|     Band      | F560W | F770W  | F1000W  | F1130W | F1280W  | F1500W | F1800W | F2100W | F2550W |
-|:-------------:|:-----:|:------:|:-------:|:------:|:-------:|:------:|:------:|:------:|:------:|
-| FWHM (arcsec) | 0.207 | 0.269  |  0.328  | 0.375  |  0.420  | 0.488  | 0.591  | 0.674  | 0.803  |
 
 ## Zero point (AB mag)
 
