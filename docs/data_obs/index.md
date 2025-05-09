@@ -221,7 +221,7 @@ Until March 29, 2025.
 
 #### pro1180 
 ```
-['obsnum07', 'obsnum08', 'obsnum10', 'obsnum11', 'obsnum12', 'obsnum13', 'obsnum14', 'obsnum15', 'obsnum16', 'obsnum17', 'obsnum18', 'obsnum20', 'obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum26', 'obsnum27', 'obsnum28', 'obsnum29', 'obsnum30', 'obsnum136', 'obsnum219', 'obsnum220', 'obsnum222', 'obsnum223']
+['obsnum07', 'obsnum08', 'obsnum09', 'obsnum10', 'obsnum11', 'obsnum12', 'obsnum13', 'obsnum14', 'obsnum15', 'obsnum16', 'obsnum17', 'obsnum18', 'obsnum20', 'obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum26', 'obsnum27', 'obsnum28', 'obsnum29', 'obsnum30', 'obsnum136', 'obsnum219', 'obsnum220', 'obsnum222', 'obsnum223']
 ```
 
 #### pro1210 
@@ -318,13 +318,17 @@ Until March 29, 2025.
 
 #### pro1283
 ```
-['obsnum01', 'obsnum02', 'obsnum04', 'obsnum05', 'obsnum06']
+['obsnum01', 'obsnum02', 'obsnum04', 'obsnum05', 'obsnum06', 'obsnum07']
 ```
 
 #### pro2516
 ```
-['obsnum08', 'obsnum09']
+['obsnum05', 'obsnum06', 'obsnum07', 'obsnum08', 'obsnum09', 'obsnum10']
 ```
+
+#### pro3954
+
+['obsnum13']
 
 #### pro5407
 ```
