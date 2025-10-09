@@ -5,12 +5,14 @@
 ### COSMOS
 
 ```
-jw01837004020*
+jw01837004020* (abs_searchrad=20)
 
 jw01727022001_02201_00003_mirimage*
 jw01727022001_02201_00004_mirimage*
 jw01727062001_02201_00003_mirimage*
 jw01727062001_02201_00004_mirimage*
+
+jw01727114001* (abs_searchrad=15)
 ```
 
 ### GOODSN
@@ -19,18 +21,15 @@ jw01727062001_02201_00004_mirimage*
 jw01181010001*
 ```
 
-### GOODSS
-
-```
-jw01895001008_03106_00001_nrca1*
-jw02079001003_06201_00001_nrcb3*
-```
-
 ### UDS
 
 ```
-jw01837002007*
-jw01837002009*
+jw01837001013* (abs_minobj=10)
+
+jw01837002007* (abs_searchrad=20)
+jw01837002009* (abs_searchrad=20)
+
+jw02514257001* (abs_minobj=10)
 
 jw06368027001*
 jw06368034001*
@@ -71,6 +70,26 @@ jw01180030001_03201*nrc*long*
 jw01180030001_05201*nrc*long*
 jw01180030001_07201*nrc*long*
 jw01180030001_09201*nrc*long*
+
+jw01283004001*nrcb3* (F814W wcs problem)
+
+jw01283007001*nrcb3* (F814W wcs problem)
+jw01283007001*nrcb4* (F814W wcs problem)
+
+jw02079001003*nrca1* (F814W wcs problem)
+jw02079001*nrca2* (F814W wcs problem)
+jw02079001*nrca4* (F814W wcs problem)
+jw02079001*nrcalong* (F814W wcs problem)
+jw02079001*nrcb* (F814W wcs problem)
+jw02079001003_06201_00001_nrcb3*
+
+jw02079004003*nrca1* (F814W wcs problem)
+jw02079004*nrca2* (F814W wcs problem)
+jw02079004*nrca4* (F814W wcs problem)
+jw02079004*nrcalong* (F814W wcs problem)
+jw02079004*nrcb* (F814W wcs problem)
+
+jw02514073001*nrcb4*
 ```
 
 ### UDS
@@ -219,5 +238,4 @@ jw01837033001*nrcblong*
 jw03990026001_07201_00002*nrc*long*
 
 jw06368034001_03201*nrcalong*
-
 ```
