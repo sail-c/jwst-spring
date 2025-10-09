@@ -415,11 +415,6 @@ Until March 29, 2025.
 ['obsnum151', 'obsnum152', 'obsnum153', 'obsnum154', 'obsnum155', 'obsnum156', 'obsnum157', 'obsnum158', 'obsnum159', 'obsnum160', 'obsnum161', 'obsnum162', 'obsnum163', 'obsnum164', 'obsnum165', 'obsnum200', 'obsnum201', 'obsnum202']
 ```
 
-#### pro3567 
-```
-['obsnum01']
-```
-
 #### pro3990
 ```
 ['obsnum121', 'obsnum367', 'obsnum368', 'obsnum369', 'obsnum370']

@@ -19,7 +19,7 @@
 
 From: `pro1727, pro1810, pro1837, pro1840, pro2321, pro2514, pro3990, pro5893, pro6585`
 
-Locations: `10.47.1.38:/data3/JWST_SPRING/COSMOS/`
+Locations: `10.47.1.121:/data3/JWST_SPRING/COSMOS/`
 
 ## EGS
 
@@ -37,7 +37,7 @@ Locations: `10.47.1.38:/data3/JWST_SPRING/COSMOS/`
 
 From: `pro1345, pro2234, pro2279, pro2514, pro2750, pro3990, pro4586, pro6434`
 
-Locations: `10.47.1.38:/data3/JWST_SPRING/EGS/`
+Locations: `10.47.1.121:/data3/JWST_SPRING/EGS/`
 
 ## GOODSN
 
@@ -55,7 +55,7 @@ Locations: `10.47.1.38:/data3/JWST_SPRING/EGS/`
 
 From: `pro1181, pro1895, pro2514, pro2674, pro2926, pro3577, pro4762, pro5398, pro6434`
 
-Locations: `10.47.1.38:/data3/JWST_SPRING/GOODSN/`
+Locations: `10.47.1.121:/data3/JWST_SPRING/GOODSN/`
 
 ## GOODSS
 |      Band       | F275W | F435W  | F606W  | F775W  | F814W  | F850LP | F105W  | F125W  | F140W  | F160W  |
@@ -73,7 +73,7 @@ Locations: `10.47.1.38:/data3/JWST_SPRING/GOODSN/`
 
 From: `pro1176, pro1180, pro1207, pro1210, pro1283, pro1286, pro1287, pro1895, pro1963, pro2079, pro2198, pro2514, pro2516, pro3215, pro3954, pro3990, pro5407, pro6434, pro6511, pro6541`
 
-Locations: `10.47.1.38:/data3/JWST_SPRING/GOODSS/`
+Locations: `10.47.1.121:/data3/JWST_SPRING/GOODSS/`
 
 ## UDS
 
@@ -91,4 +91,4 @@ Locations: `10.47.1.38:/data3/JWST_SPRING/GOODSS/`
 
 From `pro1837, pro2514, pro3990`
 
-Locations: `10.47.1.38:/data3/JWST_SPRING/UDS/`
+Locations: `10.47.1.121:/data3/JWST_SPRING/UDS/`
