@@ -33,7 +33,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3 # 使用 GitHub Actions 部署
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }} # 使用 PAT token
-          commit_user_name: "qfcui"
-          commit_user_email: "cui_qifan@163.com"
+          user_name: "qfcui"
+          user_email: "cui_qifan@163.com"
           publish_dir: docs/_build/html # 生成的 HTML 文件所在目录
           publish_branch: gh-pages # 发布到 gh-pages 分支
