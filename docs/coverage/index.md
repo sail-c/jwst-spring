@@ -1,4 +1,4 @@
-\usepackage{ulem}# Coverage
+# Coverage
 
 ![coverage_nircam](candels_field.png)
 ![coverage_miri](candels_field_miri.png)
