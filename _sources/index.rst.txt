@@ -13,6 +13,7 @@ JWST-SPRING Data Release Documentation
    detector/index
    filter/index
    coverage/index
+   depth/index
    data_info/index
    version/index
    data_obs/index
