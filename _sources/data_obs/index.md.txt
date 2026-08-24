@@ -368,7 +368,7 @@ Until March 29, 2025.
 
 #### pro6368
 ```
-['obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum27', 'obsnum29', 'obsnum30', 'obsnum34']
+['obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum27', 'obsnum29', 'obsnum30', 'obsnum31', 'obsnum34', 'obsnum35', 'obsnum37', 'obsnum40', 'obsnum76']
 ```
 
 #### pro6434
