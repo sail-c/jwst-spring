@@ -1,5 +1,12 @@
 # Observation Number
 
+```
+https://doi.org/10.17909/ayy5-2s64 COSMOS
+https://doi.org/10.17909/qsxt-qz77 EGS
+https://doi.org/10.17909/r9xn-yn54 GOODSN
+https://doi.org/10.17909/vp9h-k622 GOODSS
+https://doi.org/10.17909/2zc0-sy38 UDS
+```
 Until March 29, 2025.
 
 ## COSMOS
@@ -202,7 +209,7 @@ Until March 29, 2025.
 
 #### pro4762
 ```
-['obsnum02', 'obsnum04', 'obsnum08']
+['obsnum02', 'obsnum08']
 ```
 
 #### pro5407
@@ -366,7 +373,7 @@ Until March 29, 2025.
 
 #### pro6434
 ```
-['obsnum181', 'obsnum182', 'obsnum183', 'obsnum184', 'obsnum185', 'obsnum186']
+['obsnum181', 'obsnum182', 'obsnum183', 'obsnum184', 'obsnum185', 'obsnum186', 'obsnum391', 'obsnum392']
 ```
 
 #### pro6480

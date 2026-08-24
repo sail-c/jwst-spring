@@ -76,6 +76,9 @@ jw02514113001*nrc*long*
 ### GOODSS
 
 ```
+jw01180008001_04101_00001_nrc* (wcs problem)
+jw01180008001_10101_00001_nrc* (wcs problem)
+
 jw01180025001_03201*nrc*long*
 jw01180025001_05201*nrc*long*
 jw01180025001_07201*nrc*long*
