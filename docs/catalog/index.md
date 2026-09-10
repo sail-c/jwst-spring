@@ -1,4 +1,4 @@
-# CATALOG
+# Catalog
 
 ## Construction
 To obtain the multi-band catalog for JWST-SPRING, we built a dedicated pipeline using tools such as 
@@ -79,4 +79,3 @@ subtraction has been performed during photometry, so this value is not available
 `ellipticity`：1-elongation。
 
 `apcorr`：The flux correction factor, obtained by dividing the KRON flux in the F444W band by the ISO flux.
-

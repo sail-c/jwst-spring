@@ -1,9 +1,26 @@
-# Coverage
+# Overview
 
-![coverage_nircam](candels_field.png)
-![coverage_miri](candels_field_miri.png)
+<nav class="section-jump-nav" aria-label="Overview sections">
+  <a class="section-jump-nav__item" href="#coverage">
+    <span class="section-jump-nav__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M3 6.5 8 4l5 2.5L18 4l3 1.5v12L18 20l-5-2.5L8 20l-5-2.5z"></path><path d="M8 4v16M13 6.5v11M18 4v16"></path></svg>
+    </span>
+    <span>Coverage</span>
+  </a>
+  <a class="section-jump-nav__item" href="#depth">
+    <span class="section-jump-nav__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="4.5"></circle><path d="M12 3.5V7M12 17v3.5M3.5 12H7M17 12h3.5"></path></svg>
+    </span>
+    <span>Depth</span>
+  </a>
+</nav>
 
-## COSMOS
+## Coverage
+
+![NIRCam coverage across the five JWST-SPRING fields](candels_field.png)
+![MIRI coverage across the five JWST-SPRING fields](candels_field_miri.png)
+
+### COSMOS
 
 |      Band       | F275W  | F435W  | F606W  | F814W  | F105W | F125W  | F140W  | F160W  |
 |:---------------:|:------:|:------:|:------:|:------:|:-----:|:------:|:------:|:------:|
@@ -19,9 +36,7 @@
 
 From: `pro1727, pro1810, pro1837, pro1840, pro2321, pro2514, pro3990, pro5893, pro6585`
 
-Locations: `10.47.1.121:/data3/JWST_SPRING/COSMOS/`
-
-## EGS
+### EGS
 
 |      Band       | F275W  | F435W  | F606W  | F814W  | F105W | F125W  | F140W  | F160W  |
 |:---------------:|:------:|:------:|:------:|:------:|:-----:|:------:|:------:|:------:|
@@ -37,9 +52,7 @@ Locations: `10.47.1.121:/data3/JWST_SPRING/COSMOS/`
 
 From: `pro1345, pro2234, pro2279, pro2514, pro2750, pro3990, pro4586, pro6434`
 
-Locations: `10.47.1.121:/data3/JWST_SPRING/EGS/`
-
-## GOODSN
+### GOODSN
 
 |      Band       | F275W  | F435W  | F606W  | F775W  | F814W  | F850LP |
 |:---------------:|:------:|:------:|:------:|:------:|:------:|:------:|
@@ -55,9 +68,7 @@ Locations: `10.47.1.121:/data3/JWST_SPRING/EGS/`
 
 From: `pro1181, pro1895, pro2514, pro2674, pro2926, pro3577, pro4762, pro5398, pro6434`
 
-Locations: `10.47.1.121:/data3/JWST_SPRING/GOODSN/`
-
-## GOODSS
+### GOODSS
 |      Band       | F275W | F435W  | F606W  | F775W  | F814W  | F850LP | F105W  | F125W  | F140W  | F160W  |
 |:---------------:|:-----:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
 | Area (arcmin^2) | 54.10 | 183.82 | 270.82 | 226.74 | 371.57 | 348.78 | 104.92 | 135.33 | 156.00 | 135.33 |
@@ -73,9 +84,7 @@ Locations: `10.47.1.121:/data3/JWST_SPRING/GOODSN/`
 
 From: `pro1176, pro1180, pro1207, pro1210, pro1283, pro1286, pro1287, pro1895, pro1963, pro2079, pro2198, pro2514, pro2516, pro3215, pro3954, pro3990, pro5407, pro6434, pro6511, pro6541`
 
-Locations: `10.47.1.121:/data3/JWST_SPRING/GOODSS/`
-
-## UDS
+### UDS
 
 |      Band       | F606W  | F814W  | F105W | F125W  | F140W  | F160W  |
 |:---------------:|:------:|:------:|:-----:|:------:|:------:|:------:|
@@ -89,6 +98,38 @@ Locations: `10.47.1.121:/data3/JWST_SPRING/GOODSS/`
 |:---------------:|:------:|:------:|
 | Area (arcmin^2) | 128.68 | 126.93 |
 
-From `pro1837, pro2514, pro3990, pro5324, pro6368, pro6434, pro7814`
+From: `pro1837, pro2514, pro3990, pro5324, pro6368, pro6434, pro7814`
 
-Locations: `10.47.1.121:/data3/JWST_SPRING/UDS/`
+## Depth
+
+Source-contaminated regions were masked, and 10,000 random circular apertures with radii matched to the PSF FWHM were placed in each of 20 iterations. The 5&sigma; limiting flux was derived from five times the standard deviation of the aperture fluxes, averaged across all iterations, and converted to an AB magnitude.
+
+### COSMOS
+
+|      Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W | F770W | F1800W |
+|:--------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|
+| 5&sigma; depth | 29.76 | 29.81 | 29.71 | 29.92 | 29.23 | 29.14 | 28.34 | 28.62 | 28.06 | 25.81  |
+
+### EGS
+
+|      Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W | F770W | F1800W |
+|:--------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|
+| 5&sigma; depth | 30.49 | 30.66 | 30.43 | 30.45 | 29.71 | 29.54 | 28.68 | 28.95 | 28.23 | 25.97  |
+
+### GOODSN
+
+|      Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W | F770W | F1800W |
+|:--------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|
+| 5&sigma; depth | 30.67 | 30.55 | 30.48 | 30.45 | 29.89 | 29.59 | 29.11 | 29.09 | 28.82 | 25.72  |
+
+### GOODSS
+
+|      Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W | F770W | F1800W |
+|:--------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|
+| 5&sigma; depth | 30.92 | 30.96 | 30.84 | 30.75 | 29.96 | 29.77 | 29.29 | 29.44 | 28.23 | 25.79  |
+
+### UDS
+
+|      Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W | F770W | F1800W |
+|:--------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|
+| 5&sigma; depth | 29.55 | 29.60 | 29.70 | 29.64 | 28.15 | 29.00 | 28.10 | 28.43 | 28.02 | 25.76  |

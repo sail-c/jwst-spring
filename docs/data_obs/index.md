@@ -1,13 +1,12 @@
 # Observation Number
 
-```
-https://doi.org/10.17909/ayy5-2s64 COSMOS
-https://doi.org/10.17909/qsxt-qz77 EGS
-https://doi.org/10.17909/r9xn-yn54 GOODSN
-https://doi.org/10.17909/vp9h-k622 GOODSS
-https://doi.org/10.17909/2zc0-sy38 UDS
-```
-Until March 29, 2025.
+- [COSMOS](https://doi.org/10.17909/ayy5-2s64)
+- [EGS](https://doi.org/10.17909/qsxt-qz77)
+- [GOODS-N](https://doi.org/10.17909/r9xn-yn54)
+- [GOODS-S](https://doi.org/10.17909/vp9h-k622)
+- [UDS](https://doi.org/10.17909/2zc0-sy38)
+
+Observations available through August 25, 2026.
 
 ## COSMOS
 
@@ -132,7 +131,7 @@ Until March 29, 2025.
 
 #### pro6434
 ```
-`['obsnum21', 'obsnum22', 'obsnum231', 'obsnum232', 'obsnum241', 'obsnum251', 'obsnum443', 'obsnum444', 'obsnum445', 'obsnum446', 'obsnum449', 'obsnum450']`
+['obsnum21', 'obsnum22', 'obsnum231', 'obsnum232', 'obsnum241', 'obsnum251', 'obsnum443', 'obsnum444', 'obsnum445', 'obsnum446', 'obsnum449', 'obsnum450']
 ```
 
 #### pro7814

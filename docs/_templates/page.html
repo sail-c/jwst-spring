@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% macro nav_icon(name) -%}
+  {% if name == "home" %}
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8"></path><path d="M5.5 9.5V21h13V9.5M9 21v-7h6v7"></path></svg>
+  {% elif name == "overview" %}
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3.1 4.5 6.1 4.5 9S15 17.9 12 21M12 3c-3 3.1-4.5 6.1-4.5 9S9 17.9 12 21"></path></svg>
+  {% elif name == "instruments" %}
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 4 8 8M5 6l4-4 2 2-4 4zM13 10l3-3 2 2-3 3M13 12l-5 5M6 15l3 3M5 21h10M10 18v3"></path><circle cx="18" cy="5" r="2"></circle></svg>
+  {% elif name == "observations" %}
+  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>
+  {% elif name == "release" %}
+  <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v6c0 1.7 3.6 3 8 3M20 5v6M4 11v6c0 1.7 3.6 3 8 3"></path><path d="M17 13v8M14 18l3 3 3-3"></path></svg>
+  {% elif name == "fitsmap" %}
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path><circle cx="15" cy="11" r="2"></circle></svg>
+  {% elif name == "team" %}
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 20c.5-4 2.5-6 6-6s5.5 2 6 6M15 14c3.4 0 5.3 1.7 6 5"></path></svg>
+  {% endif %}
+{%- endmacro %}
+
+{% macro nav_link(document, label, icon) -%}
+  <a href="{{ pathto(document) }}" class="site-nav__link{% if pagename == document %} is-active{% endif %}"{% if pagename == document %} aria-current="page"{% endif %}>
+    <span class="site-nav__icon">{{ nav_icon(icon) }}</span>
+    <span>{{ label }}</span>
+  </a>
+{%- endmacro %}
+
+{% block body -%}
+{{ super() }}
+<script>document.body.dataset.theme = "light";</script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<input class="site-menu-toggle" type="checkbox" id="site-menu-toggle" aria-label="Toggle navigation">
+
+<header class="site-header" id="top">
+  <div class="site-header__inner">
+    <a class="site-brand" href="{{ pathto('index') }}" aria-label="JWST-SPRING home">
+      <span class="site-brand__star" aria-hidden="true">✦</span>
+      <span>JWST-SPRING</span>
+    </a>
+    <label class="site-menu-button" for="site-menu-toggle" aria-label="Open navigation">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </label>
+    <nav class="site-nav" aria-label="Primary navigation">
+      {{ nav_link('index', 'Home', 'home') }}
+      {{ nav_link('overview/index', 'Overview', 'overview') }}
+      {{ nav_link('instruments/index', 'Instruments', 'instruments') }}
+      {{ nav_link('observations/index', 'Observations', 'observations') }}
+      {{ nav_link('data_release/index', 'Data Release', 'release') }}
+      {{ nav_link('fitsmap/index', 'FITSmap', 'fitsmap') }}
+      {{ nav_link('team/index', 'Team', 'team') }}
+    </nav>
+  </div>
+</header>
+<label class="site-menu-overlay" for="site-menu-toggle" aria-hidden="true"></label>
+
+<main class="site-main page-{{ pagename|replace('/', '-') }}" id="main-content">
+  <article class="article-content" role="main">
+    {{ body }}
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span>© 2026 JWST-SPRING Team</span>
+    <span>Updated 2026-09-11</span>
+  </div>
+</footer>
+{%- endblock %}

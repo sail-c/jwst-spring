@@ -1,5 +1,7 @@
 # Filter 
 
+<!-- instrument-content-start -->
+
 ## Filter Wheels and Throughputs 
 
 ### NIRCam
@@ -58,6 +60,9 @@
 | JWST/MIRI.F1800W    |  179837.22   |  178734.17   |  160441.28   |  203000.78   |
 | JWST/MIRI.F2100W    |  207950.05   |  205601.06   |  179077.84   |  244780.51   |
 | JWST/MIRI.F2550W    |  253640.02   |  251515.99   |  223494.34   |  299940.00   |
+
+<!-- instrument-content-end -->
+<!-- release-content-start -->
 
 ## PSF Empirical FWHM
 
@@ -169,3 +174,5 @@
 28.08652 (for 0.03\"/pixel)
 
 25.70091 (for 0.09\"/pixel)
+
+<!-- release-content-end -->

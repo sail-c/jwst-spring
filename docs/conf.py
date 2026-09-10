@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'JWST-SPRING'
-copyright = '2024, JWST-SPRING'
-author = 'qfcui'
+copyright = '2026, JWST-SPRING'
+author = 'JWST-SPRING Team'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+release = '2.0.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -47,7 +47,20 @@ language = 'en'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [
+    '_build',
+    'Thumbs.db',
+    '.DS_Store',
+    # These files are source fragments for the reorganized public pages.
+    'catalog/index.md',
+    'data_info/index.md',
+    'data_obs/index.md',
+    'data_quality/index.md',
+    'filter/index.md',
+    'version/index.md',
+]
+
+myst_heading_anchors = 4
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -57,7 +70,18 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'furo'
 
+html_title = 'JWST-SPRING'
+html_show_sourcelink = False
+html_show_sphinx = False
+html_last_updated_fmt = '%Y-%m-%d'
+html_theme_options = {
+    'top_of_page_buttons': [],
+}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+html_css_files = ['custom.css']
+html_js_files = ['site.js']
