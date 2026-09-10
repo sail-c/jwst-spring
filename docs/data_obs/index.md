@@ -58,6 +58,11 @@ Until March 29, 2025.
 ['obsnum04', 'obsnum12']
 ```
 
+#### pro7814
+```
+['obsnum03', 'obsnum04']
+```
+
 ### MIRI
 
 #### pro1727
@@ -74,6 +79,12 @@ Until March 29, 2025.
 ```
 ['obsnum17', 'obsnum18']
 ```
+
+#### pro7814
+```
+['obsnum03', 'obsnum04']
+```
+
 
 ## EGS
 
@@ -124,6 +135,11 @@ Until March 29, 2025.
 `['obsnum21', 'obsnum22', 'obsnum231', 'obsnum232', 'obsnum241', 'obsnum251', 'obsnum443', 'obsnum444', 'obsnum445', 'obsnum446', 'obsnum449', 'obsnum450']`
 ```
 
+#### pro7814
+```
+['obsnum24', 'obsnum25', 'obsnum26', 'obsnum27', 'obsnum28', 'obsnum29', 'obsnum30', 'obsnum31', 'obsnum32', 'obsnum33']
+```
+
 ### MIRI
 
 #### pro1345
@@ -140,6 +156,12 @@ Until March 29, 2025.
 ```
 ['obsnum01']
 ```
+
+#### pro7814
+```
+['obsnum24', 'obsnum25', 'obsnum26', 'obsnum27', 'obsnum28', 'obsnum29', 'obsnum30', 'obsnum31', 'obsnum32', 'obsnum33']
+```
+
 
 ## GOODSN
 
@@ -296,6 +318,11 @@ Until March 29, 2025.
 ['obsnum17', 'obsnum18', 'obsnum19', 'obsnum20', 'obsnum90', 'obsnum91', 'obsnum92', 'obsnum93', 'obsnum135', 'obsnum204', 'obsnum205', 'obsnum206', 'obsnum563']
 ```
 
+#### pro5324
+```
+['obsnum26', 'obsnum27']
+```
+
 #### pro6434
 ```
 ['obsnum41', 'obsnum72', 'obsnum421', 'obsnum422', 'obsnum423', 'obsnum424']
@@ -366,9 +393,14 @@ Until March 29, 2025.
 ['obsnum21', 'obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum26', 'obsnum57', 'obsnum58', 'obsnum59', 'obsnum63', 'obsnum64', 'obsnum65', 'obsnum105', 'obsnum106', 'obsnum107', 'obsnum108', 'obsnum109', 'obsnum110', 'obsnum513', 'obsnum514', 'obsnum515', 'obsnum516', 'obsnum517', 'obsnum518', 'obsnum519', 'obsnum520', 'obsnum521', 'obsnum522', 'obsnum523', 'obsnum524']
 ```
 
+#### pro5324
+```
+['obsnum08', 'obsnum09', 'obsnum20', 'obsnum21']
+```
+
 #### pro6368
 ```
-['obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum27', 'obsnum29', 'obsnum30', 'obsnum31', 'obsnum34', 'obsnum35', 'obsnum37', 'obsnum40', 'obsnum76']
+['obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum27', 'obsnum29', 'obsnum30', 'obsnum31', 'obsnum34', 'obsnum35', 'obsnum37', 'obsnum40']
 ```
 
 #### pro6434
@@ -381,11 +413,21 @@ Until March 29, 2025.
 ['obsnum13']
 ```
 
+#### pro7814
+```
+['obsnum01', 'obsnum02', 'obsnum50', 'obsnum51']
+```
+
 ### MIRI
 
 #### pro1837
 ```
 ['obsnum01', 'obsnum02', 'obsnum08', 'obsnum09', 'obsnum14', 'obsnum21', 'obsnum22', 'obsnum23', 'obsnum24', 'obsnum25', 'obsnum31', 'obsnum32', 'obsnum33', 'obsnum34', 'obsnum35']
+```
+
+#### pro7814
+```
+['obsnum01', 'obsnum02', 'obsnum50', 'obsnum51']
 ```
 
 ## COSMOSWEB
@@ -452,4 +494,9 @@ Until March 29, 2025.
 #### pro5893
 ```
 ['obsnum17', 'obsnum18']
+```
+
+#### pro7814
+```
+['obsnum03', 'obsnum04']
 ```
