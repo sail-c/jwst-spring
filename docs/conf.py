@@ -54,8 +54,6 @@ exclude_patterns = [
     # These files are source fragments for the reorganized public pages.
     'catalog/index.md',
     'data_info/index.md',
-    'data_obs/index.md',
-    'data_quality/index.md',
     'filter/index.md',
     'version/index.md',
 ]

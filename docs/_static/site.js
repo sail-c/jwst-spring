@@ -5,10 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuToggle && menuButton) {
     const syncMenuState = () => {
       menuButton.setAttribute("aria-expanded", menuToggle.checked ? "true" : "false");
+      menuButton.setAttribute("aria-label", menuToggle.checked ? "Close navigation" : "Open navigation");
       document.body.classList.toggle("menu-open", menuToggle.checked);
     };
 
+    menuButton.addEventListener("click", () => {
+      menuToggle.checked = !menuToggle.checked;
+      syncMenuState();
+    });
     menuToggle.addEventListener("change", syncMenuState);
+    document.querySelectorAll(".site-nav__link").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuToggle.checked = false;
+        syncMenuState();
+      });
+    });
     syncMenuState();
   }
 

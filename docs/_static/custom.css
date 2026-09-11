@@ -292,6 +292,11 @@ a {
   width: min(960px, 100%);
 }
 
+.section-jump-nav--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(1180px, 100%);
+}
+
 .section-jump-nav__item {
   display: flex;
   align-items: center;
@@ -337,7 +342,7 @@ a {
   stroke-width: 1.55;
 }
 
-:is(.page-overview-index, .page-instruments-index) .article-content h2 {
+:is(.page-overview-index, .page-instruments-index, .page-observations-index, .page-data-release-index) .article-content h2 {
   margin-top: 68px;
   padding-bottom: 14px;
   color: #173843;
@@ -347,11 +352,13 @@ a {
 }
 
 .page-overview-index #coverage > h2,
-.page-instruments-index #detectors > h2 {
+.page-instruments-index #detectors > h2,
+.page-observations-index #observation-numbers > h2,
+.page-data-release-index #imaging-data > h2 {
   margin-top: 0;
 }
 
-:is(.page-overview-index, .page-instruments-index) .article-content h3 {
+:is(.page-overview-index, .page-instruments-index, .page-observations-index, .page-data-release-index) .article-content h3 {
   margin: 34px 0 12px;
   padding-bottom: 8px;
   color: #29434d;
@@ -361,7 +368,7 @@ a {
   letter-spacing: 0.015em;
 }
 
-.page-instruments-index .article-content h4 {
+:is(.page-instruments-index, .page-observations-index, .page-data-release-index) .article-content h4 {
   margin: 30px 0 12px;
   padding-bottom: 7px;
   color: #314853;
@@ -371,21 +378,74 @@ a {
   letter-spacing: 0.01em;
 }
 
-:is(.page-overview-index, .page-instruments-index) .table-wrapper {
+:is(.page-overview-index, .page-instruments-index, .page-observations-index, .page-data-release-index) .table-wrapper {
   margin: 10px 0 12px;
 }
 
-:is(.page-overview-index, .page-instruments-index) .table-wrapper + .table-wrapper {
+:is(.page-overview-index, .page-instruments-index, .page-observations-index, .page-data-release-index) .table-wrapper + .table-wrapper {
   margin-top: 8px;
 }
 
-:is(.page-overview-index, .page-instruments-index) .article-content table {
+:is(.page-overview-index, .page-instruments-index, .page-observations-index, .page-data-release-index) .article-content table {
   margin: 0;
 }
 
-:is(.page-overview-index, .page-instruments-index) .article-content h3 + .table-wrapper,
-.page-instruments-index .article-content h4 + .table-wrapper {
+:is(.page-overview-index, .page-instruments-index, .page-observations-index, .page-data-release-index) .article-content h3 + .table-wrapper,
+:is(.page-instruments-index, .page-data-release-index) .article-content h4 + .table-wrapper {
   margin-top: 0;
+}
+
+.release-status {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  max-width: 86ch;
+  margin: 12px 0 24px;
+  padding: 12px 15px;
+  color: #263f49;
+  background: #f2f6f6;
+  border: 1px solid #d5e0e2;
+  border-radius: 5px;
+  font-size: 0.94rem;
+  font-weight: 650;
+}
+
+.release-status__mark {
+  flex: 0 0 9px;
+  width: 9px;
+  height: 9px;
+  background: #304f59;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(48, 79, 89, 0.1);
+}
+
+.release-status--processing .release-status__mark {
+  background: #60737a;
+}
+
+.page-observations-index .article-content h5 {
+  margin: 22px 0 7px;
+  color: #36515c;
+  font-size: 0.94rem;
+  font-weight: 720;
+  letter-spacing: 0.015em;
+}
+
+.page-observations-index .article-content .highlight {
+  margin: 0 0 18px;
+}
+
+.page-observations-index .article-content .highlight pre {
+  margin: 0;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #314853;
+  background: #f5f8f8;
+  border: 1px solid #e0e8ea;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  line-height: 1.55;
 }
 
 .page-overview-index #depth > p {
@@ -789,8 +849,11 @@ a {
     display: grid;
     width: 42px;
     height: 42px;
+    padding: 0;
     place-items: center;
     color: var(--spring-ink);
+    background: transparent;
+    border: 0;
     cursor: pointer;
   }
 
@@ -833,7 +896,7 @@ a {
   .site-menu-overlay {
     position: fixed;
     inset: var(--spring-header-height) 0 0;
-    z-index: 101;
+    z-index: 99;
     background: rgba(18, 31, 38, 0.34);
     cursor: pointer;
   }
@@ -858,6 +921,10 @@ a {
   }
 
   .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section-jump-nav--four {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
