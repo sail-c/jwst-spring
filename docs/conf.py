@@ -22,7 +22,7 @@ copyright = '2026, JWST-SPRING'
 author = 'JWST-SPRING Team'
 
 # The full version, including alpha/beta/rc tags
-release = '2.0.0'
+release = '2.0.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -53,9 +53,6 @@ exclude_patterns = [
     '.DS_Store',
     # These files are source fragments for the reorganized public pages.
     'catalog/index.md',
-    'data_info/index.md',
-    'filter/index.md',
-    'version/index.md',
 ]
 
 myst_heading_anchors = 4

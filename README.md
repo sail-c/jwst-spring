@@ -2,6 +2,12 @@
 
 Website for **Spatially Pixel-level Resolved Investigations into Nascent Galaxies with JWST**.
 
+## Version 2.0.2
+
+Version 2.0.2 adds a full-resolution interactive GOODS-S FITSmap with RGB,
+F150W, F277W, and F444W layers. It also includes the reorganized Observations
+and Data Release pages and the latest Team updates.
+
 ## Version 2.0.0
 
 Version 2.0.0 is a complete redesign of the JWST-SPRING website. It introduces

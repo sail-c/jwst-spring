@@ -1,81 +1,65 @@
 # Data Release
 
-<nav class="section-jump-nav section-jump-nav--four" aria-label="Data release sections">
-  <a class="section-jump-nav__item" href="#imaging-data">
-    <span class="section-jump-nav__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9" r="1.5"></circle><path d="m5 17 4.5-4 3 2.5 2.5-2 4 3.5"></path></svg>
-    </span>
-    <span>Imaging Data</span>
-  </a>
-  <a class="section-jump-nav__item" href="#spectroscopy">
-    <span class="section-jump-nav__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M3 17h3l2-9 3 12 2-15 3 12h5"></path></svg>
-    </span>
-    <span>Spectroscopy</span>
-  </a>
-  <a class="section-jump-nav__item" href="#photometric-catalog">
-    <span class="section-jump-nav__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>
-    </span>
-    <span>Photometric Catalog</span>
-  </a>
-  <a class="section-jump-nav__item" href="#point-spread-functions-psfs">
-    <span class="section-jump-nav__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="1.3"></circle></svg>
-    </span>
-    <span>PSF</span>
-  </a>
+<nav class="section-jump-nav section-jump-nav--five" aria-label="Data release sections">
+  <a class="section-jump-nav__item" href="#imaging-data"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9" r="1.5"></circle><path d="m5 17 4.5-4 3 2.5 2.5-2 4 3.5"></path></svg></span><span>Imaging Data</span></a>
+  <a class="section-jump-nav__item" href="#spectroscopy"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17h3l2-9 3 12 2-15 3 12h5"></path></svg></span><span>Spectroscopy</span></a>
+  <a class="section-jump-nav__item" href="#photometric-catalog"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span>Catalog</span></a>
+  <a class="section-jump-nav__item" href="#point-spread-functions-psfs"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="1.3"></circle></svg></span><span>PSF</span></a>
+  <a class="section-jump-nav__item" href="#processing-versions"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h11M4 12h8M4 17h6"></path><path d="M17 13v7M14 17l3 3 3-3"></path></svg></span><span>Versions</span></a>
 </nav>
 
 ## Imaging Data
 
-<div class="release-status release-status--coming">
-  <span class="release-status__mark" aria-hidden="true"></span>
-  <span>Imaging data are coming soon.</span>
-</div>
+<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>Imaging data are coming soon.</span></div>
 
-### NIRCam
+<nav class="section-jump-nav release-subnav release-subnav--two" aria-label="Imaging data products">
+  <a class="section-jump-nav__item" href="imaging/nircam.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 8h8v8H8zM4 12h4M16 12h4M12 4v4M12 16v4"></path></svg></span><span>NIRCam</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="imaging/miri.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M7 12h10M12 7v10"></path></svg></span><span>MIRI</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+</nav>
 
-NIRCam imaging products are coming soon.
-
-### MIRI
-
-MIRI imaging products are coming soon.
-
-### AB Magnitude Zero Points
-
-#### HST (from HLF)
+### HST AB Magnitude Zero Points (from HLF)
 
 |    Band     | F275W | F336W | F435W | F606W | F775W | F814W | F850LP | F105W | F125W | F140W | F160W |
 |:-----------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|
 | Zero point  | 24.13 | 24.67 | 25.68 | 26.51 | 25.69 | 25.94 | 24.87  | 26.27 | 26.23 | 26.45 | 25.94 |
 
-#### NIRCam
+## Spectroscopy
 
-28.08652 (for 0.03\"/pixel)
+<div class="release-status release-status--processing"><span class="release-status__mark" aria-hidden="true"></span><span>Spectroscopic data processing is in progress.</span></div>
 
-#### MIRI
+<nav class="section-jump-nav section-jump-nav--three release-subnav release-subnav--three" aria-label="Spectroscopic data products">
+  <a class="section-jump-nav__item" href="spectroscopy/nircam-wfss.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17h3l2-9 3 12 2-15 3 12h5"></path></svg></span><span>NIRCam WFSS</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="spectroscopy/nirspec-grism.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18 9 6l3 12 3-8 5 8"></path></svg></span><span>NIRSpec Grism</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="spectroscopy/nirspec-grating.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5v14M9 5v14M13 5v14M17 5v14M21 5v14"></path></svg></span><span>NIRSpec Grating</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+</nav>
 
-28.08652 (for 0.03\"/pixel)
+## Photometric Catalog
 
-25.70091 (for 0.09\"/pixel)
+<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>Photometric catalog products are coming soon.</span></div>
 
-### Image File Descriptions
+## Point-Spread Functions (PSFs)
 
-| File pattern | Description |
-|:-------------|:------------|
-| `*drz.fits` | Science image |
-| `*wht.fits` | Weight image |
-| `*exp.fits` | Exposure image |
-| `*err.fits` | Error image |
+<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>PSF products are coming soon.</span></div>
 
-NIRCam images have a pixel scale of 0.03 arcsec pixel⁻¹, while MIRI images are provided at 0.03 and 0.09 arcsec pixel⁻¹ (identified as 30mas and 90mas in file names).
+### HST Empirical FWHM ([Reference](https://ui.adsabs.harvard.edu/abs/2013ApJS..207...24G))
 
-`PIXAR_SR=2.11539874851881E-14` and `PIXAR_A2=0.0009`
+|     Band      | F435W | F606W | F775W | F814W | F850LP | F098M | F105W | F125W | F160W |
+|:-------------:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|
+| FWHM (arcsec) | 0.08  | 0.08  | 0.08  | 0.09  |  0.09  | 0.13  | 0.15  | 0.16  | 0.17  |
 
-### Processing Versions
+### Stacked PSFs by Field
 
-#### NIRCam
+<nav class="section-jump-nav section-jump-nav--five release-subnav release-subnav--five" aria-label="Stacked PSFs by field">
+  <a class="section-jump-nav__item" href="psf/cosmos.html"><span>COSMOS</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="psf/egs.html"><span>EGS</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="psf/goods-n.html"><span>GOODS-N</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="psf/goods-s.html"><span>GOODS-S</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="psf/uds.html"><span>UDS</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+</nav>
+
+## Processing Versions
+
+### NIRCam
 **v1.0:** Based on the [CEERS NIRCam pipeline](https://github.com/ceers/ceers-nircam), with improved WCS calibration and background subtraction.
 
 **v1.1:** Move the WISP and 1/f correction steps to Stage 2 to allow persistence masking between pipeline stages.
@@ -110,7 +94,7 @@ NIRCam images have a pixel scale of 0.03 arcsec pixel⁻¹, while MIRI images ar
 
 `v1.7: JWST calibration pipeline v1.16.1; CRDS pmap 1321`
 
-#### MIRI
+### MIRI
 **v1.0:** Based on the [CEERS MIRI pipeline](https://github.com/ceers/ceers-nircam) and the JWST-SPRING NIRCam v1.1 pipeline.
 
 **v1.1:** Fix a bug that prevented `model.meta.wcs`, `model.meta.wcsinfo`, and `model.meta.cal_step.tweakreg` from being updated in the data model after WCS calibration.
@@ -141,115 +125,18 @@ NIRCam images have a pixel scale of 0.03 arcsec pixel⁻¹, while MIRI images ar
 
 `v1.7: JWST calibration pipeline v1.16.1; CRDS pmap 1321`
 
-## Spectroscopy
+```{toctree}
+:hidden:
+:maxdepth: 1
 
-<div class="release-status release-status--processing">
-  <span class="release-status__mark" aria-hidden="true"></span>
-  <span>Spectroscopic data processing is in progress.</span>
-</div>
-
-### NIRCam WFSS (Grism Spectroscopy)
-
-Data processing is in progress.
-
-### NIRSpec Grating Spectroscopy
-
-Data processing is in progress.
-
-## Photometric Catalog
-
-<div class="release-status release-status--coming">
-  <span class="release-status__mark" aria-hidden="true"></span>
-  <span>Photometric catalog products are coming soon.</span>
-</div>
-
-## Point-Spread Functions (PSFs)
-
-<div class="release-status release-status--coming">
-  <span class="release-status__mark" aria-hidden="true"></span>
-  <span>PSF products are coming soon.</span>
-</div>
-
-### HST Empirical FWHM ([Reference](https://ui.adsabs.harvard.edu/abs/2013ApJS..207...24G))
-
-|     Band      | F435W | F606W | F775W | F814W | F850LP | F098M | F105W | F125W | F160W |
-|:-------------:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|
-| FWHM (arcsec) | 0.08  | 0.08  | 0.08  | 0.09  |  0.09  | 0.13  | 0.15  | 0.16  | 0.17  |
-
-### Stacked PSFs
-
-#### COSMOS
-
-![psf_cos](check_psf_cos_psfr_all.png)
-
-|     Band      | F606W | F814W |
-|:-------------:|:-----:|:-----:|
-| FWHM (arcsec) | 0.115 | 0.113 |
-
-|     Band      | F090W | F115W | F150W  | F200W | F212N | F277W | F356W | F410M | F444W | F444W_F466N | F444W_F470N |
-|:-------------:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----------:|:-----------:|
-| FWHM (arcsec) | 0.067 | 0.069 | 0.076  | 0.084 | 0.084 | 0.129 | 0.142 | 0.154 | 0.163 |    0.171    |    0.171    |
-
-|     Band      | F770W | F1800W |
-|:-------------:|:-----:|:------:|
-| FWHM (arcsec) | 0.276 | 0.632  |
-
-#### EGS
-
-![psf_egs](check_psf_egs_psfr_all.png)
-
-|     Band      | F606W | F814W |
-|:-------------:|:-----:|:-----:|
-| FWHM (arcsec) | 0.109 | 0.113 |
-
-|     Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W | F444W_F470N |
-|:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----------:|
-| FWHM (arcsec) | 0.067 | 0.068 | 0.072 | 0.080 | 0.129 | 0.145 | 0.155 | 0.164 |    0.171    |
-
-|     Band      | F770W | F1000W | F1500W | F2100W |
-|:-------------:|:-----:|:------:|:------:|:------:|
-| FWHM (arcsec) | 0.277 | 0.352  | 0.507  | 0.710  |
-
-#### GOODS-N
-
-![psf_goodsn](check_psf_goodsn_psfr_all.png)
-
-|     Band      | F435W | F606W | F775W | F814W | F850LP |
-|:-------------:|:-----:|:-----:|:-----:|:-----:|:------:|
-| FWHM (arcsec) | 0.109 | 0.125 | 0.118 | 0.115 | 0.114  |
-
-|     Band      | F090W | F115W | F150W | F182M | F200W | F210M | F277W | F335M | F356W | F410M | F444W |
-|:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-| FWHM (arcsec) | 0.067 | 0.068 | 0.072 | 0.077 | 0.081 | 0.082 | 0.128 | 0.138 | 0.142 | 0.154 | 0.162 |
-
-#### GOODS-S
-
-![psf_goodss](check_psf_goodss_psfr_all.png)
-
-|     Band      | F435W | F606W | F775W | F814W | F850LP |
-|:-------------:|:-----:|:-----:|:-----:|:-----:|:------:|
-| FWHM (arcsec) | 0.112 | 0.113 | 0.105 | 0.108 | 0.115  |
-
-|     Band      | F070W | F090W | F115W | F150W | F182M | F200W | F210M | F277W | F335M | F356W | F410M | F444W |
-|:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-| FWHM (arcsec) | 0.074 | 0.070 | 0.071 | 0.074 | 0.082 | 0.082 | 0.087 | 0.129 | 0.140 | 0.144 | 0.155 | 0.163 |
-
-|     Band      | F770W | F1500W |
-|:-------------:|:-----:|:------:|
-| FWHM (arcsec) | 0.290 | 0.404  |
-
-#### UDS
-
-![psf_uds](check_psf_uds_psfr_all.png)
-
-|     Band      | F606W | F814W |
-|:-------------:|:-----:|:-----:|
-| FWHM (arcsec) | 0.112 | 0.107 |
-
-|     Band      | F090W | F115W | F150W | F200W | F277W | F356W | F410M | F444W |
-|:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-| FWHM (arcsec) | 0.069 | 0.071 | 0.075 | 0.083 | 0.129 | 0.143 | 0.153 | 0.162 |
-
-|     Band      | F770W | F1800W |
-|:-------------:|:-----:|:------:|
-| FWHM (arcsec) | 0.284 | 0.602  |
+imaging/nircam
+imaging/miri
+spectroscopy/nircam-wfss
+spectroscopy/nirspec-grism
+spectroscopy/nirspec-grating
+psf/cosmos
+psf/egs
+psf/goods-n
+psf/goods-s
+psf/uds
+```

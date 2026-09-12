@@ -19,7 +19,8 @@
 {%- endmacro %}
 
 {% macro nav_link(document, label, icon) -%}
-  <a href="{{ pathto(document) }}" class="site-nav__link{% if pagename == document %} is-active{% endif %}"{% if pagename == document %} aria-current="page"{% endif %}>
+  {% set is_active = pagename == document or ('/index' in document and pagename.startswith(document|replace('/index', '/'))) %}
+  <a href="{{ pathto(document) }}" class="site-nav__link{% if is_active %} is-active{% endif %}"{% if is_active %} aria-current="page"{% endif %}>
     <span class="site-nav__icon">{{ nav_icon(icon) }}</span>
     <span>{{ label }}</span>
   </a>
@@ -62,7 +63,7 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
     <span>© 2026 JWST-SPRING Team</span>
-    <span>Updated 2026-09-11</span>
+    <span>v2.0.2 · Updated 2026-09-12</span>
   </div>
 </footer>
 {%- endblock %}

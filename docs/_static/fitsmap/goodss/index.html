@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOODS-S · JWST-SPRING FITSmap</title>
+  <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="map.css">
+</head>
+<body>
+  <div id="map" aria-label="Interactive GOODS-S image map"></div>
+  <header class="map-header">
+    <a href="../../../fitsmap/" aria-label="Back to fields">←</a>
+    <div><strong>JWST-SPRING</strong><span>GOODS-S FITSmap · 0.03″</span></div>
+  </header>
+  <form class="coordinate-search" id="coordinate-search">
+    <input id="ra-input" type="number" step="any" placeholder="RA (deg)" aria-label="Right ascension in degrees">
+    <input id="dec-input" type="number" step="any" placeholder="Dec (deg)" aria-label="Declination in degrees">
+    <button type="submit">Go</button>
+  </form>
+  <div class="map-status">
+    <span id="layer-label">Color — F150W / F277W / F444W</span>
+    <span id="coordinate-label">Move over the map to read coordinates</span>
+    <span id="scale-label">0.03″/pixel</span>
+  </div>
+  <script src="../vendor/leaflet/leaflet.js"></script>
+  <script src="config.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>
