@@ -4,7 +4,7 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/fengshan-liu.jpg" alt="Portrait of Fengshan Liu"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Fengshan Liu <span class="team-card__badge">Co-founder</span></h2>
+      <h2 class="team-card__name">Fengshan Liu <a class="team-card__orcid" href="https://orcid.org/0009-0001-7105-2284" target="_blank" rel="noopener" aria-label="Fengshan Liu ORCID: 0009-0001-7105-2284"><span aria-hidden="true">iD</span></a> <span class="team-card__badge">Co-founder</span></h2>
       <p class="team-card__position">Professor</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
       <a class="team-card__email" href="mailto:fsliu@nao.cas.cn">fsliu@nao.cas.cn</a>
@@ -38,9 +38,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/hassen-yesuf.jpg" alt="Portrait of Hassen M. Yesuf"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Hassen M. Yesuf</h2>
+      <h2 class="team-card__name">Hassen M. Yesuf <a class="team-card__orcid" href="https://orcid.org/0000-0002-4176-9145" target="_blank" rel="noopener" aria-label="Hassen M. Yesuf ORCID: 0000-0002-4176-9145"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Associate Professor</p>
       <p class="team-card__affiliation">Shanghai Astronomical Observatory,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:myesuf@gmail.com">myesuf@gmail.com</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests">
         <span>Galaxy Formation &amp; Evolution (Star Formation, AGN Feedback, Gas in Galaxies, and etc.)</span>
@@ -106,9 +107,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/jian-ren.jpg" alt="Portrait of Jian Ren"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Jian Ren</h2>
+      <h2 class="team-card__name">Jian Ren <a class="team-card__orcid" href="https://orcid.org/0000-0002-5043-2886" target="_blank" rel="noopener" aria-label="Jian Ren ORCID: 0000-0002-5043-2886"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Assistant Professor</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:renjian@bao.ac.cn">renjian@bao.ac.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests"><span>Galaxy Formation and Evolution</span></div>
     </div>
@@ -128,9 +130,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/pinsong-zhao.jpg" alt="Portrait of Pinsong Zhao"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Pinsong Zhao</h2>
+      <h2 class="team-card__name">Pinsong Zhao <a class="team-card__orcid" href="https://orcid.org/0000-0002-4328-538X" target="_blank" rel="noopener" aria-label="Pinsong Zhao ORCID: 0000-0002-4328-538X"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Postdoc</p>
       <p class="team-card__affiliation">KIAA PKU</p>
+      <a class="team-card__email" href="mailto:zps@bao.ac.cn">zps@bao.ac.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests">
         <span>Morphology Transformation of Galaxies</span><span>UDGs</span><span>Galaxy Cluster</span><span>High-z Galaxy</span>
@@ -163,9 +166,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/qifan-cui.jpg" alt="Portrait of Qifan Cui"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Qifan Cui</h2>
+      <h2 class="team-card__name">Qifan Cui <a class="team-card__orcid" href="https://orcid.org/0009-0001-5320-1450" target="_blank" rel="noopener" aria-label="Qifan Cui ORCID: 0009-0001-5320-1450"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Student</p>
       <p class="team-card__affiliation">Shanghai Key Lab for Astrophysics,<br>Shanghai Normal University</p>
+      <a class="team-card__email" href="mailto:qifancui@hotmail.com">qifancui@hotmail.com</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests"><span>Galaxy Formation and Evolution</span><span>Astronomical Data Reduction</span></div>
     </div>
@@ -196,9 +200,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/qi-song.jpg" alt="Portrait of Qi Song"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Qi Song</h2>
+      <h2 class="team-card__name">Qi Song <a class="team-card__orcid" href="https://orcid.org/0009-0007-5833-3210" target="_blank" rel="noopener" aria-label="Qi Song ORCID: 0009-0007-5833-3210"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Student</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:songqi@bao.ac.cn">songqi@bao.ac.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests"><span>Lyman-Alpha Emitters (LAEs)</span><span>Spectroscopic Reduction</span></div>
     </div>
