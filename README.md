@@ -27,3 +27,7 @@ python -m venv .venv
 
 Open `docs/_build/html/index.html`, or serve the directory with a local HTTP
 server to test navigation.
+
+The reproducible GOODS-S FITSmap builder and its separate dependencies are
+documented in [`tools/fitsmap/README.md`](tools/fitsmap/README.md). Generated
+tiles are stored directly under `docs/_static/fitsmap/goodss`.
