@@ -18,7 +18,7 @@
     <h2>GOODS-N</h2>
     <span class="fitsmap-field-card__status">Coming soon</span>
   </div>
-  <a class="fitsmap-field-card is-active" href="../_static/fitsmap/goodss/index.html" aria-label="Open the interactive GOODS-S FITSmap">
+  <a class="fitsmap-field-card is-active" href="../_static/fitsmap/goodss/index.html?v=northup2" aria-label="Open the interactive GOODS-S FITSmap">
     <span class="fitsmap-field-card__number">04</span>
     <h2>GOODS-S</h2>
     <span class="fitsmap-field-card__status">Open interactive map <span aria-hidden="true">→</span></span>

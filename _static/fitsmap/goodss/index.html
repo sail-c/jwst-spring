@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GOODS-S · JWST-SPRING FITSmap</title>
   <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="map.css">
+  <link rel="stylesheet" href="map.css?v=bg1">
 </head>
 <body>
   <div id="map" aria-label="Interactive GOODS-S image map"></div>
@@ -18,13 +18,21 @@
     <input id="dec-input" type="number" step="any" placeholder="Dec (deg)" aria-label="Declination in degrees">
     <button type="submit">Go</button>
   </form>
+  <section class="display-settings" aria-label="Display settings">
+    <div><label for="brightness-control">Brightness</label><output id="brightness-value">100%</output></div>
+    <input id="brightness-control" type="range" min="50" max="200" value="100" step="1">
+    <div><label for="contrast-control">Contrast</label><output id="contrast-value">100%</output></div>
+    <input id="contrast-control" type="range" min="50" max="200" value="100" step="1">
+    <button id="display-reset" type="button">Reset</button>
+  </section>
   <div class="map-status">
     <span id="layer-label">Color — F150W / F277W / F444W</span>
     <span id="coordinate-label">Move over the map to read coordinates</span>
+    <span id="catalog-status">Catalog hidden</span>
     <span id="scale-label">0.03″/pixel</span>
   </div>
   <script src="../vendor/leaflet/leaflet.js"></script>
-  <script src="config.js"></script>
-  <script src="map.js"></script>
+  <script src="config.js?v=northup1"></script>
+  <script src="map.js?v=northup2"></script>
 </body>
 </html>

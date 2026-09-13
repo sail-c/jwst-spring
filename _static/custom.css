@@ -207,9 +207,19 @@ a {
   font-size: 0.96rem;
 }
 
+/* Keep heading text and rules aligned with the surrounding page content.
+   Furo adds horizontal padding and compensating negative margins by default;
+   those offsets become visible when page-specific heading margins are reset. */
+.article-content :is(h1, h2, h3, h4, h5, h6) {
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
 .article-content p,
 .article-content li {
-  max-width: 86ch;
+  max-width: none;
 }
 
 .article-content img {
@@ -396,11 +406,32 @@ a {
 }
 
 .fitsmap-field-card.is-active {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   color: #fff;
   background: #197b83;
   border-color: #197b83;
   box-shadow: 0 12px 28px rgba(25, 123, 131, 0.18);
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.fitsmap-field-card.is-active::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(13, 77, 83, 0.30) 0%, rgba(11, 82, 88, 0.76) 100%),
+    url("fitsmap/goodss-card.webp") center 48% / cover no-repeat;
+  filter: brightness(1.04) saturate(1.04);
+  transform: scale(1.015);
+  transition: filter 180ms ease, transform 220ms ease;
+}
+
+.fitsmap-field-card.is-active > * {
+  position: relative;
+  z-index: 1;
 }
 
 .fitsmap-field-card.is-active .fitsmap-field-card__number,
@@ -413,6 +444,11 @@ a {
   background: #146e75;
   box-shadow: 0 17px 34px rgba(25, 123, 131, 0.25);
   transform: translateY(-2px);
+}
+
+.fitsmap-field-card.is-active:hover::before {
+  filter: brightness(1.18) saturate(1.08);
+  transform: scale(1.05);
 }
 
 .fitsmap-field-card.is-pending {
@@ -476,7 +512,7 @@ a {
   display: flex;
   align-items: center;
   gap: 11px;
-  max-width: 86ch;
+  max-width: none;
   margin: 10px 0 18px;
   padding: 12px 15px;
   color: #263f49;
@@ -788,7 +824,6 @@ a.observation-access-link:focus-visible {
 .page-overview-index #depth > p {
   max-width: none;
   text-align: justify;
-  text-indent: 2em;
 }
 
 .page-overview-index .article-content p:has(> code:first-child) {
@@ -849,9 +884,7 @@ a.observation-access-link:focus-visible {
   max-width: none;
   min-height: calc(100vh - var(--spring-header-height) - 74px);
   padding: 64px 0 88px;
-  background:
-    radial-gradient(circle at 50% 38%, rgba(18, 109, 120, 0.09), transparent 36%),
-    linear-gradient(180deg, #fff 0%, #f7f9f9 100%);
+  background: #fff;
 }
 
 .page-index .article-content {

@@ -94,9 +94,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/fengjie-lei.jpg" alt="Portrait of Fengjie Lei"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Fengjie Lei</h2>
+      <h2 class="team-card__name">Fengjie Lei <a class="team-card__orcid" href="https://orcid.org/0000-0003-0408-5497" target="_blank" rel="noopener" aria-label="Fengjie Lei ORCID: 0000-0003-0408-5497"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Assistant Researcher</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:fjlei@nao.cas.cn">fjlei@nao.cas.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests">
         <span>Star Formation in Galaxies</span><span>Low Surface Brightness Galaxies</span><span>Hα Imaging Observations</span>
@@ -144,9 +145,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/bingqing-zhang.jpg" alt="Portrait of Bingqing Zhang"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Bingqing Zhang</h2>
+      <h2 class="team-card__name">Bingqing Zhang <a class="team-card__orcid" href="https://orcid.org/0000-0002-6659-1152" target="_blank" rel="noopener" aria-label="Bingqing Zhang ORCID: 0000-0002-6659-1152"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Postdoc</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:bqzhang@nao.cas.cn">bqzhang@nao.cas.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests"><span>Galaxy Formation and Evolution</span></div>
     </div>
@@ -178,9 +180,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/mingxiang-fu.jpg" alt="Portrait of Mingxiang Fu"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Mingxiang Fu</h2>
+      <h2 class="team-card__name">Mingxiang Fu <a class="team-card__orcid" href="https://orcid.org/0009-0005-6793-5788" target="_blank" rel="noopener" aria-label="Mingxiang Fu ORCID: 0009-0005-6793-5788"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Student</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:fumx@bao.ac.cn">fumx@bao.ac.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests"><span>Galaxy Evolution</span><span>Machine Learning for Astronomy</span></div>
     </div>
@@ -189,9 +192,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/hao-mo.png" alt="Portrait of Hao Mo"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Hao Mo</h2>
+      <h2 class="team-card__name">Hao Mo <a class="team-card__orcid" href="https://orcid.org/0000-0002-3443-0768" target="_blank" rel="noopener" aria-label="Hao Mo ORCID: 0000-0002-3443-0768"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Student</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:mohao@bao.ac.cn">mohao@bao.ac.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests"><span>Galaxy Evolution</span><span>Active Galactic Nucleus</span></div>
     </div>

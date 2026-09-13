@@ -10,18 +10,12 @@
 
 ## Imaging Data
 
-<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>Imaging data are coming soon.</span></div>
+<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>JWST imaging products are coming soon; HST reference products are available through the linked archives.</span></div>
 
 <nav class="section-jump-nav release-subnav release-subnav--two" aria-label="Imaging data products">
-  <a class="section-jump-nav__item" href="imaging/nircam.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 8h8v8H8zM4 12h4M16 12h4M12 4v4M12 16v4"></path></svg></span><span>NIRCam</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
-  <a class="section-jump-nav__item" href="imaging/miri.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M7 12h10M12 7v10"></path></svg></span><span>MIRI</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="imaging/hst.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 8h8v8H8zM16 10l4-2v8l-4-2M8 10 4 8v8l4-2M10 8V4h4v4M10 16v4h4v-4"></path></svg></span><span>HST</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+  <a class="section-jump-nav__item" href="imaging/jwst.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 6 3.5v7L12 17l-6-3.5v-7zM12 3v14M6 6.5l12 7M18 6.5l-12 7M5 20l7-3 7 3"></path></svg></span><span>JWST</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
 </nav>
-
-### HST AB Magnitude Zero Points (from HLF)
-
-|    Band     | F275W | F336W | F435W | F606W | F775W | F814W | F850LP | F105W | F125W | F140W | F160W |
-|:-----------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|:-----:|:-----:|:-----:|:-----:|
-| Zero point  | 24.13 | 24.67 | 25.68 | 26.51 | 25.69 | 25.94 | 24.87  | 26.27 | 26.23 | 26.45 | 25.94 |
 
 ## Spectroscopy
 
@@ -129,8 +123,8 @@
 :hidden:
 :maxdepth: 1
 
-imaging/nircam
-imaging/miri
+imaging/hst
+imaging/jwst
 spectroscopy/nircam-wfss
 spectroscopy/nirspec-grism
 spectroscopy/nirspec-grating
