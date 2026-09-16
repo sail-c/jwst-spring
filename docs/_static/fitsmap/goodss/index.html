@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GOODS-S · JWST-SPRING FITSmap</title>
+  <title>JWST-SPRING FITSmap</title>
   <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="map.css?v=bg1">
+  <link rel="stylesheet" href="map.css?v=field1">
 </head>
 <body>
-  <div id="map" aria-label="Interactive GOODS-S image map"></div>
+  <div id="map" aria-label="Interactive survey image map"></div>
   <header class="map-header">
     <a href="../../../fitsmap/" aria-label="Back to fields">←</a>
-    <div><strong>JWST-SPRING</strong><span>GOODS-S FITSmap · 0.03″</span></div>
+    <div><strong>JWST-SPRING</strong><span id="field-label">FITSmap · 0.03″</span></div>
   </header>
   <form class="coordinate-search" id="coordinate-search">
     <input id="ra-input" type="number" step="any" placeholder="RA (deg)" aria-label="Right ascension in degrees">
@@ -32,7 +32,16 @@
     <span id="scale-label">0.03″/pixel</span>
   </div>
   <script src="../vendor/leaflet/leaflet.js"></script>
-  <script src="config.js?v=northup1"></script>
-  <script src="map.js?v=northup2"></script>
+  <script src="config.js?v=field1"></script>
+  <script>
+    (() => {
+      const cfg = window.FITSMAP_CONFIG || window.GOODSS_CONFIG;
+      if (!cfg) return;
+      document.title = `${cfg.field} · JWST-SPRING FITSmap`;
+      document.getElementById("map").setAttribute("aria-label", `Interactive ${cfg.field} image map`);
+      document.getElementById("field-label").textContent = `${cfg.field} FITSmap · ${cfg.pixelScaleArcsec.toFixed(2)}″`;
+    })();
+  </script>
+  <script src="map.js?v=field1"></script>
 </body>
 </html>

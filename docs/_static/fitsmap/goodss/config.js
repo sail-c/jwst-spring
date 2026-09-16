@@ -82,12 +82,14 @@ window.GOODSS_CONFIG = {
     }
   },
   "catalog": {
-    "recordBytes": 28,
+    "recordBytes": 38,
     "sourceCount": 205983,
     "tileCount": 242,
+    "spectroscopicSourceCount": 8579,
+    "fluxBandCount": 20,
     "minDisplayZoom": 5,
     "ellipseZoom": 7,
     "maxDisplayRadiusNative": 300,
-    "path": "catalog/7/{x}/{y}.bin?v=northup1"
+    "path": "catalog/7/{x}/{y}.bin?v=catalog2"
   }
 };

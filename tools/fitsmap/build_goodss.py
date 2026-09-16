@@ -23,6 +23,12 @@ MAP_DIR = FITSMAP_DIR / "goodss"
 WEB_DIR = ROOT / "web"
 METADATA_PATH = ROOT / "build-metadata-goodss.json"
 CATALOG_PATH = Path(r"E:\ALL_CANDELS_JWST_final_goodss_v2.fits")
+FIELD_NAME = "GOODS-S"
+CONFIG_GLOBAL = "window.GOODSS_CONFIG"
+CATALOG_VERSION = "catalog2"
+TILE_VERSION = "northup1"
+LANDING_CARD_TILE = (12, 11)
+LANDING_CARD_PATH = FITSMAP_DIR / "goodss-card.webp"
 TILE_SIZE = 2048
 OVERVIEW_SIZE = 512
 MIN_ZOOM = 1
@@ -30,6 +36,7 @@ THRESHOLD_SIGMA = 0.4
 SHADOW_GAMMA = 0.65
 
 LAYERS = ("RGB_ENHANCED", "F150W", "F277W", "F444W")
+LAYER_QUALITY = {layer: 80 for layer in LAYERS}
 
 BANDS = {
     "F150W": Path(r"E:\hlsp_goodss_jwst_nircam_all_F150W_030mas_v1.6_drz.fits"),
@@ -58,10 +65,16 @@ def robust_stats(data: np.ndarray) -> dict[str, float]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--quality", type=int, default=80)
+    parser.add_argument("--quality", type=int, default=None, help="override the configured quality for every layer")
     parser.add_argument("--webp-method", type=int, default=2, choices=range(0, 7))
     parser.add_argument("--workers", type=int, default=max(1, min(4, (os.cpu_count() or 4) // 2)))
-    parser.add_argument("--clean", action="store_true")
+    output_mode = parser.add_mutually_exclusive_group()
+    output_mode.add_argument("--clean", action="store_true")
+    output_mode.add_argument(
+        "--catalog-only",
+        action="store_true",
+        help="rebuild the catalogue, refresh the web shell, and preserve all image tiles",
+    )
     return parser.parse_args()
 
 
@@ -93,8 +106,11 @@ def enhanced_rgb(blocks: dict[str, np.ndarray], stats: dict[str, dict[str, float
     np.divide(lifted, luminance, out=scale, where=luminance > 0)
     channels *= scale[..., None]
     peak = channels.max(axis=-1)
-    channels /= np.maximum(peak, 1.0)[..., None]
-    return np.rint(channels * 255.0).astype(np.uint8)
+    np.maximum(peak, np.float32(1.0), out=peak)
+    channels /= peak[..., None]
+    channels *= np.float32(255.0)
+    np.rint(channels, out=channels)
+    return channels.astype(np.uint8)
 
 
 def original_rgb(blocks: dict[str, np.ndarray], stats: dict[str, dict[str, float]]) -> np.ndarray:
@@ -103,7 +119,10 @@ def original_rgb(blocks: dict[str, np.ndarray], stats: dict[str, dict[str, float
 
 
 def original_gray(data: np.ndarray, stats: dict[str, float]) -> np.ndarray:
-    return np.rint(original_float(data, stats) * 255.0).astype(np.uint8)
+    scaled = original_float(data, stats)
+    scaled *= np.float32(255.0)
+    np.rint(scaled, out=scaled)
+    return scaled.astype(np.uint8)
 
 
 def save_image(array: np.ndarray, path: Path, quality: int, method: int) -> None:
@@ -121,7 +140,7 @@ def build_native_tiles(
     width: int,
     height: int,
     max_zoom: int,
-    quality: int,
+    qualities: dict[str, int],
     method: int,
     workers: int,
 ) -> None:
@@ -134,9 +153,9 @@ def build_native_tiles(
             return
         x0, x1 = x * TILE_SIZE, min((x + 1) * TILE_SIZE, width)
         blocks = {band: strip[:, x0:x1] for band, strip in strips.items()}
-        save_image(enhanced_rgb(blocks, stats), destinations[0], quality, method)
+        save_image(enhanced_rgb(blocks, stats), destinations[0], qualities["RGB_ENHANCED"], method)
         for band, destination in zip(BANDS, destinations[1:]):
-            save_image(original_gray(blocks[band], stats[band]), destination, quality, method)
+            save_image(original_gray(blocks[band], stats[band]), destination, qualities[band], method)
 
     for y in range(tiles_y):
         # FITS pixel Y increases towards north, while browser image rows increase
@@ -209,16 +228,30 @@ def build_catalog(header: fits.Header, width: int, height: int, max_zoom: int) -
     major = np.asarray(data["A_IMAGE"], dtype=np.float32)[valid]
     minor = np.asarray(data["B_IMAGE"], dtype=np.float32)[valid]
     theta = np.asarray(data["THETA_IMAGE"], dtype=np.float32)[valid]
+    stellar_mass = np.asarray(data["lmass_med"], dtype=np.float32)[valid]
+    dust_av = np.asarray(data["Av_med"], dtype=np.float32)[valid]
+    zspec = np.asarray(data["zspec"], dtype=np.float64)
+    redshift_is_spec = (np.isfinite(zspec) & (zspec > 0))[valid].astype(np.uint8)
+    flux_columns = [name for name in data.dtype.names if name.lower().startswith("fluxf")]
+    if not flux_columns:
+        raise RuntimeError("No fluxFxx catalogue columns were found")
+    sed_band_count = np.zeros(len(data), dtype=np.uint8)
+    for name in flux_columns:
+        flux = np.asarray(data[name], dtype=np.float64)
+        sed_band_count += (np.isfinite(flux) & (flux > 0)).astype(np.uint8)
+    sed_band_count = sed_band_count[valid]
     tile_x = np.floor(x / TILE_SIZE).astype(np.int32)
     tile_y = np.floor(y / TILE_SIZE).astype(np.int32)
     keys = tile_x.astype(np.int64) << 32 | tile_y.astype(np.uint32)
     order = np.argsort(keys)
     boundaries = np.flatnonzero(np.diff(keys[order])) + 1
+    groups = np.split(order, boundaries)
     catalog_root = MAP_DIR / "catalog" / str(max_zoom)
     if catalog_root.exists():
         shutil.rmtree(catalog_root)
-    record = struct.Struct("<Iffffff")
-    for indexes in np.split(order, boundaries):
+    # ID; X/Y; zbest; A/B/theta; lmass_med; Av_med; zspec flag; band count.
+    record = struct.Struct("<IffffffffBB")
+    for indexes in groups:
         tx = int(tile_x[indexes[0]])
         ty = int(tile_y[indexes[0]])
         destination = catalog_root / str(tx) / f"{ty}.bin"
@@ -228,24 +261,27 @@ def build_catalog(header: fits.Header, width: int, height: int, max_zoom: int) -
                 stream.write(record.pack(
                     int(ids[index]), float(x[index]), float(y[index]), float(zbest[index]),
                     float(major[index]), float(minor[index]), float(theta[index]),
+                    float(stellar_mass[index]), float(dust_av[index]),
+                    int(redshift_is_spec[index]), int(sed_band_count[index]),
                 ))
     return {
         "recordBytes": record.size,
         "sourceCount": int(valid.sum()),
-        "tileCount": len(np.split(order, boundaries)),
+        "tileCount": len(groups),
+        "spectroscopicSourceCount": int(redshift_is_spec.sum()),
+        "fluxBandCount": len(flux_columns),
         "minDisplayZoom": 5,
         "ellipseZoom": max_zoom,
         "maxDisplayRadiusNative": 300,
-        "path": f"catalog/{max_zoom}/{{x}}/{{y}}.bin?v=northup1",
+        "path": f"catalog/{max_zoom}/{{x}}/{{y}}.bin?v={CATALOG_VERSION}",
     }
-
 
 def write_config(
     header: fits.Header,
     width: int,
     height: int,
     max_zoom: int,
-    quality: int,
+    qualities: dict[str, int],
     method: int,
     stats: dict[str, dict[str, float]],
     catalog: dict[str, int | float | str],
@@ -253,7 +289,7 @@ def write_config(
     wcs = WCS(header)
     center = wcs.pixel_to_world_values((width - 1) / 2, (height - 1) / 2)
     config = {
-        "field": "GOODS-S",
+        "field": FIELD_NAME,
         "width": width,
         "height": height,
         "tileSize": TILE_SIZE,
@@ -264,7 +300,8 @@ def write_config(
         "downsampleFactor": 1,
         "pixelScaleArcsec": 0.03,
         "orientation": "north-up, east-left",
-        "webpQuality": quality,
+        "webpQuality": qualities,
+        "tileVersion": TILE_VERSION,
         "webpMethod": method,
         "center": {"ra": float(center[0]), "dec": float(center[1])},
         "layers": [
@@ -281,8 +318,27 @@ def write_config(
         "display": {"thresholdSigma": THRESHOLD_SIGMA, "shadowGamma": SHADOW_GAMMA, "statistics": stats},
         "catalog": catalog,
     }
-    (MAP_DIR / "config.js").write_text("window.GOODSS_CONFIG = " + json.dumps(config, indent=2) + ";\n", encoding="utf-8")
-    METADATA_PATH.write_text(json.dumps(config, indent=2), encoding="utf-8")
+    write_config_files(config)
+
+
+def write_config_files(config: dict) -> None:
+    (MAP_DIR / "config.js").write_text(
+        CONFIG_GLOBAL + " = " + json.dumps(config, indent=2) + ";\n",
+        encoding="utf-8",
+    )
+    METADATA_PATH.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
+
+
+def update_catalog_config(catalog: dict[str, int | float | str], width: int, height: int, max_zoom: int) -> None:
+    if not METADATA_PATH.exists():
+        raise RuntimeError(f"Missing existing map metadata: {METADATA_PATH}")
+    config = json.loads(METADATA_PATH.read_text(encoding="utf-8"))
+    expected = (int(config["width"]), int(config["height"]), int(config["maxNativeZoom"]))
+    actual = (width, height, max_zoom)
+    if actual != expected:
+        raise RuntimeError(f"Catalogue-only geometry mismatch: current={actual}, metadata={expected}")
+    config["catalog"] = catalog
+    write_config_files(config)
 
 
 def copy_shell() -> None:
@@ -293,26 +349,43 @@ def copy_shell() -> None:
 
 def build_landing_card(max_zoom: int) -> None:
     """Refresh the image used by the GOODS-S card on the FITSmap landing page."""
-    source = MAP_DIR / "tiles" / "RGB_ENHANCED" / str(max_zoom) / "12" / "11.webp"
+    tile_x, tile_y = LANDING_CARD_TILE
+    source = MAP_DIR / "tiles" / "RGB_ENHANCED" / str(max_zoom) / str(tile_x) / f"{tile_y}.webp"
     if not source.exists():
         raise RuntimeError(f"Missing landing-card source tile: {source}")
     with Image.open(source) as image:
         card = image.convert("RGB").crop((350, 0, 1310, 960))
         card = card.resize((720, 720), Image.Resampling.LANCZOS)
-        card.save(FITSMAP_DIR / "goodss-card.webp", "WEBP", quality=84, method=4)
+        card.save(LANDING_CARD_PATH, "WEBP", quality=84, method=4)
 
 
 def main() -> None:
     args = parse_args()
-    missing = [path for path in [*BANDS.values(), CATALOG_PATH] if not path.exists()]
+    qualities = {layer: args.quality if args.quality is not None else LAYER_QUALITY[layer] for layer in LAYERS}
+    required_inputs = [BANDS["F150W"], CATALOG_PATH] if args.catalog_only else [*BANDS.values(), CATALOG_PATH]
+    missing = [path for path in required_inputs if not path.exists()]
     if missing:
         raise SystemExit("Missing inputs:\n" + "\n".join(map(str, missing)))
     if args.clean and MAP_DIR.exists():
-        expected = (REPOSITORY_ROOT / "docs" / "_static" / "fitsmap" / "goodss").resolve()
-        if MAP_DIR.resolve() != expected:
+        expected_parent = FITSMAP_DIR.resolve()
+        if MAP_DIR.resolve().parent != expected_parent:
             raise RuntimeError(f"Refusing to clean unexpected output directory: {MAP_DIR}")
         shutil.rmtree(MAP_DIR)
     copy_shell()
+    if args.catalog_only:
+        with fits.open(BANDS["F150W"], memmap=True, do_not_scale_image_data=True) as hdul:
+            height, width = hdul[0].shape
+            header = hdul[0].header.copy()
+        max_zoom = max(0, math.ceil(math.log2(max(width, height) / OVERVIEW_SIZE)))
+        catalog = build_catalog(header, width, height, max_zoom)
+        update_catalog_config(catalog, width, height, max_zoom)
+        print(
+            f"Catalogue refreshed: {catalog['sourceCount']:,} sources; "
+            f"{catalog['spectroscopicSourceCount']:,} zspec; "
+            f"{catalog['fluxBandCount']} flux bands; {catalog['recordBytes']} bytes/record",
+            flush=True,
+        )
+        return
 
     stats = {}
     shapes = set()
@@ -327,12 +400,13 @@ def main() -> None:
         raise RuntimeError(f"Input shape/header mismatch: {shapes}")
     height, width = next(iter(shapes))
     max_zoom = max(0, math.ceil(math.log2(max(width, height) / OVERVIEW_SIZE)))
-    print(f"Output {width} x {height}; {TILE_SIZE}px; zoom {MIN_ZOOM}-{max_zoom}; q{args.quality}", flush=True)
-    build_native_tiles(stats, width, height, max_zoom, args.quality, args.webp_method, args.workers)
+    quality_label = ", ".join(f"{layer}=q{qualities[layer]}" for layer in LAYERS)
+    print(f"Output {width} x {height}; {TILE_SIZE}px; zoom {MIN_ZOOM}-{max_zoom}; {quality_label}", flush=True)
+    build_native_tiles(stats, width, height, max_zoom, qualities, args.webp_method, args.workers)
     for layer in LAYERS:
-        build_lower_levels(layer, max_zoom, args.quality, args.webp_method, args.workers)
+        build_lower_levels(layer, max_zoom, qualities[layer], args.webp_method, args.workers)
     catalog = build_catalog(header, width, height, max_zoom)
-    write_config(header, width, height, max_zoom, args.quality, args.webp_method, stats, catalog)
+    write_config(header, width, height, max_zoom, qualities, args.webp_method, stats, catalog)
     build_landing_card(max_zoom)
     files = [path for path in MAP_DIR.rglob("*") if path.is_file()]
     size = sum(path.stat().st_size for path in files)

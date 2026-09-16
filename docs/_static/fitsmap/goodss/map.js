@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  const cfg = window.GOODSS_CONFIG;
-  if (!cfg) throw new Error("Missing config.js. Run build_goodss_map.py first.");
+  const cfg = window.FITSMAP_CONFIG || window.GOODSS_CONFIG;
+  if (!cfg) throw new Error("Missing FITSmap config.js. Run the field builder first.");
 
   const divisor = 2 ** cfg.maxNativeZoom;
   const crs = L.extend({}, L.CRS.Simple, {
@@ -22,7 +22,7 @@
 
   const layers = {};
   cfg.layers.forEach((layer) => {
-    layers[layer.label] = L.tileLayer(`tiles/${layer.id}/{z}/{x}/{y}.webp?v=northup1`, {
+    layers[layer.label] = L.tileLayer(`tiles/${layer.id}/{z}/{x}/{y}.webp?v=${encodeURIComponent(cfg.tileVersion || "northup1")}`, {
       tileSize: cfg.tileSize,
       minZoom: cfg.minZoom,
       maxNativeZoom: cfg.maxNativeZoom,
@@ -112,7 +112,7 @@
     const x = event.latlng.lng;
     const y = -event.latlng.lat;
     if (x < 0 || y < 0 || x > cfg.width || y > cfg.height) {
-      coordinateLabel.textContent = "Outside the GOODS-S image";
+      coordinateLabel.textContent = `${cfg.field ? `Outside the ${cfg.field} image` : "Outside the image"}`;
       return;
     }
     const sky = pixelToSky(x, y);
@@ -123,7 +123,7 @@
 
   const catalogCanvas = document.createElement("canvas");
   catalogCanvas.className = "catalog-canvas";
-  map.getContainer().appendChild(catalogCanvas);
+  map.getPane("overlayPane").appendChild(catalogCanvas);
   const catalogContext = catalogCanvas.getContext("2d");
   const catalogCache = new Map();
   let catalogEnabled = false;
@@ -132,6 +132,7 @@
 
   function resizeCatalogCanvas() {
     const size = map.getSize();
+    L.DomUtil.setPosition(catalogCanvas, map.containerPointToLayerPoint([0, 0]));
     const ratio = window.devicePixelRatio || 1;
     catalogCanvas.width = Math.round(size.x * ratio);
     catalogCanvas.height = Math.round(size.y * ratio);
@@ -157,7 +158,11 @@
         zbest: view.getFloat32(offset + 12, true),
         major: view.getFloat32(offset + 16, true),
         minor: view.getFloat32(offset + 20, true),
-        theta: view.getFloat32(offset + 24, true)
+        theta: view.getFloat32(offset + 24, true),
+        stellarMass: view.getFloat32(offset + 28, true),
+        dustAv: view.getFloat32(offset + 32, true),
+        redshiftIsSpec: view.getUint8(offset + 36) === 1,
+        sedBandCount: view.getUint8(offset + 37)
       });
     }
     return rows;
@@ -271,9 +276,23 @@
     }
     if (!selected) return;
     const redshift = Number.isFinite(selected.zbest) && selected.zbest >= 0 ? selected.zbest.toFixed(4) : "—";
-    L.popup({ className: "catalog-popup", closeButton: true })
+    const stellarMass = Number.isFinite(selected.stellarMass) ? selected.stellarMass.toFixed(2) : "—";
+    const dustAv = Number.isFinite(selected.dustAv) ? selected.dustAv.toFixed(2) : "—";
+    const redshiftSource = selected.redshiftIsSpec ? "zspec" : "zphot";
+    const redshiftClass = selected.redshiftIsSpec ? "is-spec" : "is-phot";
+    const popup = `
+      <div class="catalog-popup__content">
+        <strong class="catalog-popup__title">Source ${selected.id}</strong>
+        <dl class="catalog-popup__details">
+          <div><dt>zbest</dt><dd>${redshift} <span class="catalog-popup__badge ${redshiftClass}">${redshiftSource}</span></dd></div>
+          <div><dt>Stellar mass</dt><dd>log(M<sub class="catalog-popup__mass-symbol">&#9733;</sub>/M<sub class="catalog-popup__mass-symbol">&odot;</sub>) = ${stellarMass}</dd></div>
+          <div><dt>Dust attenuation</dt><dd>A<sub>V</sub> = ${dustAv}${dustAv === "—" ? "" : " mag"}</dd></div>
+          <div><dt>SED bands</dt><dd>${selected.sedBandCount} / ${cfg.catalog.fluxBandCount} <span class="catalog-popup__note">(flux &gt; 0)</span></dd></div>
+        </dl>
+      </div>`;
+    L.popup({ className: "catalog-popup", closeButton: true, maxWidth: 340 })
       .setLatLng([-selected.y, selected.x])
-      .setContent(`<strong>Source ${selected.id}</strong><br>zbest: ${redshift}`)
+      .setContent(popup)
       .openOn(map);
   });
   resizeCatalogCanvas();
@@ -286,7 +305,7 @@
     if (!Number.isFinite(ra) || !Number.isFinite(dec)) return;
     const pixel = skyToPixel(ra, dec);
     if (!pixel || pixel.x < 0 || pixel.y < 0 || pixel.x > cfg.width || pixel.y > cfg.height) {
-      coordinateLabel.textContent = "That coordinate is outside the GOODS-S image";
+      coordinateLabel.textContent = `${cfg.field ? `That coordinate is outside the ${cfg.field} image` : "That coordinate is outside the image"}`;
       return;
     }
     map.setView([-pixel.y, pixel.x], Math.max(map.getZoom(), cfg.maxNativeZoom - 2));

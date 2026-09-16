@@ -1,0 +1,101 @@
+{
+  "field": "COSMOS",
+  "width": 28000,
+  "height": 72000,
+  "tileSize": 2048,
+  "minZoom": 1,
+  "initialZoom": 1,
+  "maxNativeZoom": 8,
+  "maxZoom": 12,
+  "downsampleFactor": 1,
+  "pixelScaleArcsec": 0.03,
+  "orientation": "north-up, east-left",
+  "webpQuality": {
+    "RGB_ENHANCED": 45,
+    "F150W": 24,
+    "F277W": 45,
+    "F444W": 32
+  },
+  "tileVersion": "cosmos1",
+  "webpMethod": 2,
+  "center": {
+    "ra": 150.12299354466586,
+    "dec": 2.3476394215484495
+  },
+  "layers": [
+    {
+      "id": "RGB_ENHANCED",
+      "label": "Color \u2014 F150W / F277W / F444W"
+    },
+    {
+      "id": "F150W",
+      "label": "F150W \u00b7 1.50 \u03bcm"
+    },
+    {
+      "id": "F277W",
+      "label": "F277W \u00b7 2.77 \u03bcm"
+    },
+    {
+      "id": "F444W",
+      "label": "F444W \u00b7 4.44 \u03bcm"
+    }
+  ],
+  "wcs": {
+    "crpix": [
+      14800.5,
+      18400.5
+    ],
+    "crval": [
+      150.1163213,
+      2.200973097
+    ],
+    "matrix": [
+      [
+        -8.333333e-06,
+        0.0
+      ],
+      [
+        0.0,
+        8.333333e-06
+      ]
+    ]
+  },
+  "display": {
+    "thresholdSigma": 0.4,
+    "shadowGamma": 0.65,
+    "statistics": {
+      "F150W": {
+        "median": 0.001379026216454804,
+        "sigma": 0.01242657607756555,
+        "originalLow": -0.017260837899893522,
+        "originalHigh": 1.7876187562942505,
+        "sampleCount": 466177
+      },
+      "F277W": {
+        "median": 0.0012039615539833903,
+        "sigma": 0.0054534682209603485,
+        "originalLow": -0.0069762407774571315,
+        "originalHigh": 1.7303739786148071,
+        "sampleCount": 467363
+      },
+      "F444W": {
+        "median": 0.0010906384559348226,
+        "sigma": 0.006321257350500673,
+        "originalLow": -0.008391247569816187,
+        "originalHigh": 1.2394856214523315,
+        "sampleCount": 466957
+      }
+    }
+  },
+  "catalog": {
+    "recordBytes": 38,
+    "sourceCount": 295864,
+    "tileCount": 256,
+    "spectroscopicSourceCount": 7193,
+    "fluxBandCount": 13,
+    "minDisplayZoom": 5,
+    "ellipseZoom": 8,
+    "maxDisplayRadiusNative": 300,
+    "path": "catalog/8/{x}/{y}.bin?v=catalog1"
+  }
+}
