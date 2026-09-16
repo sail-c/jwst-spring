@@ -21,7 +21,7 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/nan-li.jpg" alt="Portrait of Nan Li"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Nan Li <span class="team-card__badge">Co-founder</span></h2>
+      <h2 class="team-card__name">Nan Li <a class="team-card__orcid" href="https://orcid.org/0000-0001-6800-7389" target="_blank" rel="noopener" aria-label="Nan Li ORCID: 0000-0001-6800-7389"><span aria-hidden="true">iD</span></a> <span class="team-card__badge">Co-founder</span></h2>
       <p class="team-card__position">Professor</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
       <a class="team-card__email" href="mailto:nan.li@nao.cas.cn">nan.li@nao.cas.cn</a>
@@ -68,9 +68,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/xin-zhang.jpg" alt="Portrait of Xin Zhang"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Xin Zhang</h2>
+      <h2 class="team-card__name">Xin Zhang <a class="team-card__orcid" href="https://orcid.org/0000-0001-7314-4169" target="_blank" rel="noopener" aria-label="Xin Zhang ORCID: 0000-0001-7314-4169"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Associate Researcher</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:zhangx@bao.ac.cn">zhangx@bao.ac.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests">
         <span>Data Simulation</span><span>Data Reduction</span><span>CCD Technology</span>
@@ -81,9 +82,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/xianmin-meng.jpg" alt="Portrait of Xianmin Meng"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Xianmin Meng</h2>
+      <h2 class="team-card__name">Xianmin Meng <a class="team-card__orcid" href="https://orcid.org/0009-0008-2463-0927" target="_blank" rel="noopener" aria-label="Xianmin Meng ORCID: 0009-0008-2463-0927"><span aria-hidden="true">iD</span></a></h2>
       <p class="team-card__position">Associate Researcher</p>
       <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <a class="team-card__email" href="mailto:mengxm@nao.cas.cn">mengxm@nao.cas.cn</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests">
         <span>Galaxy Evolution</span><span>Data Simulation</span><span>Data Reduction</span>

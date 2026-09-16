@@ -416,6 +416,12 @@ a {
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
+.fitsmap-field-card.is-goodss { --fitsmap-card-image: url("fitsmap/goodss-card.webp"); }
+.fitsmap-field-card.is-cosmos { --fitsmap-card-image: url("fitsmap/cosmos-card.webp"); }
+.fitsmap-field-card.is-egs { --fitsmap-card-image: url("fitsmap/egs-card.webp"); }
+.fitsmap-field-card.is-goodsn { --fitsmap-card-image: url("fitsmap/goodsn-card.webp"); }
+.fitsmap-field-card.is-uds { --fitsmap-card-image: url("fitsmap/uds-card.webp"); }
+
 .fitsmap-field-card.is-active::before {
   position: absolute;
   z-index: 0;
@@ -423,7 +429,7 @@ a {
   content: "";
   background:
     linear-gradient(180deg, rgba(13, 77, 83, 0.30) 0%, rgba(11, 82, 88, 0.76) 100%),
-    url("fitsmap/goodss-card.webp") center 48% / cover no-repeat;
+    var(--fitsmap-card-image) center 48% / cover no-repeat;
   filter: brightness(1.04) saturate(1.04);
   transform: scale(1.015);
   transition: filter 180ms ease, transform 220ms ease;
