@@ -70,7 +70,7 @@
 
 **v1.6:** Improve readout-noise treatment and add masks for several outlier regions.
 
-**v1.7:** Expand the processed dataset to include all observations available as of August 25, 2026.
+**v1.7:** Expand the processed dataset to include all observations available as of August 25, 2026. Add a dedicated diagonal-stripe removal procedure for affected exposures, which substantially suppresses the striping artifacts while preserving the underlying science signal. Faint residuals may still be visible in a few strongly contaminated exposures.
 
 `v1.0: JWST calibration pipeline v1.12.5; CRDS pmap 1179`
 

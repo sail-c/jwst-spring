@@ -23,7 +23,7 @@
     <h2>GOODS-S</h2>
     <span class="fitsmap-field-card__status">Open interactive map <span aria-hidden="true">→</span></span>
   </a>
-  <a class="fitsmap-field-card is-active is-uds" href="../_static/fitsmap/uds/index.html?v=uds1" aria-label="Open the interactive UDS FITSmap">
+  <a class="fitsmap-field-card is-active is-uds" href="../_static/fitsmap/uds/index.html?v=uds20261001" aria-label="Open the interactive UDS FITSmap">
     <span class="fitsmap-field-card__number">05</span>
     <h2>UDS</h2>
     <span class="fitsmap-field-card__status">Open interactive map <span aria-hidden="true">→</span></span>

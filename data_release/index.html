@@ -201,7 +201,7 @@
 <p><strong>v1.4.1:</strong> Correct WCS issues in COSMOS and UDS for F090W, F115W, and F200W.</p>
 <p><strong>v1.5:</strong> Introduce a <a class="reference external" href="https://dx.doi.org/10.1088/1538-3873/acea42">new WISP subtraction algorithm</a> (currently not applied to the data), update the <a class="reference external" href="https://stsci.app.box.com/s/1bymvf1lkrqbdn9rnkluzqk30e8o2bne">WISP template</a>, improve mask construction for 1/f removal and background processing, improve outlier clipping, correct a bug in readout-noise construction, and resolve background issues in the files used for the final drizzle.</p>
 <p><strong>v1.6:</strong> Improve readout-noise treatment and add masks for several outlier regions.</p>
-<p><strong>v1.7:</strong> Expand the processed dataset to include all observations available as of August 25, 2026.</p>
+<p><strong>v1.7:</strong> Expand the processed dataset to include all observations available as of August 25, 2026. Add a dedicated diagonal-stripe removal procedure for affected exposures, which substantially suppresses the striping artifacts while preserving the underlying science signal. Faint residuals may still be visible in a few strongly contaminated exposures.</p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.0:</span> <span class="pre">JWST</span> <span class="pre">calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5;</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.1:</span> <span class="pre">JWST</span> <span class="pre">calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5;</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1179</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">v1.2:</span> <span class="pre">JWST</span> <span class="pre">calibration</span> <span class="pre">pipeline</span> <span class="pre">v1.12.5;</span> <span class="pre">CRDS</span> <span class="pre">pmap</span> <span class="pre">1183</span></code></p>
@@ -240,9 +240,9 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
     <span>© 2026 JWST-SPRING Team</span>
-    <span>v2.0.4 · Updated 2026-09-16</span>
+    <span>v2.0.5 · Updated 2026-10-01</span>
   </div>
-</footer><script src="../_static/documentation_options.js?v=c2377ec0"></script>
+</footer><script src="../_static/documentation_options.js?v=09beee0d"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
