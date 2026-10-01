@@ -159,9 +159,10 @@
   <article class="team-card">
     <div class="team-card__portrait"><img src="../_static/team/yubin-li.jpg" alt="Portrait of Yubin Li"></div>
     <div class="team-card__body">
-      <h2 class="team-card__name">Yubin Li</h2>
-      <p class="team-card__position">Faculty</p>
-      <p class="team-card__affiliation">National Astronomical Observatories,<br>Chinese Academy of Sciences</p>
+      <h2 class="team-card__name">Yubin Li <a class="team-card__orcid" href="https://orcid.org/0000-0002-4882-1057" target="_blank" rel="noopener" aria-label="Yubin Li ORCID: 0000-0002-4882-1057"><span aria-hidden="true">iD</span></a></h2>
+      <p class="team-card__position">Assistant Researcher</p>
+      <p class="team-card__affiliation">College of Engineering and Technology,<br>Baoshan University</p>
+      <a class="team-card__email" href="mailto:liyubin2025@126.com">liyubin2025@126.com</a>
       <p class="team-card__label">Research interests</p>
       <div class="team-card__interests"><span>Galaxy Formation and Evolution</span><span>Studying Galaxy Properties through Stacking Galaxy Images</span></div>
     </div>

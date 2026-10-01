@@ -22,7 +22,7 @@ copyright = '2026, JWST-SPRING'
 author = 'JWST-SPRING Team'
 
 # The full version, including alpha/beta/rc tags
-release = '2.0.2'
+release = '2.0.5'
 
 
 # -- General configuration ---------------------------------------------------

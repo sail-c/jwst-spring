@@ -72,8 +72,10 @@ configuration, and web shell without touching image tiles:
 .\.venv\Scripts\python.exe tools\fitsmap\build_uds.py --catalog-only
 ```
 
-Use `--clean` only when changing the image orientation, stretch, tile size, or
-pyramid structure and intentionally regenerating every tile:
+Use `--clean` when replacing an input FITS mosaic or changing the image
+orientation, stretch, tile size, or pyramid structure, so every tile is
+regenerated. Refresh the field tile/cache version as well to prevent browsers
+from displaying cached images:
 
 ```powershell
 .\.venv\Scripts\python.exe tools\fitsmap\build_goodss.py --clean

@@ -344,7 +344,12 @@ def update_catalog_config(catalog: dict[str, int | float | str], width: int, hei
 def copy_shell() -> None:
     MAP_DIR.mkdir(parents=True, exist_ok=True)
     for name in ("index.html", "map.css", "map.js"):
-        shutil.copy2(WEB_DIR / name, MAP_DIR / name)
+        if name == "index.html":
+            shell = (WEB_DIR / name).read_text(encoding="utf-8")
+            shell = shell.replace("config.js?v=field1", f"config.js?v={TILE_VERSION}")
+            (MAP_DIR / name).write_text(shell, encoding="utf-8")
+        else:
+            shutil.copy2(WEB_DIR / name, MAP_DIR / name)
 
 
 def build_landing_card(max_zoom: int) -> None:

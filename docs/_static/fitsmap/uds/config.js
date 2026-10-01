@@ -16,7 +16,7 @@ window.FITSMAP_CONFIG = {
     "F277W": 45,
     "F444W": 32
   },
-  "tileVersion": "uds1",
+  "tileVersion": "uds20261001",
   "webpMethod": 2,
   "center": {
     "ra": 34.350018594167906,
@@ -65,25 +65,25 @@ window.FITSMAP_CONFIG = {
     "shadowGamma": 0.65,
     "statistics": {
       "F150W": {
-        "median": 0.0009656671900302172,
-        "sigma": 0.008890596825163811,
-        "originalLow": -0.012370228047715499,
-        "originalHigh": 1.1300549507141113,
-        "sampleCount": 250514
+        "median": 0.0009693004540167749,
+        "sigma": 0.008828061351086944,
+        "originalLow": -0.012272791572613642,
+        "originalHigh": 1.0986943244934082,
+        "sampleCount": 263455
       },
       "F277W": {
-        "median": 0.0009093345724977553,
-        "sigma": 0.004238861618796363,
-        "originalLow": -0.005448957855696789,
-        "originalHigh": 1.3172590732574463,
-        "sampleCount": 246715
+        "median": 0.0009165058727376163,
+        "sigma": 0.0042218286761082705,
+        "originalLow": -0.005416237141424789,
+        "originalHigh": 1.2639895677566528,
+        "sampleCount": 272150
       },
       "F444W": {
-        "median": 0.0008987750625237823,
-        "sigma": 0.005313445509038865,
-        "originalLow": -0.007071393201034514,
-        "originalHigh": 0.9694244265556335,
-        "sampleCount": 251071
+        "median": 0.0009149133693426847,
+        "sigma": 0.005269482891261577,
+        "originalLow": -0.006989310967549681,
+        "originalHigh": 0.9481378793716431,
+        "sampleCount": 276554
       }
     }
   },
@@ -96,6 +96,27 @@ window.FITSMAP_CONFIG = {
     "minDisplayZoom": 5,
     "ellipseZoom": 7,
     "maxDisplayRadiusNative": 300,
-    "path": "catalog/7/{x}/{y}.bin?v=catalog1"
-  }
+    "path": "catalog/7/{x}/{y}.bin?v=uds20261001"
+  },
+  "inputs": [
+    {
+      "band": "F150W",
+      "file": "hlsp_uds_jwst_nircam_all_F150W_030mas_v1.7_drz.fits",
+      "bytes": 7864329600,
+      "modifiedUTC": "2026-09-20T15:34:49.897400+00:00"
+    },
+    {
+      "band": "F277W",
+      "file": "hlsp_uds_jwst_nircam_all_F277W_030mas_v1.7_drz.fits",
+      "bytes": 7864329600,
+      "modifiedUTC": "2026-09-24T02:06:49.858925+00:00"
+    },
+    {
+      "band": "F444W",
+      "file": "hlsp_uds_jwst_nircam_all_F444W_030mas_v1.7_drz.fits",
+      "bytes": 7864329600,
+      "modifiedUTC": "2026-09-22T06:24:27.459043+00:00"
+    }
+  ],
+  "catalogInput": "ALL_CANDELS_JWST_final_uds_v2.fits"
 };
