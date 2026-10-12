@@ -33,8 +33,6 @@
 
 ## Point-Spread Functions (PSFs)
 
-<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>PSF products are coming soon.</span></div>
-
 ### HST Empirical FWHM ([Reference](https://ui.adsabs.harvard.edu/abs/2013ApJS..207...24G))
 
 |     Band      | F435W | F606W | F775W | F814W | F850LP | F098M | F105W | F125W | F160W |
