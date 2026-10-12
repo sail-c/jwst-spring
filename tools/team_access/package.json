@@ -1,0 +1,14 @@
+{
+  "name": "jwst-spring-team-access",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test_worker.mjs test_runtime.mjs",
+    "dev": "wrangler dev --port 8772",
+    "deploy": "wrangler deploy",
+    "build": "wrangler deploy --dry-run --outdir private/bundle"
+  },
+  "devDependencies": {
+    "wrangler": "4.149.0"
+  }
+}

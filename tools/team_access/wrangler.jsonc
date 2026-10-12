@@ -1,0 +1,25 @@
+{
+  "name": "jwst-spring-team",
+  "main": "entry.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": false
+  },
+  "rules": [
+    {
+      "type": "Text",
+      "globs": [
+        "**/*.css"
+      ],
+      "fallthrough": true
+    }
+  ],
+  "vars": {
+    "PUBLIC_BASE_URL": "https://jwst-spring-team.jwst-spring-team-access.workers.dev",
+    "PUBLIC_SITE_URL": "https://sail-c.github.io/jwst-spring/",
+    "ADMIN_EMAIL": ""
+  },
+  "send_metrics": false
+}

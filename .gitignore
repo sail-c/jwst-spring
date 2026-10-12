@@ -162,3 +162,10 @@ cython_debug/
 .idea/
 
 .github/workflows/sphinx.yml
+
+# Server-only team access configuration and member lists
+tools/team_access/private/
+
+tools/team_access/.dev.vars*
+tools/team_access/.wrangler/
+tools/team_access/node_modules/

@@ -1479,3 +1479,86 @@ a.observation-access-link:focus-visible {
     transition: none;
   }
 }
+
+/* Team download entry; account checks run in the separate private portal. */
+.team-access-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 10px 0 24px;
+  padding: 20px 22px;
+  background: #f2f6f6;
+  border: 1px solid #d5e0e2;
+  border-radius: 6px;
+}
+.team-access-card__copy { flex: 1; min-width: 0; }
+.team-access-card__copy > strong {
+  display: block;
+  margin: 0 0 6px;
+  color: #263f49;
+  font-size: 1.03rem;
+  font-weight: 720;
+}
+.article-content .team-access-card p {
+  max-width: none;
+  margin: 5px 0 0;
+  color: var(--spring-muted);
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+.team-access-card__actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.team-access-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #36515b;
+  font-size: 0.75rem;
+  font-weight: 680;
+  white-space: nowrap;
+}
+.team-access-badge svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.team-access-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border: 1px solid var(--spring-accent);
+  border-radius: 5px;
+  color: #fff;
+  background: var(--spring-accent);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+.team-access-button:hover {
+  color: #fff;
+  background: var(--spring-accent-dark);
+  border-color: var(--spring-accent-dark);
+  box-shadow: 0 4px 12px rgba(18, 109, 120, 0.13);
+  transform: translateY(-1px);
+}
+.team-access-button:focus-visible { outline: 3px solid var(--spring-gold); outline-offset: 3px; }
+.team-access-card [hidden] { display: none; }
+.team-access-card__copy > .team-access-badge { margin-bottom: 12px; }
+@media (max-width: 760px) {
+  .team-access-card { align-items: flex-start; flex-direction: column; gap: 16px; padding: 18px; }
+  .team-access-card__actions { width: 100%; justify-content: space-between; }
+}

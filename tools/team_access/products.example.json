@@ -1,0 +1,22 @@
+{
+  "cosmos": {
+    "title": "COSMOS PSF",
+    "download_url": "https://gofile.me/your-protected-cosmos-share-link"
+  },
+  "egs": {
+    "title": "EGS PSF",
+    "download_url": "https://gofile.me/your-protected-egs-share-link"
+  },
+  "goods-n": {
+    "title": "GOODS-N PSF",
+    "download_url": "https://gofile.me/your-protected-goods-n-share-link"
+  },
+  "goods-s": {
+    "title": "GOODS-S PSF",
+    "download_url": "https://gofile.me/your-protected-goods-s-share-link"
+  },
+  "uds": {
+    "title": "UDS PSF",
+    "download_url": "https://gofile.me/your-protected-uds-share-link"
+  }
+}
