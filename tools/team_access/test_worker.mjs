@@ -28,12 +28,12 @@ function payloadOf(cookie) {
 async function responseFor(path, env = environment(), cookie = "", extra = {}) {
   return handleRequest(request(path, cookie, extra.requestOptions), env, "body{margin:0}", { now: () => NOW, fetch: async () => { throw new Error("Unexpected network request"); }, ...extra });
 }
-async function startLogin(env = environment(), field = "cosmos") {
-  const response = await responseFor("/login?field=" + encodeURIComponent(field), env);
+async function startLogin(env = environment(), field = "cosmos", category = "psf") {
+  const response = await responseFor("/login?field=" + encodeURIComponent(field) + (category === "psf" ? "" : "&product=" + category), env);
   return { response, cookie: cookieOf(response), state: new URL(response.headers.get("Location")).searchParams.get("state") };
 }
-async function login(env = environment(), profile = { id: 73995538, login: "sail-c" }, field = "cosmos") {
-  const started = await startLogin(env, field);
+async function login(env = environment(), profile = { id: 73995538, login: "sail-c" }, field = "cosmos", category = "psf") {
+  const started = await startLogin(env, field, category);
   const calls = [];
   const response = await responseFor("/auth/github/callback?state=" + started.state + "&code=test-code", env, started.cookie, {
     fetch: async (url, options) => {
@@ -317,4 +317,124 @@ test("one approved session works across five fields and revoked members cannot d
     assert.equal(revoked.status, 403);
     assert.doesNotMatch(await revoked.text(), /gofile\.me/);
   }
+});
+
+
+function imagingEnvironment(changes = {}) {
+  const env = allFieldEnvironment();
+  const products = JSON.parse(env.PRODUCTS_JSON);
+  for (const [category, instrument] of Object.entries({ nircam: "NIRCam", miri: "MIRI" })) {
+    for (const [field, title] of Object.entries(FIELD_TITLES)) products[category + "-" + field] = { title: title + " " + instrument, download_url: "" };
+  }
+  return { ...env, PRODUCTS_JSON: JSON.stringify(products), ...changes };
+}
+
+test("ten imaging logins require the shared whitelist and return to the correct instrument and field", async () => {
+  const env = imagingEnvironment();
+  for (const [category, instrument] of Object.entries({ nircam: "NIRCam", miri: "MIRI" })) {
+    for (const [field, title] of Object.entries(FIELD_TITLES)) {
+      const path = "/team/imaging/" + category + "/" + field + "/";
+      const anonymous = await responseFor(path, env);
+      assert.equal(anonymous.status, 200);
+      const html = await anonymous.text();
+      assert.ok(html.includes(title + " " + instrument + " Downloads"));
+      assert.ok(html.includes('href="/login?field=' + field + '&amp;product=' + category + '"'));
+      assert.ok(html.includes('data_release/imaging/jwst.html#' + category));
+      assert.doesNotMatch(html, /gofile\.me|Downloads not available/);
+      const signedIn = await login(env, { id: 73995538, login: "sail-c" }, field, category);
+      assert.equal(signedIn.response.status, 302);
+      assert.equal(signedIn.response.headers.get("Location"), path);
+      assert.equal(payloadOf(signedIn.started.cookie).category, category);
+    }
+  }
+});
+
+test("empty imaging links show disabled download buttons and never redirect, with one shared PSF session", async () => {
+  const env = imagingEnvironment();
+  const { cookie } = await login(env);
+  for (const category of ["nircam", "miri"]) {
+    for (const field of Object.keys(FIELD_TITLES)) {
+      const path = "/team/imaging/" + category + "/" + field + "/";
+      const portal = await responseFor(path, env, cookie);
+      assert.equal(portal.status, 200);
+      const html = await portal.text();
+      assert.match(html, /Downloads are not yet available for this field/);
+      assert.match(html, /<button class="primary" disabled>Downloads not available<\/button>/);
+      assert.doesNotMatch(html, /gofile\.me|href="[^"]*\/download"/);
+      const download = await responseFor(path + "download", env, cookie);
+      assert.equal(download.status, 409);
+      assert.equal(download.headers.get("Location"), null);
+      const anonymous = await responseFor(path + "download", env);
+      assert.equal(anonymous.status, 302);
+      assert.equal(anonymous.headers.get("Location"), path);
+    }
+  }
+});
+
+test("unapproved or revoked identities cannot enter any private imaging portal", async () => {
+  const env = imagingEnvironment();
+  const { cookie } = await login(env);
+  const revoked = imagingEnvironment({ ALLOWED_USERS_JSON: '{"users":[]}' });
+  for (const category of ["nircam", "miri"]) {
+    for (const field of Object.keys(FIELD_TITLES)) {
+      const outsider = await login(env, { id: 99999, login: "unapproved-user" }, field, category);
+      assert.equal(outsider.response.status, 403);
+      assert.match(await outsider.response.text(), /Access denied/);
+      const path = "/team/imaging/" + category + "/" + field + "/";
+      for (const suffix of ["", "download"]) {
+        const response = await responseFor(path + suffix, revoked, cookie);
+        assert.equal(response.status, 403);
+        assert.doesNotMatch(await response.text(), /gofile\.me|Downloads not available/);
+      }
+    }
+  }
+});
+
+test("adding an imaging link enables only that product and preserves PSF downloads", async () => {
+  const env = imagingEnvironment();
+  const { cookie } = await login(env);
+  const products = JSON.parse(env.PRODUCTS_JSON);
+  products["nircam-cosmos"].download_url = "https://gofile.me/test/nircam-cosmos";
+  products["miri-uds"].download_url = "https://gofile.me/test/miri-uds";
+  const updated = { ...env, PRODUCTS_JSON: JSON.stringify(products) };
+  for (const [path, link] of [
+    ["/team/imaging/nircam/cosmos/", "https://gofile.me/test/nircam-cosmos"],
+    ["/team/imaging/miri/uds/", "https://gofile.me/test/miri-uds"]
+  ]) {
+    const portal = await responseFor(path, updated, cookie);
+    assert.match(await portal.text(), /Download imaging data/);
+    const download = await responseFor(path + "download", updated, cookie);
+    assert.equal(download.status, 302);
+    assert.equal(download.headers.get("Location"), link);
+  }
+  assert.equal((await responseFor("/team/imaging/nircam/uds/download", updated, cookie)).status, 409);
+  const psf = await responseFor("/team/psf/cosmos/download", updated, cookie);
+  assert.equal(psf.headers.get("Location"), "https://gofile.me/test/private-cosmos");
+});
+
+test("instrument namespaces and malformed imaging links cannot bypass validation", async () => {
+  const env = imagingEnvironment();
+  for (const path of ["/team/psf/nircam-cosmos/", "/team/imaging/nircam/nircam-cosmos/", "/team/imaging/nirspec/cosmos/", "/login?product=other&field=cosmos"]) {
+    assert.equal((await responseFor(path, env)).status, 404);
+  }
+  for (const target of [null, " ", "http://gofile.me/test/file", "https://attacker.example/file"]) {
+    const products = JSON.parse(env.PRODUCTS_JSON);
+    products["nircam-cosmos"].download_url = target;
+    const response = await responseFor("/team/imaging/nircam/cosmos/", { ...env, PRODUCTS_JSON: JSON.stringify(products) });
+    assert.equal(response.status, 503);
+  }
+});
+
+test("imaging failure messages, account switching and logout retain the chosen field and instrument", async () => {
+  const env = imagingEnvironment();
+  const started = await startLogin(env, "goods-s", "miri");
+  const failure = await responseFor("/auth/github/callback?state=wrong&code=unused", env, started.cookie);
+  assert.equal(failure.headers.get("Location"), "/team/imaging/miri/goods-s/?signin=state");
+  const denied = await login(env, { id: 99999, login: "unapproved-user" }, "goods-s", "miri");
+  assert.match(await denied.response.text(), /field=goods-s&amp;product=miri&amp;switch=1/);
+  const { cookie } = await login(env, { id: 73995538, login: "sail-c" }, "goods-s", "miri");
+  const csrf = payloadOf(cookie).csrf;
+  const logout = await responseFor("/logout", env, cookie, { requestOptions: { method: "POST", headers: { Origin: BASE }, body: "csrf=" + csrf + "&field=goods-s&product=miri" } });
+  assert.equal(logout.status, 303);
+  assert.equal(logout.headers.get("Location"), "/team/imaging/miri/goods-s/");
 });

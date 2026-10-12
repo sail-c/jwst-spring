@@ -40,7 +40,7 @@ test("Workers runtime rejects the old redirect mode and completes the fixed OAut
       SESSION_SECRET: "runtime-test-only-session-secret-longer-than-32-characters",
       GITHUB_CLIENT_ID: "runtime-test-client", GITHUB_CLIENT_SECRET: "runtime-test-secret",
       ALLOWED_USERS_JSON: JSON.stringify({ users: [{ id: 73995538, login: "sail-c" }] }),
-      PRODUCTS_JSON: JSON.stringify({ cosmos: { title: "COSMOS PSF", download_url: "https://gofile.me/runtime-test-only" } })
+      PRODUCTS_JSON: JSON.stringify({ cosmos: { title: "COSMOS PSF", download_url: "https://gofile.me/runtime-test-only" }, "nircam-cosmos": { title: "COSMOS NIRCam", download_url: "" }, "miri-uds": { title: "UDS MIRI", download_url: "" } })
     }
   }));
   try {
@@ -59,5 +59,20 @@ test("Workers runtime rejects the old redirect mode and completes the fixed OAut
     assert.match(await portal.text(), /Download PSF files/);
     const download = await runtime.dispatchFetch(BASE + "/team/psf/cosmos/download", { redirect: "manual", headers: { Cookie: cookie } });
     assert.equal(download.headers.get("Location"), "https://gofile.me/runtime-test-only");
+    for (const [category, field] of [["nircam", "cosmos"], ["miri", "uds"]]) {
+      const path = "/team/imaging/" + category + "/" + field + "/";
+      const startedImaging = await runtime.dispatchFetch(BASE + "/login?field=" + field + "&product=" + category, { redirect: "manual" });
+      const stateImaging = new URL(startedImaging.headers.get("Location")).searchParams.get("state");
+      const returned = await runtime.dispatchFetch(BASE + "/auth/github/callback?state=" + stateImaging + "&code=runtime-test-code", {
+        redirect: "manual", headers: { Cookie: startedImaging.headers.get("Set-Cookie").split(";")[0] }
+      });
+      assert.equal(returned.status, 302);
+      assert.equal(returned.headers.get("Location"), path);
+      const memberCookie = returned.headers.get("Set-Cookie").split(";")[0];
+      const unavailable = await runtime.dispatchFetch(BASE + path + "download", { redirect: "manual", headers: { Cookie: memberCookie } });
+      assert.equal(unavailable.status, 409);
+      assert.equal(unavailable.headers.get("Location"), null);
+      assert.match(await unavailable.text(), /disabled>Downloads not available/);
+    }
   } finally { await runtime.dispose(); }
 });

@@ -1,8 +1,8 @@
-# 团队 PSF 下载门户
+# 团队数据下载门户
 
 采用 Cloudflare Workers 免费方案验证 GitHub 身份。公开网站仍由 GitHub Pages 提供；数据仍保存在需要密码的群晖分享中。QuickConnect 不支持第三方服务，因此本功能无需在群晖安装 Container Manager 或 Web Station。
 
-当前本地名单已加入 **sail-c / 73995538**，五个天区的下载链接也已配置。服务每次访问和下载都会检查固定的 GitHub 账户 ID；用户名改变不会导致失效。GitHub access token 仅用于查明身份，不保存到浏览器会话中。
+成员名单保存在私有配置文件中。五个天区的 PSF 下载链接已配置；NIRCam 和 MIRI 的十个图像下载入口共用同一名单，下载链接暂时留空。服务每次访问和下载都会检查固定的 GitHub 账户 ID；用户名改变不会导致失效。GitHub access token 仅用于查明身份，不保存到浏览器会话中。
 
 ## 正式服务地址
 
@@ -17,7 +17,7 @@
 
 ## 文件位置
 
-- worker.mjs：GitHub OAuth、会话、成员检查和下载跳转。
+- worker.mjs：GitHub OAuth、会话、成员检查、PSF 和图像下载跳转。
 - portal.mjs、portal.css：登录页、私有下载页和无权限提示。
 - wrangler.jsonc：Workers 部署配置，仅包含公开服务地址等非敏感设置。
 - private/allowed-users.json：本地成员名单。
@@ -103,6 +103,14 @@ Get-Content -Raw private/products.json | npx wrangler secret put PRODUCTS_JSON
 ~~~
 
 公开网站已启用 COSMOS、EGS、GOODS-N、GOODS-S 和 UDS 入口。五个天区共用成员白名单，登录一次即可在会话有效期内访问各天区下载页面。配置键和路径分别为 `cosmos`、`egs`、`goods-n`、`goods-s` 和 `uds`，与公开 PSF 页文件名一致。新增其他天区时，需要为相应公开 PSF 页面添加按钮，并扩展 team-access.js 中的天区列表。
+
+## 图像下载链接
+
+NIRCam 和 MIRI 各有 COSMOS、EGS、GOODS-N、GOODS-S、UDS 五个入口。路径为 `/team/imaging/nircam/<field>/` 和 `/team/imaging/miri/<field>/`，其中 `<field>` 与上述五个天区配置键一致。
+
+在 `private/products.json` 中填写 `nircam-cosmos`、`nircam-egs`、`nircam-goods-n`、`nircam-goods-s`、`nircam-uds`，或对应的 `miri-...` 条目中的 `download_url`。这些值初始为 `""`，登录后的下载按钮禁用；直接访问下载接口也不会产生跳转。填入 HTTPS 群晖 gofile.me 分享链接并同步 PRODUCTS_JSON 后，按钮自动启用，无需重建公开网页。
+
+账户名单和登录会话与 PSF 共用。未登录用户需先通过 GitHub 验证，名单外用户看到 Access denied；公开页面只包含登录服务入口，不包含实际群晖分享地址。
 
 ## 本地预览与测试
 

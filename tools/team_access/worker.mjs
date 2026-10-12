@@ -1,4 +1,7 @@
-import { renderPortal } from "./portal.mjs";
+import { renderPortal, portalPath } from "./portal.mjs";
+
+const FIELDS = new Set(["cosmos", "egs", "goods-n", "goods-s", "uds"]);
+const CATEGORIES = new Set(["psf", "nircam", "miri"]);
 
 const encoder = new TextEncoder();
 const SESSION_SECONDS = 4 * 3600;
@@ -96,6 +99,8 @@ function readConfiguration(env) {
   if (!products || typeof products !== "object" || Array.isArray(products)) throw new Error("Invalid products");
   for (const [field, product] of Object.entries(products)) {
     if (!/^[a-z][a-z0-9-]{0,30}$/.test(field) || typeof product?.title !== "string" || product.title.length > 100) throw new Error("Invalid product");
+    if (typeof product.download_url !== "string") throw new Error("Invalid download target");
+    if (product.download_url === "") continue;
     const destination = new URL(product.download_url);
     if (destination.protocol !== "https:" || destination.hostname !== "gofile.me" || destination.username || destination.password) throw new Error("Invalid Synology target");
   }
@@ -135,47 +140,51 @@ export async function handleRequest(request, env, css = "", dependencies = {}) {
     return protectResponse(new Response(css, { headers: { "Content-Type": "text/css; charset=utf-8" } }), url.protocol === "https:");
   }
   let configuration;
-  try {
-    configuration = readConfiguration(env);
-  } catch {
-    return protectResponse(htmlResponse(renderPortal({ mode: "unavailable" }), 503), url.protocol === "https:");
-  }
+  try { configuration = readConfiguration(env); }
+  catch { return protectResponse(htmlResponse(renderPortal({ mode: "unavailable" }), 503), url.protocol === "https:"); }
   const cfg = configuration;
   const respond = response => protectResponse(response, cfg.secure);
   if (url.origin !== cfg.base) return respond(new Response("Invalid host", { status: 400 }));
   const ready = Boolean(cfg.clientId && cfg.clientSecret);
-  const show = (field, mode = "login", status = 200, message = "", identity = null, cookie = null, errorCode = "") => htmlResponse(renderPortal({
-    field, product: cfg.products[field], mode, ready, message, identity, errorCode,
-    siteUrl: cfg.site, adminEmail: cfg.adminEmail
+  const getResource = (field, category = "psf") => {
+    if (!FIELDS.has(field) || !CATEGORIES.has(category)) return null;
+    const key = category === "psf" ? field : category + "-" + field;
+    return Object.hasOwn(cfg.products, key) ? { field, category, product: cfg.products[key] } : null;
+  };
+  const defaultResource = getResource("cosmos") || { field: "cosmos", category: "psf", product: { title: "Team PSF", download_url: "" } };
+  const pathOf = resource => portalPath(resource.field, resource.category);
+  const show = (resource, mode = "login", status = 200, message = "", identity = null, cookie = null, errorCode = "") => htmlResponse(renderPortal({
+    ...resource, mode, ready, message, identity, errorCode, siteUrl: cfg.site, adminEmail: cfg.adminEmail
   }), status, cookie);
   const existing = await readSession(request, cfg, now);
   const identity = existing?.kind === "identity" && Number.isSafeInteger(existing.id) && typeof existing.login === "string" ? existing : null;
   const approved = Boolean(identity && cfg.members.has(identity.id));
   const clearCookie = () => sessionCookie("", cfg, 0);
-  const getProduct = field => Object.hasOwn(cfg.products, field) ? cfg.products[field] : null;
-  const portalPath = field => "/team/psf/" + field + "/";
 
-  if (request.method === "GET" && url.pathname === "/") return respond(redirect(portalPath("cosmos")));
-  const match = /^\/team\/psf\/([a-z][a-z0-9-]{0,30})\/(download)?$/.exec(url.pathname);
-  if (request.method === "GET" && match) {
-    const field = match[1];
-    if (!getProduct(field)) return respond(new Response("Not found", { status: 404 }));
+  if (request.method === "GET" && url.pathname === "/") return respond(redirect(pathOf(defaultResource)));
+  const psf = /^\/team\/psf\/([a-z][a-z0-9-]{0,30})\/(download)?$/.exec(url.pathname);
+  const imaging = /^\/team\/imaging\/(nircam|miri)\/([a-z][a-z0-9-]{0,30})\/(download)?$/.exec(url.pathname);
+  if (request.method === "GET" && (psf || imaging)) {
+    const resource = psf ? getResource(psf[1]) : getResource(imaging[2], imaging[1]);
+    const download = Boolean(psf ? psf[2] : imaging[3]);
+    if (!resource) return respond(new Response("Not found", { status: 404 }));
     if (!identity) {
       const errorCode = url.searchParams.get("signin") || "";
       const message = Object.hasOwn(SIGN_IN_ERRORS, errorCode) ? SIGN_IN_ERRORS[errorCode] : "";
-      return respond(match[2] ? redirect(portalPath(field)) : show(field, "login", ready ? 200 : 503, message, null, null, message ? errorCode : ""));
+      return respond(download ? redirect(pathOf(resource)) : show(resource, "login", ready ? 200 : 503, message, null, null, message ? errorCode : ""));
     }
-    if (!approved) return respond(show(field, "denied", 403));
-    return respond(match[2] ? redirect(getProduct(field).download_url) : show(field, "downloads", 200, "", identity));
+    if (!approved) return respond(show(resource, "denied", 403));
+    if (download && resource.product.download_url) return respond(redirect(resource.product.download_url));
+    return respond(show(resource, "downloads", download ? 409 : 200, "", identity));
   }
   if (request.method === "GET" && url.pathname === "/login") {
-    const field = url.searchParams.get("field") || "cosmos";
-    if (!getProduct(field)) return respond(new Response("Not found", { status: 404 }));
-    if (!ready) return respond(show(field, "login", 503, "Team sign-in is not available yet. Please contact the administrator."));
+    const resource = getResource(url.searchParams.get("field") || "cosmos", url.searchParams.get("product") || "psf");
+    if (!resource) return respond(new Response("Not found", { status: 404 }));
+    if (!ready) return respond(show(resource, "login", 503, "Team sign-in is not available yet. Please contact the administrator."));
     const verifier = randomToken();
     const state = randomToken();
     const challenge = base64url(await crypto.subtle.digest("SHA-256", encoder.encode(verifier)));
-    const pending = { kind: "oauth", state, verifier, field, issued: now, expires: now + LOGIN_SECONDS };
+    const pending = { kind: "oauth", state, verifier, field: resource.field, category: resource.category, issued: now, expires: now + LOGIN_SECONDS };
     const query = new URLSearchParams({
       client_id: cfg.clientId, redirect_uri: cfg.base + "/auth/github/callback",
       scope: "", state, code_challenge: challenge, code_challenge_method: "S256", allow_signup: "false"
@@ -186,15 +195,17 @@ export async function handleRequest(request, env, css = "", dependencies = {}) {
   }
   if (request.method === "GET" && url.pathname === "/auth/github/callback") {
     const pending = existing?.kind === "oauth" ? existing : null;
-    const field = pending && getProduct(pending.field) ? pending.field : "cosmos";
+    // Older in-progress PSF logins did not include a category.
+    const requested = pending && getResource(pending.field, pending.category || "psf");
+    const resource = requested || defaultResource;
     const fail = errorCode => {
       // Only fixed diagnostic categories leave this handler, never upstream bodies or OAuth parameters.
-      const response = redirect(portalPath(field) + "?signin=" + errorCode, 303, clearCookie());
+      const response = redirect(pathOf(resource) + "?signin=" + errorCode, 303, clearCookie());
       response.headers.set("X-Spring-Auth-Status", errorCode);
       return respond(response);
     };
     if (!pending) return fail("session");
-    if (!constantTimeEqual(url.searchParams.get("state"), pending.state)) return fail("state");
+    if (!requested || !constantTimeEqual(url.searchParams.get("state"), pending.state)) return fail("state");
     const code = url.searchParams.get("code");
     if (!code || url.searchParams.has("error")) return fail("cancelled");
     try {
@@ -220,10 +231,10 @@ export async function handleRequest(request, env, css = "", dependencies = {}) {
         headers: { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "User-Agent": "JWST-SPRING-team-access", "X-GitHub-Api-Version": "2022-11-28" }
       }, "profile");
       if (!Number.isSafeInteger(profile?.id) || profile.id <= 0 || typeof profile.login !== "string" || !/^[A-Za-z0-9-]{1,39}$/.test(profile.login)) throw new SignInFailure("profile_response");
-      if (!cfg.members.has(profile.id)) return respond(show(field, "denied", 403, "", null, clearCookie()));
+      if (!cfg.members.has(profile.id)) return respond(show(resource, "denied", 403, "", null, clearCookie()));
       // The GitHub token is discarded after checking identity; cookies contain no access token.
       const session = { kind: "identity", id: profile.id, login: profile.login, csrf: randomToken(), issued: now, expires: now + SESSION_SECONDS };
-      return respond(redirect(portalPath(field), 302, sessionCookie(await signSession(session, cfg.secret), cfg, SESSION_SECONDS)));
+      return respond(redirect(pathOf(resource), 302, sessionCookie(await signSession(session, cfg.secret), cfg, SESSION_SECONDS)));
     } catch (error) {
       return fail(error instanceof SignInFailure && Object.hasOwn(SIGN_IN_ERRORS, error.code) ? error.code : "session_create");
     }
@@ -231,8 +242,10 @@ export async function handleRequest(request, env, css = "", dependencies = {}) {
   if (request.method === "POST" && url.pathname === "/logout") {
     if (!identity || request.headers.get("Origin") !== cfg.base || Number(request.headers.get("Content-Length") || 0) > 16384) return respond(new Response("Forbidden", { status: 403 }));
     const body = await request.text();
-    if (body.length > 16384 || !constantTimeEqual(new URLSearchParams(body).get("csrf"), identity.csrf)) return respond(new Response("Forbidden", { status: 403 }));
-    return respond(redirect(portalPath("cosmos"), 303, clearCookie()));
+    const parameters = new URLSearchParams(body);
+    if (body.length > 16384 || !constantTimeEqual(parameters.get("csrf"), identity.csrf)) return respond(new Response("Forbidden", { status: 403 }));
+    const resource = getResource(parameters.get("field") || "cosmos", parameters.get("product") || "psf") || defaultResource;
+    return respond(redirect(pathOf(resource), 303, clearCookie()));
   }
   return respond(new Response("Not found", { status: 404 }));
 }

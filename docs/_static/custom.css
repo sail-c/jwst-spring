@@ -1562,3 +1562,16 @@ a.observation-access-link:focus-visible {
   .team-access-card { align-items: flex-start; flex-direction: column; gap: 16px; padding: 18px; }
   .team-access-card__actions { width: 100%; justify-content: space-between; }
 }
+
+.article-content .team-access-intro {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  max-width: none;
+  margin: 10px 0 0;
+  color: var(--spring-muted);
+  font-size: 0.87rem;
+  text-align: left;
+  text-indent: 0;
+}

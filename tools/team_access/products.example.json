@@ -18,5 +18,45 @@
   "uds": {
     "title": "UDS PSF",
     "download_url": "https://gofile.me/your-protected-uds-share-link"
+  },
+  "nircam-cosmos": {
+    "title": "COSMOS NIRCam",
+    "download_url": ""
+  },
+  "nircam-egs": {
+    "title": "EGS NIRCam",
+    "download_url": ""
+  },
+  "nircam-goods-n": {
+    "title": "GOODS-N NIRCam",
+    "download_url": ""
+  },
+  "nircam-goods-s": {
+    "title": "GOODS-S NIRCam",
+    "download_url": ""
+  },
+  "nircam-uds": {
+    "title": "UDS NIRCam",
+    "download_url": ""
+  },
+  "miri-cosmos": {
+    "title": "COSMOS MIRI",
+    "download_url": ""
+  },
+  "miri-egs": {
+    "title": "EGS MIRI",
+    "download_url": ""
+  },
+  "miri-goods-n": {
+    "title": "GOODS-N MIRI",
+    "download_url": ""
+  },
+  "miri-goods-s": {
+    "title": "GOODS-S MIRI",
+    "download_url": ""
+  },
+  "miri-uds": {
+    "title": "UDS MIRI",
+    "download_url": ""
   }
 }

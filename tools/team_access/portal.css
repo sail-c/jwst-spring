@@ -11,3 +11,5 @@ footer{border-top:1px solid var(--line);padding:22px 24px;color:var(--muted);fon
 @media(max-width:650px){.header{align-items:flex-start;flex-direction:column;gap:8px;padding:14px 22px}.account{gap:12px;flex-wrap:wrap}main{padding:30px 22px 55px}.heading{gap:12px}.card{padding:22px;align-items:flex-start;flex-direction:column;gap:15px}.card>.primary{width:100%}.actions{flex-direction:column}}
 
 .error-notice{border-color:#d7b872;background:#fffaf0;color:#614611}.diagnostic{font-size:.82rem;margin-top:8px}.diagnostic code{font-family:ui-monospace,Consolas,monospace;font-weight:650}
+
+.primary:disabled{background:#e5ecee;border-color:#d5e0e2;color:#61707a;cursor:not-allowed;font:inherit;font-size:.91rem;font-weight:700}
