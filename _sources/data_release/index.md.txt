@@ -10,8 +10,6 @@
 
 ## Imaging Data
 
-<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>JWST imaging products are coming soon; HST reference products are available through the linked archives.</span></div>
-
 <nav class="section-jump-nav release-subnav release-subnav--two" aria-label="Imaging data products">
   <a class="section-jump-nav__item" href="imaging/hst.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 8h8v8H8zM16 10l4-2v8l-4-2M8 10 4 8v8l4-2M10 8V4h4v4M10 16v4h4v-4"></path></svg></span><span>HST</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
   <a class="section-jump-nav__item" href="imaging/jwst.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 6 3.5v7L12 17l-6-3.5v-7zM12 3v14M6 6.5l12 7M18 6.5l-12 7M5 20l7-3 7 3"></path></svg></span><span>JWST</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>

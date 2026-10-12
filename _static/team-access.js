@@ -14,7 +14,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     entries.forEach((entry) => {
       const field = entry.dataset.teamField;
       if (!["cosmos", "egs", "goods-n", "goods-s", "uds"].includes(field)) return;
-      entry.href = new URL("team/psf/" + field + "/", base.href.replace(/\/?$/, "/")).href;
+      const product = entry.dataset.teamProduct || "psf";
+      if (!["psf", "nircam", "miri"].includes(product)) return;
+      const path = product === "psf" ? "team/psf/" + field + "/" : "team/imaging/" + product + "/" + field + "/";
+      entry.href = new URL(path, base.href.replace(/\/?$/, "/")).href;
       if (entry.hasAttribute("data-team-continue")) {
         entry.hidden = false;
         document.querySelector("[data-team-pending]")?.setAttribute("hidden", "");
