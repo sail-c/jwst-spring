@@ -16,7 +16,7 @@ window.FITSMAP_CONFIG = {
     "F277W": 45,
     "F444W": 32
   },
-  "tileVersion": "uds20261001",
+  "tileVersion": "uds20261013",
   "webpMethod": 2,
   "center": {
     "ra": 34.350018594167906,
@@ -72,9 +72,9 @@ window.FITSMAP_CONFIG = {
         "sampleCount": 263455
       },
       "F277W": {
-        "median": 0.0009165058727376163,
-        "sigma": 0.0042218286761082705,
-        "originalLow": -0.005416237141424789,
+        "median": 0.0009175974992103875,
+        "sigma": 0.004246870136121288,
+        "originalLow": -0.005452707704971544,
         "originalHigh": 1.2639895677566528,
         "sampleCount": 272150
       },
@@ -109,7 +109,7 @@ window.FITSMAP_CONFIG = {
       "band": "F277W",
       "file": "hlsp_uds_jwst_nircam_all_F277W_030mas_v1.7_drz.fits",
       "bytes": 7864329600,
-      "modifiedUTC": "2026-09-24T02:06:49.858925+00:00"
+      "modifiedUTC": "2026-10-12T13:51:27.324198+00:00"
     },
     {
       "band": "F444W",
