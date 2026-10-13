@@ -420,7 +420,7 @@ a {
 .fitsmap-field-card.is-cosmos { --fitsmap-card-image: url("fitsmap/cosmos-card.webp"); }
 .fitsmap-field-card.is-egs { --fitsmap-card-image: url("fitsmap/egs-card.webp"); }
 .fitsmap-field-card.is-goodsn { --fitsmap-card-image: url("fitsmap/goodsn-card.webp"); }
-.fitsmap-field-card.is-uds { --fitsmap-card-image: url("fitsmap/uds-card.webp"); }
+.fitsmap-field-card.is-uds { --fitsmap-card-image: url("fitsmap/uds-card.webp?v=uds20261013"); }
 
 .fitsmap-field-card.is-active::before {
   position: absolute;

@@ -47,6 +47,11 @@ and `F444W` 030 mas mosaics together with:
 - `ALL_CANDELS_JWST_final_goodsn_v2.fits`
 - `ALL_CANDELS_JWST_final_uds_v2.fits`
 
+UDS uses the `v1.7` mosaics. Its F277W input was refreshed on October 12, 2026;
+the map tile version is `uds20261013`. The metadata records the source file
+names, sizes, and modification times so subsequent rebuilds can identify the
+input revision.
+
 ## Build
 
 Run these commands from the repository root:

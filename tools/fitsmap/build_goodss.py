@@ -9,6 +9,7 @@ import os
 import shutil
 import struct
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -317,6 +318,14 @@ def write_config(
         },
         "display": {"thresholdSigma": THRESHOLD_SIGMA, "shadowGamma": SHADOW_GAMMA, "statistics": stats},
         "catalog": catalog,
+        "inputs": [
+            {
+                "band": band, "file": path.name, "bytes": path.stat().st_size,
+                "modifiedUTC": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat(),
+            }
+            for band, path in BANDS.items()
+        ],
+        "catalogInput": CATALOG_PATH.name,
     }
     write_config_files(config)
 

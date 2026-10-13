@@ -2,7 +2,7 @@
 
 采用 Cloudflare Workers 免费方案验证 GitHub 身份。公开网站仍由 GitHub Pages 提供；数据仍保存在需要密码的群晖分享中。QuickConnect 不支持第三方服务，因此本功能无需在群晖安装 Container Manager 或 Web Station。
 
-成员名单保存在私有配置文件中。五个天区的 PSF 下载链接已配置；NIRCam 和 MIRI 的十个图像下载入口共用同一名单，下载链接暂时留空。服务每次访问和下载都会检查固定的 GitHub 账户 ID；用户名改变不会导致失效。GitHub access token 仅用于查明身份，不保存到浏览器会话中。
+成员名单保存在私有配置文件中。五个天区的 PSF 和 NIRCam 图像下载链接已配置；MIRI 的五个入口暂未开放下载。所有入口共用同一成员名单。服务每次访问和下载都会检查固定的 GitHub 账户 ID；用户名改变不会导致失效。GitHub access token 仅用于查明身份，不保存到浏览器会话中。
 
 ## 正式服务地址
 
