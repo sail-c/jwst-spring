@@ -167,5 +167,5 @@ cython_debug/
 tools/team_access/private/
 
 tools/team_access/.dev.vars*
-tools/team_access/.wrangler/
+.wrangler/
 tools/team_access/node_modules/

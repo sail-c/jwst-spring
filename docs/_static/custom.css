@@ -1575,3 +1575,24 @@ a.observation-access-link:focus-visible {
   text-align: left;
   text-indent: 0;
 }
+
+/* Catalog descriptions wrap within the page; column names keep their spelling. */
+.page-data_release-catalog-index .article-content table {
+  width: 100%;
+  min-width: 640px;
+  table-layout: auto;
+}
+.page-data_release-catalog-index .article-content :is(th, td) {
+  white-space: normal;
+  vertical-align: top;
+  text-align: left;
+}
+.page-data_release-catalog-index .article-content td code {
+  white-space: nowrap;
+}
+.page-data_release-catalog-index .catalog-equation {
+  padding: 14px 18px;
+  border-left: 3px solid var(--spring-accent);
+  background: var(--spring-soft);
+  overflow-wrap: anywhere;
+}

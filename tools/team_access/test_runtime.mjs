@@ -40,7 +40,7 @@ test("Workers runtime rejects the old redirect mode and completes the fixed OAut
       SESSION_SECRET: "runtime-test-only-session-secret-longer-than-32-characters",
       GITHUB_CLIENT_ID: "runtime-test-client", GITHUB_CLIENT_SECRET: "runtime-test-secret",
       ALLOWED_USERS_JSON: JSON.stringify({ users: [{ id: 73995538, login: "sail-c" }] }),
-      PRODUCTS_JSON: JSON.stringify({ cosmos: { title: "COSMOS PSF", download_url: "https://gofile.me/runtime-test-only" }, "nircam-cosmos": { title: "COSMOS NIRCam", download_url: "" }, "miri-uds": { title: "UDS MIRI", download_url: "" } })
+      PRODUCTS_JSON: JSON.stringify({ cosmos: { title: "COSMOS PSF", download_url: "https://gofile.me/runtime-test-only" }, "nircam-cosmos": { title: "COSMOS NIRCam", download_url: "" }, "miri-uds": { title: "UDS MIRI", download_url: "" }, catalog: { title: "Photometric Catalog", download_url: "https://gofile.me/runtime-test-catalog" } })
     }
   }));
   try {
@@ -59,6 +59,22 @@ test("Workers runtime rejects the old redirect mode and completes the fixed OAut
     assert.match(await portal.text(), /Download PSF files/);
     const download = await runtime.dispatchFetch(BASE + "/team/psf/cosmos/download", { redirect: "manual", headers: { Cookie: cookie } });
     assert.equal(download.headers.get("Location"), "https://gofile.me/runtime-test-only");
+    const startedCatalog = await runtime.dispatchFetch(BASE + "/login?field=all&product=catalog", { redirect: "manual" });
+    assert.equal(startedCatalog.status, 302);
+    const catalogState = new URL(startedCatalog.headers.get("Location")).searchParams.get("state");
+    const catalogReturn = await runtime.dispatchFetch(BASE + "/auth/github/callback?state=" + catalogState + "&code=runtime-catalog-code", {
+      redirect: "manual", headers: { Cookie: startedCatalog.headers.get("Set-Cookie").split(";")[0] }
+    });
+    assert.equal(catalogReturn.status, 302);
+    assert.equal(catalogReturn.headers.get("Location"), "/team/catalog/");
+    const catalogCookie = catalogReturn.headers.get("Set-Cookie").split(";")[0];
+    const catalogPortal = await runtime.dispatchFetch(BASE + "/team/catalog/", { headers: { Cookie: catalogCookie } });
+    assert.match(await catalogPortal.text(), /Download catalog/);
+    const catalogDownload = await runtime.dispatchFetch(BASE + "/team/catalog/download", { redirect: "manual", headers: { Cookie: catalogCookie } });
+    assert.equal(catalogDownload.status, 302);
+    assert.equal(catalogDownload.headers.get("Location"), "https://gofile.me/runtime-test-catalog");
+    const anonymousCatalog = await runtime.dispatchFetch(BASE + "/team/catalog/download", { redirect: "manual" });
+    assert.equal(anonymousCatalog.headers.get("Location"), "/team/catalog/");
     for (const [category, field] of [["nircam", "cosmos"], ["miri", "uds"]]) {
       const path = "/team/imaging/" + category + "/" + field + "/";
       const startedImaging = await runtime.dispatchFetch(BASE + "/login?field=" + field + "&product=" + category, { redirect: "manual" });

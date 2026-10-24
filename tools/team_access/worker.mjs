@@ -1,7 +1,7 @@
 import { renderPortal, portalPath } from "./portal.mjs";
 
 const FIELDS = new Set(["cosmos", "egs", "goods-n", "goods-s", "uds"]);
-const CATEGORIES = new Set(["psf", "nircam", "miri"]);
+const CATEGORIES = new Set(["psf", "nircam", "miri", "catalog"]);
 
 const encoder = new TextEncoder();
 const SESSION_SECONDS = 4 * 3600;
@@ -147,8 +147,8 @@ export async function handleRequest(request, env, css = "", dependencies = {}) {
   if (url.origin !== cfg.base) return respond(new Response("Invalid host", { status: 400 }));
   const ready = Boolean(cfg.clientId && cfg.clientSecret);
   const getResource = (field, category = "psf") => {
-    if (!FIELDS.has(field) || !CATEGORIES.has(category)) return null;
-    const key = category === "psf" ? field : category + "-" + field;
+    if (!CATEGORIES.has(category) || (category === "catalog" ? field !== "all" : !FIELDS.has(field))) return null;
+    const key = category === "catalog" ? "catalog" : category === "psf" ? field : category + "-" + field;
     return Object.hasOwn(cfg.products, key) ? { field, category, product: cfg.products[key] } : null;
   };
   const defaultResource = getResource("cosmos") || { field: "cosmos", category: "psf", product: { title: "Team PSF", download_url: "" } };
@@ -164,9 +164,10 @@ export async function handleRequest(request, env, css = "", dependencies = {}) {
   if (request.method === "GET" && url.pathname === "/") return respond(redirect(pathOf(defaultResource)));
   const psf = /^\/team\/psf\/([a-z][a-z0-9-]{0,30})\/(download)?$/.exec(url.pathname);
   const imaging = /^\/team\/imaging\/(nircam|miri)\/([a-z][a-z0-9-]{0,30})\/(download)?$/.exec(url.pathname);
-  if (request.method === "GET" && (psf || imaging)) {
-    const resource = psf ? getResource(psf[1]) : getResource(imaging[2], imaging[1]);
-    const download = Boolean(psf ? psf[2] : imaging[3]);
+  const catalog = /^\/team\/catalog\/(download)?$/.exec(url.pathname);
+  if (request.method === "GET" && (psf || imaging || catalog)) {
+    const resource = catalog ? getResource("all", "catalog") : psf ? getResource(psf[1]) : getResource(imaging[2], imaging[1]);
+    const download = Boolean(catalog ? catalog[1] : psf ? psf[2] : imaging[3]);
     if (!resource) return respond(new Response("Not found", { status: 404 }));
     if (!identity) {
       const errorCode = url.searchParams.get("signin") || "";

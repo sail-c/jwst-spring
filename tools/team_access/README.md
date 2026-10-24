@@ -2,7 +2,7 @@
 
 采用 Cloudflare Workers 免费方案验证 GitHub 身份。公开网站仍由 GitHub Pages 提供；数据仍保存在需要密码的群晖分享中。QuickConnect 不支持第三方服务，因此本功能无需在群晖安装 Container Manager 或 Web Station。
 
-成员名单保存在私有配置文件中。五个天区的 PSF 和 NIRCam 图像下载链接已配置；MIRI 的五个入口暂未开放下载。所有入口共用同一成员名单。服务每次访问和下载都会检查固定的 GitHub 账户 ID；用户名改变不会导致失效。GitHub access token 仅用于查明身份，不保存到浏览器会话中。
+成员名单保存在私有配置文件中。五个天区的 PSF、NIRCam 和 MIRI 图像下载链接已配置，星表也有统一下载入口。所有入口共用同一成员名单。服务每次访问和下载都会检查固定的 GitHub 账户 ID；用户名改变不会导致失效。GitHub access token 仅用于查明身份，不保存到浏览器会话中。
 
 ## 正式服务地址
 
@@ -17,7 +17,7 @@
 
 ## 文件位置
 
-- worker.mjs：GitHub OAuth、会话、成员检查、PSF 和图像下载跳转。
+- worker.mjs：GitHub OAuth、会话、成员检查、PSF、图像和星表下载跳转。
 - portal.mjs、portal.css：登录页、私有下载页和无权限提示。
 - wrangler.jsonc：Workers 部署配置，仅包含公开服务地址等非敏感设置。
 - private/allowed-users.json：本地成员名单。
@@ -111,6 +111,12 @@ NIRCam 和 MIRI 各有 COSMOS、EGS、GOODS-N、GOODS-S、UDS 五个入口。路
 在 `private/products.json` 中填写 `nircam-cosmos`、`nircam-egs`、`nircam-goods-n`、`nircam-goods-s`、`nircam-uds`，或对应的 `miri-...` 条目中的 `download_url`。这些值初始为 `""`，登录后的下载按钮禁用；直接访问下载接口也不会产生跳转。填入 HTTPS 群晖 gofile.me 分享链接并同步 PRODUCTS_JSON 后，按钮自动启用，无需重建公开网页。
 
 账户名单和登录会话与 PSF 共用。未登录用户需先通过 GitHub 验证，名单外用户看到 Access denied；公开页面只包含登录服务入口，不包含实际群晖分享地址。
+
+## 星表下载
+
+公开说明页为 `data_release/catalog/index.html`，介绍制作方法、红移与 SED 拟合以及列名和单位。私有入口为 `/team/catalog/`，受保护的下载路径为 `/team/catalog/download`，共用现有 GitHub 会话和成员白名单。
+
+在 `private/products.json` 的 `catalog` 条目中设置 `title` 和 `download_url`。下载地址只保存在服务端 PRODUCTS_JSON Secret 中；通过白名单验证后才跳转到仍需分享密码的群晖页面。修改后与 PSF / 图像配置一起同步 PRODUCTS_JSON 即可，无需更改 OAuth 应用。
 
 ## 本地预览与测试
 

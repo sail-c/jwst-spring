@@ -438,3 +438,126 @@ test("imaging failure messages, account switching and logout retain the chosen f
   assert.equal(logout.status, 303);
   assert.equal(logout.headers.get("Location"), "/team/imaging/miri/goods-s/");
 });
+
+
+const CATALOG_SHARE = "https://gofile.me/test/private-catalog";
+function catalogEnvironment(changes = {}) {
+  const env = imagingEnvironment();
+  const products = JSON.parse(env.PRODUCTS_JSON);
+  products.catalog = { title: "Photometric Catalog", download_url: CATALOG_SHARE };
+  return { ...env, PRODUCTS_JSON: JSON.stringify(products), ...changes };
+}
+
+test("catalog sign-in preserves the all-fields product and returns to its own download portal", async () => {
+  const env = catalogEnvironment();
+  const anonymous = await responseFor("/team/catalog/", env);
+  assert.equal(anonymous.status, 200);
+  const html = await anonymous.text();
+  assert.match(html, /Photometric Catalog Downloads/);
+  assert.match(html, /Private team only/);
+  assert.ok(html.includes('href="/login?field=all&amp;product=catalog"'));
+  assert.ok(html.includes('href="https://sail-c.github.io/jwst-spring/data_release/catalog/index.html"'));
+  assert.doesNotMatch(html, /gofile\.me|data_release\/psf/);
+  const direct = await responseFor("/team/catalog/download", env);
+  assert.equal(direct.status, 302);
+  assert.equal(direct.headers.get("Location"), "/team/catalog/");
+  const signedIn = await login(env, { id: 73995538, login: "sail-c" }, "all", "catalog");
+  assert.equal(payloadOf(signedIn.started.cookie).field, "all");
+  assert.equal(payloadOf(signedIn.started.cookie).category, "catalog");
+  assert.equal(signedIn.response.status, 302);
+  assert.equal(signedIn.response.headers.get("Location"), "/team/catalog/");
+  const portal = await responseFor("/team/catalog/", env, signedIn.cookie);
+  const signedHtml = await portal.text();
+  assert.match(signedHtml, /Download catalog/);
+  assert.match(signedHtml, /name="field" value="all"/);
+  assert.match(signedHtml, /name="product" value="catalog"/);
+  assert.doesNotMatch(signedHtml, /gofile\.me|MIRI imaging data/);
+  const download = await responseFor("/team/catalog/download", env, signedIn.cookie);
+  assert.equal(download.status, 302);
+  assert.equal(download.headers.get("Location"), CATALOG_SHARE);
+  const psf = await responseFor("/team/psf/cosmos/download", env, signedIn.cookie);
+  assert.equal(psf.headers.get("Location"), "https://gofile.me/test/private-cosmos");
+});
+
+test("existing member sessions enter the catalog while nonmembers and revoked members cannot", async () => {
+  const env = catalogEnvironment();
+  const outsider = await login(env, { id: 99999, login: "nonmember" }, "all", "catalog");
+  assert.equal(outsider.response.status, 403);
+  const denied = await outsider.response.text();
+  assert.match(denied, /Access denied/);
+  assert.match(denied, /field=all&amp;product=catalog&amp;switch=1/);
+  assert.doesNotMatch(denied, /gofile\.me/);
+  const { cookie } = await login(env);
+  assert.equal((await responseFor("/team/catalog/download", env, cookie)).headers.get("Location"), CATALOG_SHARE);
+  const revoked = { ...env, ALLOWED_USERS_JSON: '{"users":[]}' };
+  for (const path of ["/team/catalog/", "/team/catalog/download"]) {
+    const response = await responseFor(path, revoked, cookie);
+    assert.equal(response.status, 403);
+    assert.equal(response.headers.get("Location"), null);
+    assert.doesNotMatch(await response.text(), /gofile\.me|Download catalog/);
+  }
+});
+
+test("an unconfigured catalog stays disabled and returns no download destination", async () => {
+  const env = catalogEnvironment();
+  const { cookie } = await login(env);
+  const products = JSON.parse(env.PRODUCTS_JSON);
+  products.catalog.download_url = "";
+  const missing = { ...env, PRODUCTS_JSON: JSON.stringify(products) };
+  for (const [path, status] of [["/team/catalog/", 200], ["/team/catalog/download", 409]]) {
+    const response = await responseFor(path, missing, cookie);
+    assert.equal(response.status, status);
+    assert.equal(response.headers.get("Location"), null);
+    const html = await response.text();
+    assert.match(html, /Downloads are not yet available for this catalog/);
+    assert.match(html, /<button class="primary" disabled>Downloads not available<\/button>/);
+    assert.doesNotMatch(html, /gofile\.me|href="[^"]*\/download"/);
+  }
+});
+
+test("catalog namespaces reject field impersonation, malformed categories and invalid destinations", async () => {
+  const env = catalogEnvironment();
+  for (const path of [
+    "/team/catalog/cosmos/", "/team/catalog/all/", "/team/imaging/catalog/all/", "/team/psf/catalog/",
+    "/login?field=cosmos&product=catalog", "/login?field=all&product=psf", "/login?field=all&product=miri",
+    "/login?field=all&product=constructor", "/login?field=all&product=catalog%2F.."
+  ]) assert.equal((await responseFor(path, env)).status, 404, path);
+  assert.equal((await responseFor("/team/catalog/download", env, "", { requestOptions: { method: "POST" } })).status, 404);
+  for (const target of [null, " ", "http://gofile.me/test/catalog", "https://attacker.example/catalog"]) {
+    const products = JSON.parse(env.PRODUCTS_JSON);
+    products.catalog.download_url = target;
+    assert.equal((await responseFor("/team/catalog/", { ...env, PRODUCTS_JSON: JSON.stringify(products) })).status, 503);
+  }
+});
+
+test("catalog errors and logout retain the catalog destination without a field fallback", async () => {
+  const env = catalogEnvironment();
+  const started = await startLogin(env, "all", "catalog");
+  const failure = await responseFor("/auth/github/callback?state=wrong&code=unused", env, started.cookie);
+  assert.equal(failure.headers.get("Location"), "/team/catalog/?signin=state");
+  const { cookie } = await login(env, { id: 73995538, login: "sail-c" }, "all", "catalog");
+  const csrf = payloadOf(cookie).csrf;
+  const bad = await responseFor("/logout", env, cookie, { requestOptions: { method: "POST", headers: { Origin: BASE }, body: "csrf=wrong&field=all&product=catalog" } });
+  assert.equal(bad.status, 403);
+  const logout = await responseFor("/logout", env, cookie, { requestOptions: { method: "POST", headers: { Origin: BASE }, body: "csrf=" + csrf + "&field=all&product=catalog" } });
+  assert.equal(logout.status, 303);
+  assert.equal(logout.headers.get("Location"), "/team/catalog/");
+  assert.match(logout.headers.get("Set-Cookie"), /Max-Age=0/);
+});
+
+test("legacy pending PSF sessions without a product category still complete sign-in", async () => {
+  const env = catalogEnvironment();
+  const started = await startLogin(env);
+  const payload = payloadOf(started.cookie);
+  delete payload.category;
+  const encoded = Buffer.from(JSON.stringify(payload)).toString("base64url");
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(env.SESSION_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const signature = Buffer.from(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(encoded))).toString("base64url");
+  const legacyCookie = "__Host-spring_team=" + encoded + "." + signature;
+  let calls = 0;
+  const response = await responseFor("/auth/github/callback?state=" + started.state + "&code=legacy-code", env, legacyCookie, {
+    fetch: async () => Response.json(++calls === 1 ? { access_token: "test-legacy-token" } : { id: 73995538, login: "sail-c" })
+  });
+  assert.equal(response.status, 302);
+  assert.equal(response.headers.get("Location"), "/team/psf/cosmos/");
+});
