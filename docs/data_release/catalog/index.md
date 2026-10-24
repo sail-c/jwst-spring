@@ -80,8 +80,6 @@ Positions and shapes follow the [SExtractor parameter conventions](https://astro
 | `FLAGS` | SExtractor extraction bitmask; several warnings may be combined in one value. | integer |
 | `CLASS_STAR` | Stellarity index: values near 0 favor an extended profile; values near 1 favor a point-like profile. | 0–1 |
 
-`A_IMAGE` and `B_IMAGE` are rms shape measures, not half-light radii. The [SExtractor Kron aperture definition](https://astromatic.github.io/sextractor/Photom.html) uses semi-axes `KRON_RADIUS × A_IMAGE` and `KRON_RADIUS × B_IMAGE`, subject to the configured minimum aperture. Do not apply the `PHOT_AUTOPARAMS` scale factor a second time.
-
 The [extraction flags](https://astromatic.github.io/sextractor/Flagging.html) are additive bit values:
 
 | Bit value | Meaning |
