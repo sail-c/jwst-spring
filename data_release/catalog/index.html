@@ -1,0 +1,526 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="NIRCam WFSS (Grism Spectroscopy)" href="../spectroscopy/nircam-wfss.html"><link rel="prev" title="JWST Imaging Data" href="../imaging/jwst.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.12.19 -->
+        <title>Photometric Catalog - JWST-SPRING</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a0da4b13" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<script>document.body.dataset.theme = "light";</script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<input class="site-menu-toggle" type="checkbox" id="site-menu-toggle" aria-label="Toggle navigation">
+
+<header class="site-header" id="top">
+  <div class="site-header__inner">
+    <a class="site-brand" href="../../index.html" aria-label="JWST-SPRING home">
+      <span class="site-brand__star" aria-hidden="true">✦</span>
+      <span>JWST-SPRING</span>
+    </a>
+    <button class="site-menu-button" type="button" aria-label="Open navigation" aria-controls="primary-navigation" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+    <nav class="site-nav" id="primary-navigation" aria-label="Primary navigation">
+      
+  <a href="../../index.html" class="site-nav__link">
+    <span class="site-nav__icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8"></path><path d="M5.5 9.5V21h13V9.5M9 21v-7h6v7"></path></svg>
+  </span>
+    <span>Home</span>
+  </a>
+      
+  <a href="../../overview/index.html" class="site-nav__link">
+    <span class="site-nav__icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3.1 4.5 6.1 4.5 9S15 17.9 12 21M12 3c-3 3.1-4.5 6.1-4.5 9S9 17.9 12 21"></path></svg>
+  </span>
+    <span>Overview</span>
+  </a>
+      
+  <a href="../../instruments/index.html" class="site-nav__link">
+    <span class="site-nav__icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 4 8 8M5 6l4-4 2 2-4 4zM13 10l3-3 2 2-3 3M13 12l-5 5M6 15l3 3M5 21h10M10 18v3"></path><circle cx="18" cy="5" r="2"></circle></svg>
+  </span>
+    <span>Instruments</span>
+  </a>
+      
+  <a href="../../observations/index.html" class="site-nav__link">
+    <span class="site-nav__icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>
+  </span>
+    <span>Observations</span>
+  </a>
+      
+  <a href="../index.html" class="site-nav__link is-active" aria-current="page">
+    <span class="site-nav__icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v6c0 1.7 3.6 3 8 3M20 5v6M4 11v6c0 1.7 3.6 3 8 3"></path><path d="M17 13v8M14 18l3 3 3-3"></path></svg>
+  </span>
+    <span>Data Release</span>
+  </a>
+      
+  <a href="../../fitsmap/index.html" class="site-nav__link">
+    <span class="site-nav__icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15"></path><circle cx="15" cy="11" r="2"></circle></svg>
+  </span>
+    <span>FITSmap</span>
+  </a>
+      
+  <a href="../../team/index.html" class="site-nav__link">
+    <span class="site-nav__icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 20c.5-4 2.5-6 6-6s5.5 2 6 6M15 14c3.4 0 5.3 1.7 6 5"></path></svg>
+  </span>
+    <span>Team</span>
+  </a>
+    </nav>
+  </div>
+</header>
+<label class="site-menu-overlay" for="site-menu-toggle" aria-hidden="true"></label>
+
+<main class="site-main page-data_release-catalog-index" id="main-content">
+  <article class="article-content" role="main">
+    <section id="photometric-catalog">
+<h1>Photometric Catalog<a class="headerlink" href="#photometric-catalog" title="Link to this heading">¶</a></h1>
+<p><a class="detail-back-link" href="../index.html#photometric-catalog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"></path><path d="M7 12h12"></path></svg><span>Back to Data Release</span></a></p>
+<p>Multiband photometry, redshift estimates, and stellar-population measurements for COSMOS, EGS, GOODS-N, GOODS-S, and UDS.</p>
+<div class="team-access-card">
+  <div class="team-access-card__copy">
+    <strong>Photometric catalog downloads</strong>
+    <p>Catalog files are currently available to approved JWST-SPRING team members. Sign in with GitHub to continue to the password-protected Synology download folder.</p>
+  </div>
+  <div class="team-access-card__actions">
+    <span class="team-access-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>Private team only</span>
+    <a class="team-access-button" data-team-product="catalog" href="https://jwst-spring-team.jwst-spring-team-access.workers.dev/team/catalog/">Private catalog downloads <span aria-hidden="true">→</span></a>
+  </div>
+</div>
+<nav class="section-jump-nav section-jump-nav--four release-subnav" aria-label="Photometric catalog guide">
+  <a class="section-jump-nav__item" href="#catalog-construction"><span>Construction</span></a>
+  <a class="section-jump-nav__item" href="#redshifts"><span>Redshifts</span></a>
+  <a class="section-jump-nav__item" href="#stellar-populations"><span>Stellar populations</span></a>
+  <a class="section-jump-nav__item" href="#column-guide"><span>Column guide</span></a>
+</nav>
+<section id="catalog-construction">
+<h2>Catalog Construction<a class="headerlink" href="#catalog-construction" title="Link to this heading">¶</a></h2>
+<p>Photometric catalogs were built independently for each field using <a class="reference external" href="https://doi.org/10.1051/aas:1996164">SExtractor (Bertin &amp; Arnouts 1996)</a>. Available HST and JWST/NIRCam images were matched to the NIRCam F444W PSF. Sources were detected in a combined F356W+F444W image, and multiband fluxes were measured in dual-image mode using consistent apertures across the PSF-matched images. Because MIRI images have a broader PSF and more severe source blending, F770W photometry was primarily measured with <a class="reference external" href="https://doi.org/10.1051/0004-6361/201526471">T-PHOT (Merlin et al. 2015)</a>, using the higher-resolution NIRCam images as spatial priors.</p>
+<p>Flux uncertainties combine Poisson noise with an empirical background contribution. For each band, 1000 random apertures were placed in source-free regions. The normalized median absolute deviation (nMAD) of the enclosed sky fluxes was measured as a function of aperture size to characterize background fluctuations, including correlated noise from resampling and PSF matching. The background uncertainty appropriate to each source aperture was then added in quadrature to its Poisson uncertainty.</p>
+<p>These catalogs provide the photometry used for sample selection and SED fitting. Further details of their construction and validation will be presented in <strong>Zhao et al. (2026, in preparation)</strong>.</p>
+</section>
+<section id="redshifts">
+<h2>Redshifts<a class="headerlink" href="#redshifts" title="Link to this heading">¶</a></h2>
+<p>Photometric redshifts were estimated independently with <a class="reference external" href="https://arxiv.org/abs/0807.1533">EAZY (Brammer et al. 2008)</a>, <a class="reference external" href="https://www.cfht.hawaii.edu/~arnouts/LEPHARE/lephare.html">LePhare</a>, and <a class="reference external" href="https://arxiv.org/abs/1811.03094">CIGALE (Boquien et al. 2019)</a>. The EAZY fits used the <code class="docutils literal notranslate"><span class="pre">tweak_fsps_QSF_12_v3</span></code> template set, based on modified FSPS models with a Kroupa IMF. LePhare followed the configuration of Shuntov et al. (2025). CIGALE used Bruzual &amp; Charlot (2003) stellar populations with a Chabrier IMF and delayed-τ star formation histories, with 30 ≤ τ ≤ 10,000 Myr, 0.008 ≤ Z ≤ 0.05, −4 ≤ log U ≤ −2, and 0 ≤ E(B−V) ≤ 1.5 mag.</p>
+<p>Spectroscopic measurements were compiled from literature catalogs and public spectroscopy, including the DAWN JWST Archive. They were matched to the photometric catalogs within <strong>0.3 arcsec</strong>. Where multiple measurements were available, a preferred redshift was selected using the reported quality and reliability flags.</p>
+<p>The fiducial redshift, <code class="docutils literal notranslate"><span class="pre">zbest</span></code>, is the adopted spectroscopic redshift when one is available; otherwise, it is the median of the EAZY, LePhare, and CIGALE photometric estimates. In the released catalogs, a positive <code class="docutils literal notranslate"><span class="pre">zspec</span></code> identifies sources with an adopted spectroscopic redshift.</p>
+</section>
+<section id="stellar-populations">
+<h2>Stellar Populations<a class="headerlink" href="#stellar-populations" title="Link to this heading">¶</a></h2>
+<p>Stellar-population fits were performed at fixed <code class="docutils literal notranslate"><span class="pre">zbest</span></code> using both <a class="reference external" href="https://arxiv.org/abs/0905.1692">FAST (Kriek et al. 2009)</a> and CIGALE, each with exponentially declining and delayed-τ star formation histories. The CIGALE fits retained the stellar-population, metallicity, nebular-emission, and attenuation setup described above. FAST used Bruzual &amp; Charlot (2003) models, a Chabrier IMF, and the Calzetti et al. (2000) attenuation law.</p>
+<p>The recommended stellar mass, <code class="docutils literal notranslate"><span class="pre">lmass_med</span></code>, is the median of the four mass estimates from the two codes and two star formation histories. Similarly, <code class="docutils literal notranslate"><span class="pre">Av_med</span></code> is the median V-band attenuation from those four fits. These combined estimates reduce sensitivity to any single fitting code or star formation history.</p>
+</section>
+<section id="column-guide">
+<h2>Column Guide<a class="headerlink" href="#column-guide" title="Link to this heading">¶</a></h2>
+<p>Column names are case-sensitive. Available filters differ between fields; the photometry table below describes the supplied example schema, while other filters follow the same <code class="docutils literal notranslate"><span class="pre">fluxF...</span></code> / <code class="docutils literal notranslate"><span class="pre">fluxerrF...</span></code> naming convention. Check the header of the downloaded field catalog for its actual columns.</p>
+<p><strong>Missing values are stored as <code class="docutils literal notranslate"><span class="pre">-99</span></code></strong> and must be excluded before calculations or summary statistics. Other non-positive fluxes are not automatically missing values; an AB magnitude can only be calculated for a positive flux.</p>
+<section id="identifiers-and-redshifts">
+<h3>Identifiers and Redshifts<a class="headerlink" href="#identifiers-and-redshifts" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Column</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ID</span></code></p></td>
+<td class="text-left"><p>Source identifier within the field catalog; use the field name together with the ID when combining catalogs.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">zbest</span></code></p></td>
+<td class="text-left"><p>Adopted redshift: preferred <code class="docutils literal notranslate"><span class="pre">zspec</span></code> when available, otherwise the median photometric estimate.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">zphot</span></code></p></td>
+<td class="text-left"><p>Median of the photometric-redshift estimates from EAZY, LePhare, and CIGALE.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">zspec</span></code></p></td>
+<td class="text-left"><p>Adopted spectroscopic redshift; a value greater than zero indicates an available spectroscopic measurement.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">z_eazy</span></code></p></td>
+<td class="text-left"><p>Photometric-redshift estimate from EAZY.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">z_lephare</span></code></p></td>
+<td class="text-left"><p>Photometric-redshift estimate from LePhare.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">z_cigale</span></code></p></td>
+<td class="text-left"><p>Photometric-redshift estimate from CIGALE.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="positions-shapes-and-extraction-flags">
+<h3>Positions, Shapes, and Extraction Flags<a class="headerlink" href="#positions-shapes-and-extraction-flags" title="Link to this heading">¶</a></h3>
+<p>Positions and shapes follow the <a class="reference external" href="https://astromatic.github.io/sextractor/Param.html">SExtractor parameter conventions</a> and <a class="reference external" href="https://astromatic.github.io/sextractor/Position.html">moment-based definitions</a>. Image coordinates refer to the detection-image grid, with the first pixel center at (1, 1); they should not be applied directly to a differently sampled or reprojected image.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Column</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">KRON_RADIUS</span></code></p></td>
+<td class="text-left"><p>Kron aperture scale in units of <code class="docutils literal notranslate"><span class="pre">A_IMAGE</span></code> and <code class="docutils literal notranslate"><span class="pre">B_IMAGE</span></code>. SExtractor includes the scale factor set by <code class="docutils literal notranslate"><span class="pre">PHOT_AUTOPARAMS</span></code>; this is not a radius in pixels.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X_IMAGE</span></code></p></td>
+<td class="text-left"><p>Source centroid along the image x axis.</p></td>
+<td class="text-left"><p>pixel</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Y_IMAGE</span></code></p></td>
+<td class="text-left"><p>Source centroid along the image y axis.</p></td>
+<td class="text-left"><p>pixel</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X_WORLD</span></code></p></td>
+<td class="text-left"><p>Right ascension of the source centroid in the image WCS.</p></td>
+<td class="text-left"><p>degree</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Y_WORLD</span></code></p></td>
+<td class="text-left"><p>Declination of the source centroid in the image WCS.</p></td>
+<td class="text-left"><p>degree</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">A_IMAGE</span></code></p></td>
+<td class="text-left"><p>Major-axis rms extent derived from the second moments of the source profile.</p></td>
+<td class="text-left"><p>pixel</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">B_IMAGE</span></code></p></td>
+<td class="text-left"><p>Minor-axis rms extent derived from the second moments of the source profile.</p></td>
+<td class="text-left"><p>pixel</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">THETA_IMAGE</span></code></p></td>
+<td class="text-left"><p>Major-axis angle measured from image +x toward image +y; this is an image-coordinate angle.</p></td>
+<td class="text-left"><p>degree</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ELLIPTICITY</span></code></p></td>
+<td class="text-left"><p>Ellipticity, defined as 1 − <code class="docutils literal notranslate"><span class="pre">B_IMAGE</span></code> / <code class="docutils literal notranslate"><span class="pre">A_IMAGE</span></code>.</p></td>
+<td class="text-left"><p>—</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">FLAGS</span></code></p></td>
+<td class="text-left"><p>SExtractor extraction bitmask; several warnings may be combined in one value.</p></td>
+<td class="text-left"><p>integer</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CLASS_STAR</span></code></p></td>
+<td class="text-left"><p>Stellarity index: values near 0 favor an extended profile; values near 1 favor a point-like profile.</p></td>
+<td class="text-left"><p>0–1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">A_IMAGE</span></code> and <code class="docutils literal notranslate"><span class="pre">B_IMAGE</span></code> are rms shape measures, not half-light radii. The <a class="reference external" href="https://astromatic.github.io/sextractor/Photom.html">SExtractor Kron aperture definition</a> uses semi-axes <code class="docutils literal notranslate"><span class="pre">KRON_RADIUS</span> <span class="pre">×</span> <span class="pre">A_IMAGE</span></code> and <code class="docutils literal notranslate"><span class="pre">KRON_RADIUS</span> <span class="pre">×</span> <span class="pre">B_IMAGE</span></code>, subject to the configured minimum aperture. Do not apply the <code class="docutils literal notranslate"><span class="pre">PHOT_AUTOPARAMS</span></code> scale factor a second time.</p>
+<p>The <a class="reference external" href="https://astromatic.github.io/sextractor/Flagging.html">extraction flags</a> are additive bit values:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Bit value</p></th>
+<th class="head text-left"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>A nearby bright object or bad pixels may affect the photometry.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p>The source was deblended.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>4</p></td>
+<td class="text-left"><p>At least one source pixel is saturated.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>8</p></td>
+<td class="text-left"><p>The source is truncated at an image boundary.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>16</p></td>
+<td class="text-left"><p>The aperture data are incomplete or corrupted.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>32</p></td>
+<td class="text-left"><p>The isophotal data are incomplete or corrupted.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>64</p></td>
+<td class="text-left"><p>A memory overflow occurred during deblending.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>128</p></td>
+<td class="text-left"><p>A memory overflow occurred during extraction.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">FLAGS</span> <span class="pre">=</span> <span class="pre">0</span></code> means none of these extraction warnings was raised; it does not guarantee that all measurements are scientifically reliable.</p>
+</section>
+<section id="observed-photometry">
+<h3>Observed Photometry<a class="headerlink" href="#observed-photometry" title="Link to this heading">¶</a></h3>
+<p>Flux densities and their uncertainties use the <strong>µJy scale (AB zero point 23.9)</strong>. For a positive flux density:</p>
+<p class="catalog-equation">m<sub>AB</sub> = 23.9 − 2.5 log<sub>10</sub>(f<sub>ν</sub> / µJy)</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">fluxerrF...</span></code> column is the uncertainty associated with the corresponding <code class="docutils literal notranslate"><span class="pre">fluxF...</span></code> measurement. Its construction includes the empirical background and Poisson contributions described above.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Flux column</p></th>
+<th class="head text-left"><p>Uncertainty column</p></th>
+<th class="head text-left"><p>Filter / instrument</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF606W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF606W</span></code></p></td>
+<td class="text-left"><p>F606W / HST</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF814W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF814W</span></code></p></td>
+<td class="text-left"><p>F814W / HST</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF090W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF090W</span></code></p></td>
+<td class="text-left"><p>F090W / NIRCam</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF115W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF115W</span></code></p></td>
+<td class="text-left"><p>F115W / NIRCam</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF150W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF150W</span></code></p></td>
+<td class="text-left"><p>F150W / NIRCam</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF200W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF200W</span></code></p></td>
+<td class="text-left"><p>F200W / NIRCam</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF277W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF277W</span></code></p></td>
+<td class="text-left"><p>F277W / NIRCam</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF356W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF356W</span></code></p></td>
+<td class="text-left"><p>F356W / NIRCam</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF410M</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF410M</span></code></p></td>
+<td class="text-left"><p>F410M / NIRCam</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF444W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF444W</span></code></p></td>
+<td class="text-left"><p>F444W / NIRCam</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF770W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF770W</span></code></p></td>
+<td class="text-left"><p>F770W / MIRI</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF1000W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF1000W</span></code></p></td>
+<td class="text-left"><p>F1000W / MIRI</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF1500W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF1500W</span></code></p></td>
+<td class="text-left"><p>F1500W / MIRI</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF1800W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF1800W</span></code></p></td>
+<td class="text-left"><p>F1800W / MIRI</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxF2100W</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fluxerrF2100W</span></code></p></td>
+<td class="text-left"><p>F2100W / MIRI</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="rest-frame-absolute-magnitudes">
+<h3>Rest-frame Absolute Magnitudes<a class="headerlink" href="#rest-frame-absolute-magnitudes" title="Link to this heading">¶</a></h3>
+<p>These columns contain <strong>rest-frame AB absolute magnitudes</strong>, rather than apparent magnitudes, fluxes, or luminosities.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Column</p></th>
+<th class="head text-left"><p>Rest-frame band</p></th>
+<th class="head text-left"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">rest1600</span></code></p></td>
+<td class="text-left"><p>Ultraviolet at 1600 Å.</p></td>
+<td class="text-left"><p>AB mag</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">rest2800</span></code></p></td>
+<td class="text-left"><p>Ultraviolet at 2800 Å.</p></td>
+<td class="text-left"><p>AB mag</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">restUXbessel</span></code></p></td>
+<td class="text-left"><p>Bessell U band, retaining the catalog’s <code class="docutils literal notranslate"><span class="pre">UXbessel</span></code> filter label.</p></td>
+<td class="text-left"><p>AB mag</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">restVbessel</span></code></p></td>
+<td class="text-left"><p>Bessell V band.</p></td>
+<td class="text-left"><p>AB mag</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">restIbessel</span></code></p></td>
+<td class="text-left"><p>Bessell I band.</p></td>
+<td class="text-left"><p>AB mag</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">restJpalomar</span></code></p></td>
+<td class="text-left"><p>Palomar J band.</p></td>
+<td class="text-left"><p>AB mag</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sed-fitting-parameters">
+<h3>SED-fitting Parameters<a class="headerlink" href="#sed-fitting-parameters" title="Link to this heading">¶</a></h3>
+<p>In the column names, <code class="docutils literal notranslate"><span class="pre">fast</span></code> and <code class="docutils literal notranslate"><span class="pre">cigale</span></code> identify the fitting code; <code class="docutils literal notranslate"><span class="pre">exp</span></code> denotes an exponentially declining star formation history and <code class="docutils literal notranslate"><span class="pre">del</span></code> denotes a delayed-τ history. The catalog stores masses and star formation rates as base-10 logarithms:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lmass...</span></code>: log<sub>10</sub>(M<sub>★</sub> / M<sub>☉</sub>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsfr...</span></code>: log<sub>10</sub>[SFR / (M<sub>☉</sub> yr<sup>−1</sup>)].</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Av...</span></code>: V-band dust attenuation A<sub>V</sub>, in magnitudes.</p></li>
+</ul>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Column</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Unit / scale</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lmass_fast_exp</span></code></p></td>
+<td class="text-left"><p>Stellar mass from FAST with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>log mass</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Av_fast_exp</span></code></p></td>
+<td class="text-left"><p>V-band attenuation from FAST with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>mag</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr_fast_exp</span></code></p></td>
+<td class="text-left"><p>Star formation rate from FAST with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lmass_fast_del</span></code></p></td>
+<td class="text-left"><p>Stellar mass from FAST with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>log mass</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Av_fast_del</span></code></p></td>
+<td class="text-left"><p>V-band attenuation from FAST with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>mag</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr_fast_del</span></code></p></td>
+<td class="text-left"><p>Star formation rate from FAST with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lmass_cigale_exp</span></code></p></td>
+<td class="text-left"><p>Stellar mass from CIGALE with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>log mass</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Av_cigale_exp</span></code></p></td>
+<td class="text-left"><p>V-band attenuation from CIGALE with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>mag</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr_cigale_exp</span></code></p></td>
+<td class="text-left"><p>Model star formation rate from CIGALE with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr100Myrs_cigale_exp</span></code></p></td>
+<td class="text-left"><p>Mean SFR over the last 100 Myr from CIGALE with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr10Myrs_cigale_exp</span></code></p></td>
+<td class="text-left"><p>Mean SFR over the last 10 Myr from CIGALE with an exponentially declining SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lmass_cigale_del</span></code></p></td>
+<td class="text-left"><p>Stellar mass from CIGALE with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>log mass</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Av_cigale_del</span></code></p></td>
+<td class="text-left"><p>V-band attenuation from CIGALE with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>mag</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr_cigale_del</span></code></p></td>
+<td class="text-left"><p>Model star formation rate from CIGALE with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr100Myrs_cigale_del</span></code></p></td>
+<td class="text-left"><p>Mean SFR over the last 100 Myr from CIGALE with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lsfr10Myrs_cigale_del</span></code></p></td>
+<td class="text-left"><p>Mean SFR over the last 10 Myr from CIGALE with a delayed-τ SFH.</p></td>
+<td class="text-left"><p>log SFR</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lmass_med</span></code></p></td>
+<td class="text-left"><p>Recommended stellar mass: median of the four FAST/CIGALE × exp/del estimates.</p></td>
+<td class="text-left"><p>log mass</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Av_med</span></code></p></td>
+<td class="text-left"><p>Median V-band attenuation from the same four fits.</p></td>
+<td class="text-left"><p>mag</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span>© 2026 JWST-SPRING Team</span>
+    <span>v2.0.6 · Updated 2026-10-24</span>
+  </div>
+</footer><script src="../../_static/documentation_options.js?v=3e466467"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/site.js?v=c99d66ad"></script>
+    <script src="../../_static/team-access.js?v=3b2756d9"></script>
+    </body>
+</html>

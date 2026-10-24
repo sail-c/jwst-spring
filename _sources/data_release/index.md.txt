@@ -27,7 +27,16 @@
 
 ## Photometric Catalog
 
-<div class="release-status release-status--coming"><span class="release-status__mark" aria-hidden="true"></span><span>Photometric catalog products are coming soon.</span></div>
+<div class="team-access-card">
+  <div class="team-access-card__copy">
+    <strong>Photometric catalogs for the five survey fields</strong>
+    <p>Explore the construction methods, redshift and stellar-population estimates, and catalog column guide. Data downloads are currently restricted to approved team members.</p>
+  </div>
+  <div class="team-access-card__actions">
+    <span class="team-access-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>Private team only</span>
+    <a class="team-access-button" href="catalog/index.html">Catalog guide &amp; downloads <span aria-hidden="true">→</span></a>
+  </div>
+</div>
 
 ## Point-Spread Functions (PSFs)
 
@@ -121,6 +130,7 @@
 
 imaging/hst
 imaging/jwst
+catalog/index
 spectroscopy/nircam-wfss
 spectroscopy/nirspec-grism
 spectroscopy/nirspec-grating
