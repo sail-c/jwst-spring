@@ -27,15 +27,9 @@
 
 ## Photometric Catalog
 
-<div class="team-access-card">
-  <div class="team-access-card__copy">
-    <strong>Photometric catalogs for the five survey fields</strong>
-    <p>Explore the construction methods, redshift and stellar-population estimates, and catalog column guide.</p>
-  </div>
-  <div class="team-access-card__actions">
-    <a class="team-access-button" href="catalog/index.html">Catalog guide &amp; downloads <span aria-hidden="true">→</span></a>
-  </div>
-</div>
+<nav class="section-jump-nav release-subnav release-subnav--two" aria-label="Photometric catalog products">
+  <a class="section-jump-nav__item" href="catalog/index.html"><span class="section-jump-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span>Catalog guide &amp; downloads</span><span class="release-subnav__arrow" aria-hidden="true">→</span></a>
+</nav>
 
 ## Point-Spread Functions (PSFs)
 
