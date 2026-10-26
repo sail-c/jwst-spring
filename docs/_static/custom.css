@@ -568,6 +568,17 @@ a {
   font-size: 0.91rem;
 }
 
+@media (min-width: 701px) {
+  .page-data_release-index #photometric-catalog .release-subnav {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(440px, 100%);
+  }
+
+  .page-data_release-index #photometric-catalog .section-jump-nav__item {
+    white-space: nowrap;
+  }
+}
+
 .release-subnav__arrow {
   margin-left: auto;
   color: #49616a;
